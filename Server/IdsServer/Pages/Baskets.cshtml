@@ -1,0 +1,41 @@
+﻿@page
+@using IdsServer.Models
+@{
+    ViewData["Title"] = "Baskets";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+
+@(Html.DevExtreme().DataGrid<BasketDto>() 
+    .DataSource(ds => ds.Mvc()
+            .Controller("Baskets") 
+            .LoadAction("Get")
+            .Key("BasketId")
+    )
+    .RemoteOperations(true) 
+    .Columns(columns => {
+        columns.AddFor(x => x.BasketInfoDto.Date).Caption("Date").Format("dd.MM.yyyy");
+        columns.AddFor(x => x.BasketInfoDto.Time).Caption("Time").Format("HH:mm:ss");
+    })
+    .Paging(paging => paging.PageSize(10)) 
+    .FilterRow(filterRow => filterRow.Visible(true)) 
+    
+        .MasterDetail(md => md
+        .Enabled(true)
+        .Template(@<text>
+
+                       @(Html.DevExtreme().DataGrid()
+                           .DataSource(d => d.Mvc()
+                               .Controller("Baskets")
+                               .LoadAction("GetDetails")
+                               .LoadParams(new { basketId = new JS("data.BasketId") })
+                           )
+    .Columns(n => n.Add().DataField("data.ArticleNumber").Caption("aaa"))
+                           .ShowBorders(true)
+                       )
+
+                   </text>)
+    )
+)
