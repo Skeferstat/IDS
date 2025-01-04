@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Xml.Serialization;
 using System.Xml;
 using AutoMapper;
-using IdsServer.Models;
 using Microsoft.Extensions.Primitives;
 using Microsoft.Extensions.Caching.Memory;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
+using IdsLibrary.Serializing;
+using IdsServer.Models;
 
 namespace IdsServer.Controllers;
 
@@ -60,12 +60,9 @@ public class BasketsController : Controller
 
         StringValues basketXml = form["warenkorb"];
 
-        // Save the basket to a file
-        System.IO.File.WriteAllText("basketrec.xml", basketXml);
-
         try
         {
-            typeWarenkorb basket = DeserializeBasket(basketXml);
+            var basket = Deserializer.DeserializeBasketReceive(basketXml);
             BasketDto basketDto = _mapper.Map<BasketDto>(basket);
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
@@ -135,17 +132,5 @@ public class BasketsController : Controller
     }
 
 
-    public static typeWarenkorb DeserializeBasket(string xmlData)
-    {
-
-        XmlReaderSettings settings = new XmlReaderSettings
-        {
-            ValidationType = ValidationType.Schema
-        };
-        settings.Schemas.Add(null, "../IdsLibrary/Models/Basket/BasketReceive.xsd");
-
-        XmlSerializer serializer = new XmlSerializer(typeof(typeWarenkorb));
-        using StringReader reader = new StringReader(xmlData);
-        return (typeWarenkorb)serializer.Deserialize(reader);
-    }
+    
 }

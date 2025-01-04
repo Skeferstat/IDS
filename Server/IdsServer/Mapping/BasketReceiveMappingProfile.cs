@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
+using BasketReceive;
 using IdsServer.Models;
 
 namespace IdsServer.Mapping;
 
-public class BasketMappingProfile : Profile
+public class BasketReceiveMappingProfile : Profile
 {
-    public BasketMappingProfile()
+    public BasketReceiveMappingProfile()
     {
-
         CreateMap<typeWarenkorb, BasketDto>()
             .ForMember(dest => dest.BasketInfoDto, opt => opt.MapFrom(src => src.WarenkorbInfo))
             .ForMember(dest => dest.OrderDto, opt => opt.MapFrom(src => src.Order))

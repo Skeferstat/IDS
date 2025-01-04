@@ -4,23 +4,28 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Controllers\SampleDataController.cs" />
+    </ItemGroup>
   
 
     <ItemGroup>
-      <PackageReference Include="AutoMapper"/>
-      <PackageReference Include="DevExtreme.AspNet.Data"/>
-      <PackageReference Include="DevExtreme.AspNet.Core"/>
-      <PackageReference Include="FluentValidation"/>
-      <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
-      <PackageReference Include="Hellang.Middleware.ProblemDetails"/>
-      <PackageReference Include="JetBrains.Annotations"/>
-      <PackageReference Include="MediatR"/>
-      <PackageReference Include="Microsoft.FeatureManagement"/>
-      <PackageReference Include="MiniProfiler.AspNetCore.Mvc"/>
-      <PackageReference Include="Serilog.AspNetCore"/>
+      <PackageReference Include="AutoMapper" />
+      <PackageReference Include="DevExtreme.AspNet.Data" />
+      <PackageReference Include="DevExtreme.AspNet.Core" />
+      <PackageReference Include="FluentValidation" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+      <PackageReference Include="Hellang.Middleware.ProblemDetails" />
+      <PackageReference Include="JetBrains.Annotations" />
+      <PackageReference Include="MediatR" />
+      <PackageReference Include="Microsoft.FeatureManagement" />
+      <PackageReference Include="MiniProfiler.AspNetCore.Mvc" />
+      <PackageReference Include="Serilog.AspNetCore" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Library\IdsLibrary\IdsLibrary.csproj" />
       <ProjectReference Include="..\IdsLibrary\IdsLibrary.csproj" />
     </ItemGroup>
 

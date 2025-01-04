@@ -75,7 +75,7 @@ public static class ApiExtensions
     {
         MapperConfiguration mapperConfig = new(mc =>
         {
-            mc.AddProfile<BasketMappingProfile>();
+            mc.AddProfile<BasketReceiveMappingProfile>();
         });
         IMapper mapper = mapperConfig.CreateMapper();
         services.AddSingleton(mapper);
