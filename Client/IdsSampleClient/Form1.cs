@@ -1,47 +1,72 @@
-using System.Text;
-using BasketSend;
+using System.Net.Http.Headers;
+using System.Xml;
+using IdsLibrary.Http;
+using IdsLibrary.Models;
+using IdsLibrary.Serializing;
 using Microsoft.Extensions.Options;
-using Microsoft.Web.WebView2.Core;
 using Serilog;
 
 namespace IdsSampleClient
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private readonly AppSettings _appSettings;
-        public Form1(IOptions<AppSettings> appSettings)
+        public MainForm(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
             InitializeComponent();
-
             this.ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
+            this.HookUriTextBox.Text = _appSettings.HookUri;
+            if (IdsVersionComboBox.Items.Count - 1 >= 0)
+                this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
         }
 
-        private void OnOpenBasketFile(object sender, EventArgs e)
+
+        private void OnOpenBasketFile(object sender, EventArgs eventArgs)
         {
-            this.OpenBasketFileDialog.ShowDialog();
+            var result = this.OpenBasketFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.BasketXmlFileTextBox.Text = this.OpenBasketFileDialog.FileName;
+            }
         }
 
-        private async void OnSendBasketToShop(object sender, EventArgs e)
+        private async void OnSendBasketToShop(object sender, EventArgs eventArgs)
         {
-            await this.ShopWebView.EnsureCoreWebView2Async();
-            string data = "{}";
-            string url = ShopUrlTextBox.Text;
+            string shopUrl = ShopUrlTextBox.Text;
+            string hookUri = HookUriTextBox.Text;
+            string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
+            XmlDocument xmlDoc = new XmlDocument();
+            try
+            {
+                xmlDoc.Load(OpenBasketFileDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error loading basket file");
+                throw;
+            }
 
-            typeWarenkorb basket = new typeWarenkorb();
-            basket.WarenkorbInfo = new typeWarenkorbInfo();
-            basket.WarenkorbInfo.Date =   DateTime.UtcNow;
-            basket.WarenkorbInfo.Time = DateTime.UtcNow;
-            basket.WarenkorbInfo.Version = typeWarenkorbInfoVersion.Item25;
+            var basket = Deserializer.DeserializeBasketSend(xmlDoc.InnerXml!);
 
-            basket.Order = new typeOrder();
-            basket.Order.OrderInfo = new typeOrderInfo();
-            basket.Order.OrderInfo.OrderNumber = "123456";
+            PackageHeader packageHeader = new PackageHeader
+            {
+                CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
+                UserName = _appSettings.Shop.AuthUsername,
+                Password = _appSettings.Shop.AuthPassword,
+                ActionCode = ActionCode.SendBasketToShop,
+                HookUri = new Uri(hookUri),
+                Version = idsVersion,
+                Target = "top",
+                ShopUri = new Uri(shopUrl)
+            };
 
+            PostCreator postCreator = new PostCreator(packageHeader);
+            (Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers) data = await postCreator.GetAsync(basket!);
 
-            string additionalHeaders = "Content-Type: application/xml";
-            //CoreWebView2WebResourceRequest request = ShopWebView.CoreWebView2.Environment.CreateWebResourceRequest(url, "POST", new MemoryStream(Encoding.UTF8.GetBytes(data)), additionalHeaders);
-            //ShopWebView.CoreWebView2.NavigateWithWebResourceRequest(request);
+            WebViewForm webViewForm = new WebViewForm();
+            await webViewForm.SetDataAsync(data.ShopUri, "POST", data.ContentStream, data.Headers);
+            webViewForm.Show();
         }
     }
 }

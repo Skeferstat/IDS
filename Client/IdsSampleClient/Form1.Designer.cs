@@ -1,6 +1,6 @@
 ﻿namespace IdsSampleClient
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -37,13 +37,15 @@
             label2 = new Label();
             ShopUrlTextBox = new TextBox();
             SendBasketToShopButton = new Button();
-            ShopWebView = new Microsoft.Web.WebView2.WinForms.WebView2();
-            ((System.ComponentModel.ISupportInitialize)ShopWebView).BeginInit();
+            label3 = new Label();
+            HookUriTextBox = new TextBox();
+            IdsVersionComboBox = new ComboBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // OpenBasketFileButton
             // 
-            OpenBasketFileButton.Location = new Point(601, 75);
+            OpenBasketFileButton.Location = new Point(601, 130);
             OpenBasketFileButton.Name = "OpenBasketFileButton";
             OpenBasketFileButton.Size = new Size(27, 29);
             OpenBasketFileButton.TabIndex = 0;
@@ -55,18 +57,18 @@
             // 
             label1.AutoEllipsis = true;
             label1.AutoSize = true;
-            label1.Location = new Point(10, 84);
+            label1.Location = new Point(12, 134);
             label1.Name = "label1";
-            label1.Size = new Size(52, 20);
+            label1.Size = new Size(55, 20);
             label1.TabIndex = 1;
-            label1.Text = "Basket";
+            label1.Text = "Basket:";
             ToolTip.SetToolTip(label1, "An xml file with basket informations inside");
             // 
             // BasketXmlFileTextBox
             // 
             BasketXmlFileTextBox.Enabled = false;
             BasketXmlFileTextBox.HideSelection = false;
-            BasketXmlFileTextBox.Location = new Point(109, 76);
+            BasketXmlFileTextBox.Location = new Point(109, 131);
             BasketXmlFileTextBox.Name = "BasketXmlFileTextBox";
             BasketXmlFileTextBox.PlaceholderText = "Choose a xml file...";
             BasketXmlFileTextBox.Size = new Size(486, 27);
@@ -81,7 +83,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(10, 33);
+            label2.Location = new Point(12, 55);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 3;
@@ -90,14 +92,14 @@
             // ShopUrlTextBox
             // 
             ShopUrlTextBox.Enabled = false;
-            ShopUrlTextBox.Location = new Point(109, 30);
+            ShopUrlTextBox.Location = new Point(111, 52);
             ShopUrlTextBox.Name = "ShopUrlTextBox";
             ShopUrlTextBox.Size = new Size(486, 27);
             ShopUrlTextBox.TabIndex = 4;
             // 
             // SendBasketToShopButton
             // 
-            SendBasketToShopButton.Location = new Point(109, 124);
+            SendBasketToShopButton.Location = new Point(111, 182);
             SendBasketToShopButton.Name = "SendBasketToShopButton";
             SendBasketToShopButton.Size = new Size(193, 29);
             SendBasketToShopButton.TabIndex = 5;
@@ -105,32 +107,60 @@
             SendBasketToShopButton.UseVisualStyleBackColor = true;
             SendBasketToShopButton.Click += OnSendBasketToShop;
             // 
-            // ShopWebView
+            // label3
             // 
-            ShopWebView.AllowExternalDrop = true;
-            ShopWebView.CreationProperties = null;
-            ShopWebView.DefaultBackgroundColor = Color.White;
-            ShopWebView.Location = new Point(52, 227);
-            ShopWebView.Name = "ShopWebView";
-            ShopWebView.Size = new Size(772, 159);
-            ShopWebView.TabIndex = 6;
-            ShopWebView.ZoomFactor = 1D;
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 94);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 20);
+            label3.TabIndex = 6;
+            label3.Text = "Hook-Url:";
             // 
-            // Form1
+            // HookUriTextBox
+            // 
+            HookUriTextBox.Enabled = false;
+            HookUriTextBox.Location = new Point(111, 91);
+            HookUriTextBox.Name = "HookUriTextBox";
+            HookUriTextBox.PlaceholderText = "Choose a hook url...";
+            HookUriTextBox.Size = new Size(486, 27);
+            HookUriTextBox.TabIndex = 7;
+            // 
+            // IdsVersionComboBox
+            // 
+            IdsVersionComboBox.FormattingEnabled = true;
+            IdsVersionComboBox.Items.AddRange(new object[] { "2.5" });
+            IdsVersionComboBox.Location = new Point(111, 18);
+            IdsVersionComboBox.Name = "IdsVersionComboBox";
+            IdsVersionComboBox.Size = new Size(102, 28);
+            IdsVersionComboBox.Sorted = true;
+            IdsVersionComboBox.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 21);
+            label4.Name = "label4";
+            label4.Size = new Size(89, 20);
+            label4.TabIndex = 9;
+            label4.Text = "IDS-Version:";
+            // 
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(893, 452);
-            Controls.Add(ShopWebView);
+            Controls.Add(label4);
+            Controls.Add(IdsVersionComboBox);
+            Controls.Add(HookUriTextBox);
+            Controls.Add(label3);
             Controls.Add(SendBasketToShopButton);
             Controls.Add(ShopUrlTextBox);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(BasketXmlFileTextBox);
             Controls.Add(OpenBasketFileButton);
-            Name = "Form1";
-            Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)ShopWebView).EndInit();
+            Name = "MainForm";
+            Text = "IDS Test Client";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -145,6 +175,9 @@
         private Label label2;
         private TextBox ShopUrlTextBox;
         private Button SendBasketToShopButton;
-        private Microsoft.Web.WebView2.WinForms.WebView2 ShopWebView;
+        private Label label3;
+        private TextBox HookUriTextBox;
+        private ComboBox IdsVersionComboBox;
+        private Label label4;
     }
 }

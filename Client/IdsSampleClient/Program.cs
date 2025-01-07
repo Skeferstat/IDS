@@ -22,7 +22,7 @@ namespace IdsSampleClient
             ServiceProvider = host.Services;
 
             // Run the application
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            Application.Run(ServiceProvider.GetRequiredService<MainForm>());
         }
 
         private static IHostBuilder CreateHostBuilder()
@@ -36,7 +36,7 @@ namespace IdsSampleClient
                         .Build();
 
                     services.Configure<AppSettings>(config.GetSection("App"));
-                    services.AddTransient<Form1>();
+                    services.AddTransient<MainForm>();
                 })
                 .UseSerilog(SeriLogger.Configure); 
         }
