@@ -65,7 +65,48 @@ namespace IdsLibrary.Http
         }
 
 
-        public static StringContent ConvertToStringContent(typeWarenkorb basket)
+        public async Task<(Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers)> GetAsync(string searchTerm)
+        {
+            var validator = new PackageHeaderValidator();
+            var validationResult = await validator.ValidateAsync(_packageHeader);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new ValidationException($"PackageHeader is not valid: {errors}");
+            }
+
+            var content = new MultipartFormDataContent();
+
+            if (string.IsNullOrEmpty(_packageHeader.CustomerNumber) == false)
+                content.Add(new StringContent(_packageHeader.CustomerNumber), PackageParameter.CustomNumber);
+            if (string.IsNullOrEmpty(_packageHeader.UserName) == false)
+                content.Add(new StringContent(_packageHeader.UserName), PackageParameter.UserName);
+            if (string.IsNullOrEmpty(_packageHeader.Password) == false)
+                content.Add(new StringContent(_packageHeader.Password), PackageParameter.Password);
+
+            content.Add(new StringContent(_packageHeader.ActionCode.Value), PackageParameter.Action);
+
+            if (string.IsNullOrEmpty(_packageHeader.HookUri?.ToString()) == false)
+                content.Add(new StringContent(_packageHeader.HookUri!.ToString()), PackageParameter.HookUri);
+
+            if (_packageHeader.Version != null)
+                content.Add(new StringContent(_packageHeader.Version), PackageParameter.Version);
+            if (_packageHeader.Target != null)
+                content.Add(new StringContent(_packageHeader.Target), PackageParameter.Target);
+
+
+            content.Add(new StringContent(searchTerm), PackageParameter.SearchTerm);
+
+
+            var memoryStream = new MemoryStream();
+            content.CopyToAsync(memoryStream).Wait();
+            memoryStream.Position = 0;
+
+            return (_packageHeader.ShopUri, memoryStream, content.Headers);
+        }
+
+        private static StringContent ConvertToStringContent(typeWarenkorb basket)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(typeWarenkorb));
             using StringWriter writer = new StringWriter();

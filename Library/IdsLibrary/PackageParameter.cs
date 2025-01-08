@@ -15,5 +15,6 @@ namespace IdsLibrary
         public const string Target = "target";
         
         public const string Basket = "warenkorb";
+        public const string SearchTerm = "searchterm";
     }
 }
