@@ -15,18 +15,18 @@ namespace IdsLibrary.Http
 {
     public class PostCreator
     {
-        private readonly PackageHeader _packageHeader;
+        public PackageHeader PackageHeader { get; }
 
         public PostCreator(PackageHeader packageHeader)
         {
-            _packageHeader = packageHeader == null ? throw new ArgumentNullException(nameof(packageHeader)) : packageHeader;
+            PackageHeader = packageHeader == null ? throw new ArgumentNullException(nameof(packageHeader)) : packageHeader;
 
         }
 
         public async Task<(Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers)> GetAsync(typeWarenkorb basket)
         {
             var validator = new PackageHeaderValidator();
-            var validationResult = await validator.ValidateAsync(_packageHeader);
+            var validationResult = await validator.ValidateAsync(PackageHeader);
 
             if (!validationResult.IsValid)
             {
@@ -36,22 +36,22 @@ namespace IdsLibrary.Http
 
             var content = new MultipartFormDataContent();
 
-            if (string.IsNullOrEmpty(_packageHeader.CustomerNumber) == false)
-                content.Add(new StringContent(_packageHeader.CustomerNumber), PackageParameter.CustomNumber);
-            if (string.IsNullOrEmpty(_packageHeader.UserName) == false)
-                content.Add(new StringContent(_packageHeader.UserName), PackageParameter.UserName);
-            if (string.IsNullOrEmpty(_packageHeader.Password) == false)
-                content.Add(new StringContent(_packageHeader.Password), PackageParameter.Password);
+            if (string.IsNullOrEmpty(PackageHeader.CustomerNumber) == false)
+                content.Add(new StringContent(PackageHeader.CustomerNumber), PackageParameter.CustomNumber);
+            if (string.IsNullOrEmpty(PackageHeader.UserName) == false)
+                content.Add(new StringContent(PackageHeader.UserName), PackageParameter.UserName);
+            if (string.IsNullOrEmpty(PackageHeader.Password) == false)
+                content.Add(new StringContent(PackageHeader.Password), PackageParameter.Password);
 
-            content.Add(new StringContent(_packageHeader.ActionCode.Value), PackageParameter.Action);
+            content.Add(new StringContent(PackageHeader.ActionCode.Value), PackageParameter.Action);
 
-            if (string.IsNullOrEmpty(_packageHeader.HookUri?.ToString()) == false)
-                content.Add(new StringContent(_packageHeader.HookUri!.ToString()), PackageParameter.HookUri);
+            if (string.IsNullOrEmpty(PackageHeader.HookUri?.ToString()) == false)
+                content.Add(new StringContent(PackageHeader.HookUri!.ToString()), PackageParameter.HookUri);
 
-            if (_packageHeader.Version != null)
-                content.Add(new StringContent(_packageHeader.Version), PackageParameter.Version);
-            if (_packageHeader.Target != null)
-                content.Add(new StringContent(_packageHeader.Target), PackageParameter.Target);
+            if (PackageHeader.Version != null)
+                content.Add(new StringContent(PackageHeader.Version), PackageParameter.Version);
+            if (PackageHeader.Target != null)
+                content.Add(new StringContent(PackageHeader.Target), PackageParameter.Target);
 
 
             content.Add(ConvertToStringContent(basket), PackageParameter.Basket);
@@ -61,14 +61,14 @@ namespace IdsLibrary.Http
             content.CopyToAsync(memoryStream).Wait();
             memoryStream.Position = 0;
 
-            return (_packageHeader.ShopUri, memoryStream, content.Headers);
+            return (PackageHeader.ShopUri, memoryStream, content.Headers);
         }
 
 
         public async Task<(Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers)> GetAsync(string searchTerm)
         {
             var validator = new PackageHeaderValidator();
-            var validationResult = await validator.ValidateAsync(_packageHeader);
+            var validationResult = await validator.ValidateAsync(PackageHeader);
 
             if (!validationResult.IsValid)
             {
@@ -78,22 +78,22 @@ namespace IdsLibrary.Http
 
             var content = new MultipartFormDataContent();
 
-            if (string.IsNullOrEmpty(_packageHeader.CustomerNumber) == false)
-                content.Add(new StringContent(_packageHeader.CustomerNumber), PackageParameter.CustomNumber);
-            if (string.IsNullOrEmpty(_packageHeader.UserName) == false)
-                content.Add(new StringContent(_packageHeader.UserName), PackageParameter.UserName);
-            if (string.IsNullOrEmpty(_packageHeader.Password) == false)
-                content.Add(new StringContent(_packageHeader.Password), PackageParameter.Password);
+            if (string.IsNullOrEmpty(PackageHeader.CustomerNumber) == false)
+                content.Add(new StringContent(PackageHeader.CustomerNumber), PackageParameter.CustomNumber);
+            if (string.IsNullOrEmpty(PackageHeader.UserName) == false)
+                content.Add(new StringContent(PackageHeader.UserName), PackageParameter.UserName);
+            if (string.IsNullOrEmpty(PackageHeader.Password) == false)
+                content.Add(new StringContent(PackageHeader.Password), PackageParameter.Password);
 
-            content.Add(new StringContent(_packageHeader.ActionCode.Value), PackageParameter.Action);
+            content.Add(new StringContent(PackageHeader.ActionCode.Value), PackageParameter.Action);
 
-            if (string.IsNullOrEmpty(_packageHeader.HookUri?.ToString()) == false)
-                content.Add(new StringContent(_packageHeader.HookUri!.ToString()), PackageParameter.HookUri);
+            if (string.IsNullOrEmpty(PackageHeader.HookUri?.ToString()) == false)
+                content.Add(new StringContent(PackageHeader.HookUri!.ToString()), PackageParameter.HookUri);
 
-            if (_packageHeader.Version != null)
-                content.Add(new StringContent(_packageHeader.Version), PackageParameter.Version);
-            if (_packageHeader.Target != null)
-                content.Add(new StringContent(_packageHeader.Target), PackageParameter.Target);
+            if (PackageHeader.Version != null)
+                content.Add(new StringContent(PackageHeader.Version), PackageParameter.Version);
+            if (PackageHeader.Target != null)
+                content.Add(new StringContent(PackageHeader.Target), PackageParameter.Target);
 
 
             content.Add(new StringContent(searchTerm), PackageParameter.SearchTerm);
@@ -103,7 +103,49 @@ namespace IdsLibrary.Http
             content.CopyToAsync(memoryStream).Wait();
             memoryStream.Position = 0;
 
-            return (_packageHeader.ShopUri, memoryStream, content.Headers);
+            return (PackageHeader.ShopUri, memoryStream, content.Headers);
+        }
+
+
+        public async Task<(Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers)> GetArticleDeepLinkAsync(string wholesaleArticleNumber)
+        {
+            var validator = new PackageHeaderValidator();
+            var validationResult = await validator.ValidateAsync(PackageHeader);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new ValidationException($"PackageHeader is not valid: {errors}");
+            }
+
+            var content = new MultipartFormDataContent();
+
+            if (string.IsNullOrEmpty(PackageHeader.CustomerNumber) == false)
+                content.Add(new StringContent(PackageHeader.CustomerNumber), PackageParameter.CustomNumber);
+            if (string.IsNullOrEmpty(PackageHeader.UserName) == false)
+                content.Add(new StringContent(PackageHeader.UserName), PackageParameter.UserName);
+            if (string.IsNullOrEmpty(PackageHeader.Password) == false)
+                content.Add(new StringContent(PackageHeader.Password), PackageParameter.Password);
+
+            content.Add(new StringContent(PackageHeader.ActionCode.Value), PackageParameter.Action);
+
+            if (string.IsNullOrEmpty(PackageHeader.HookUri?.ToString()) == false)
+                content.Add(new StringContent(PackageHeader.HookUri!.ToString()), PackageParameter.HookUri);
+
+            if (PackageHeader.Version != null)
+                content.Add(new StringContent(PackageHeader.Version), PackageParameter.Version);
+            if (PackageHeader.Target != null)
+                content.Add(new StringContent(PackageHeader.Target), PackageParameter.Target);
+
+
+            content.Add(new StringContent(wholesaleArticleNumber), PackageParameter.WholesaleArticleNumber);
+
+
+            var memoryStream = new MemoryStream();
+            content.CopyToAsync(memoryStream).Wait();
+            memoryStream.Position = 0;
+
+            return (PackageHeader.ShopUri, memoryStream, content.Headers);
         }
 
         private static StringContent ConvertToStringContent(typeWarenkorb basket)

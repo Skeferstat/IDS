@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IdsLibrary
+﻿namespace IdsLibrary
 {
     internal class PackageParameter
     {
@@ -16,5 +12,10 @@ namespace IdsLibrary
         
         public const string Basket = "warenkorb";
         public const string SearchTerm = "searchterm";
+
+        /// <summary>
+        /// Grosshandelsnummer.
+        /// </summary>
+        public const string WholesaleArticleNumber = "ghnummer";
     }
 }

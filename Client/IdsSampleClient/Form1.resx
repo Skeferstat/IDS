@@ -141,8 +141,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;OpenBasketFileButton.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -158,9 +161,6 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Basket:</value>
   </data>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label1.ToolTip" xml:space="preserve">
     <value>An xml file with basket informations inside</value>
   </data>
@@ -174,7 +174,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="BasketXmlFileTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -201,8 +201,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BasketXmlFileTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="OpenBasketFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
   </metadata>
@@ -234,7 +237,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="ShopUrlTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -258,7 +261,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ShopUrlTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="SendBasketToShopButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>656, 131</value>
@@ -282,7 +285,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SendBasketToShopButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -309,7 +312,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="HookUriTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -336,7 +339,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;HookUriTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="IdsVersionComboBox.Items" xml:space="preserve">
     <value>2.5</value>
@@ -360,7 +363,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;IdsVersionComboBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -387,13 +390,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 179</value>
+    <value>12, 179</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 20</value>
@@ -414,10 +417,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="SearchTermTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 176</value>
+  </data>
+  <data name="SearchTermTextBox.PlaceholderText" xml:space="preserve">
+    <value>Enter the name of the item you are looking for...</value>
   </data>
   <data name="SearchTermTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>486, 27</value>
@@ -435,13 +441,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SearchTermTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="SearchTermButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>659, 176</value>
+    <value>656, 176</value>
   </data>
   <data name="SearchTermButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 29</value>
+    <value>193, 29</value>
   </data>
   <data name="SearchTermButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -459,6 +465,81 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SearchTermButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 223</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>DeepLink:</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="DeepLinkSearchTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 220</value>
+  </data>
+  <data name="DeepLinkSearchTextBox.PlaceholderText" xml:space="preserve">
+    <value>Enter the wholesale item number of the item you are looking for...</value>
+  </data>
+  <data name="DeepLinkSearchTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>484, 27</value>
+  </data>
+  <data name="DeepLinkSearchTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchTextBox.Name" xml:space="preserve">
+    <value>DeepLinkSearchTextBox</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchTextBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DeepLinkSearchButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>660, 220</value>
+  </data>
+  <data name="DeepLinkSearchButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 29</value>
+  </data>
+  <data name="DeepLinkSearchButton.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="DeepLinkSearchButton.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchButton.Name" xml:space="preserve">
+    <value>DeepLinkSearchButton</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DeepLinkSearchButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

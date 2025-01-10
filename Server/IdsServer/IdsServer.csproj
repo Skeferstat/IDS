@@ -26,7 +26,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Library\IdsLibrary\IdsLibrary.csproj" />
-      <ProjectReference Include="..\IdsLibrary\IdsLibrary.csproj" />
     </ItemGroup>
 
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>

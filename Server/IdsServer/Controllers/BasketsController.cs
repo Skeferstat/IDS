@@ -7,6 +7,7 @@ using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
 using IdsLibrary.Serializing;
 using IdsServer.Models;
+using JetBrains.Annotations;
 
 namespace IdsServer.Controllers;
 
@@ -39,7 +40,7 @@ public class BasketsController : Controller
     {
         if (_cache.TryGetValue(ReceivedBasketsCacheKey, out List<BasketDto> baskets) == false)
         {
-            baskets = new List<BasketDto>();
+            baskets = [];
         }
 
         return Ok(baskets);
@@ -48,16 +49,13 @@ public class BasketsController : Controller
     [HttpPost]
     public Task<IActionResult> Receive()
     {
-
-        if (!Request.HasFormContentType || !Request.Form.ContainsKey("warenkorb"))
+        if (Request.HasFormContentType == false || !Request.Form.ContainsKey("warenkorb"))
         {
             return Task.FromResult<IActionResult>(BadRequest("Invalid request format or missing 'warenkorb'."));
         }
 
-
         IFormCollection form = Request.Form;
         StringValues target = form["target"];
-
         StringValues basketXml = form["warenkorb"];
 
         try
@@ -74,12 +72,11 @@ public class BasketsController : Controller
 
             if (_cache.TryGetValue(ReceivedBasketsCacheKey, out List<BasketDto> baskets) == false)
             {
-                baskets = new List<BasketDto>();
+                baskets = [];
             }
 
             baskets.Add(basketDto);
             _cache.Set(ReceivedBasketsCacheKey, baskets, cacheEntryOptions);
-
 
             return Task.FromResult<IActionResult>(Ok(new
             {
@@ -88,22 +85,20 @@ public class BasketsController : Controller
         }
         catch (InvalidOperationException exception)
         {
-            Console.WriteLine($"Error: {exception.Message}");
+            _logger.LogError(exception.Message);
         }
         catch (XmlException exception)
         {
-            Console.WriteLine($"XML Error at line {exception.LineNumber}: {exception.Message}");
+            _logger.LogError($"XML Error at line {exception.LineNumber}: {exception.Message}");
         }
         catch (NotSupportedException exception)
         {
-            Console.WriteLine($"Unsupported operation: {exception.Message}");
+            _logger.LogError($"Unsupported operation: {exception.Message}");
         }
         catch (Exception exception)
         {
-            Console.WriteLine($"An error occurred: {exception.Message}");
+            _logger.LogError($"An error occurred: {exception.Message}");
         }
-
-
 
         return Task.FromResult<IActionResult>(BadRequest(new
         {
@@ -111,26 +106,17 @@ public class BasketsController : Controller
         }));
     }
 
-
-
-    [HttpGet("details")]
-    public object GetDetails(string basketId, DataSourceLoadOptions loadOptions)
+    [HttpGet("orderitems")]
+    [CanBeNull]
+    public List<OrderItemDto> GetOrderItems(string basketId, DataSourceLoadOptions loadOptions)
     {
         if (_cache.TryGetValue(ReceivedBasketsCacheKey, out List<BasketDto> baskets) == false)
         {
-            baskets = new List<BasketDto>();
+            return null;
         }
 
-        var f = DataSourceLoader.Load(
-            from x in baskets
-            where x.BasketId == basketId
-            select x.OrderDto.OrderItemDtos,
-            loadOptions
-        );
-
-        return f;
+        BasketDto basket = baskets.FirstOrDefault(b => b.BasketId == basketId);
+        return basket?.OrderDto.OrderItemDtos;
     }
 
-
-    
 }

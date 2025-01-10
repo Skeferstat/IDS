@@ -21,21 +21,20 @@
     })
     .Paging(paging => paging.PageSize(10)) 
     .FilterRow(filterRow => filterRow.Visible(true)) 
-    
         .MasterDetail(md => md
         .Enabled(true)
         .Template(@<text>
-
-                       @(Html.DevExtreme().DataGrid()
+                       @(Html.DevExtreme().DataGrid<OrderItemDto>()
                            .DataSource(d => d.Mvc()
                                .Controller("Baskets")
-                               .LoadAction("GetDetails")
+                               .LoadAction("GetOrderItems")
                                .LoadParams(new { basketId = new JS("data.BasketId") })
                            )
-    .Columns(n => n.Add().DataField("data.ArticleNumber").Caption("aaa"))
+                           .Columns(columns => {
+                                columns.AddFor(n => n.ArticleNumber).Caption("Article");
+                           })
                            .ShowBorders(true)
                        )
-
                    </text>)
     )
 )

@@ -54,7 +54,7 @@ namespace IdsSampleClient
                 CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
-                ActionCode = ActionCode.SendBasketToShop,
+                
                 HookUri = new Uri(hookUri),
                 Version = idsVersion,
                 Target = "TOP",
@@ -96,9 +96,32 @@ namespace IdsSampleClient
             webViewForm.Show();
         }
 
-        private void button1_Click(object? sender, EventArgs e)
+
+        private async void OnDeepLinkSearchTerm(object sender, EventArgs eventArgs)
         {
-            throw new NotImplementedException();
+            string shopUrl = ShopUrlTextBox.Text;
+            string hookUri = HookUriTextBox.Text;
+            string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
+            string articleNumber = this.DeepLinkSearchTextBox.Text;
+
+            PackageHeader packageHeader = new PackageHeader
+            {
+                CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
+                UserName = _appSettings.Shop.AuthUsername,
+                Password = _appSettings.Shop.AuthPassword,
+                ActionCode = ActionCode.ArticleDeeplink,
+                HookUri = new Uri(hookUri),
+                Version = idsVersion,
+                Target = "TOP",
+                ShopUri = new Uri(shopUrl)
+            };
+
+            PostCreator postCreator = new PostCreator(packageHeader);
+            (Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers) data = await postCreator.GetArticleDeepLinkAsync(articleNumber);
+
+            WebViewForm webViewForm = new WebViewForm();
+            await webViewForm.SetDataAsync(data.ShopUri, "POST", data.ContentStream, data.Headers);
+            webViewForm.Show();
         }
     }
 }

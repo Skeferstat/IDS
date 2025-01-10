@@ -45,6 +45,9 @@
             label5 = new Label();
             SearchTermTextBox = new TextBox();
             SearchTermButton = new Button();
+            label6 = new Label();
+            DeepLinkSearchTextBox = new TextBox();
+            DeepLinkSearchButton = new Button();
             SuspendLayout();
             // 
             // OpenBasketFileButton
@@ -130,10 +133,29 @@
             SearchTermButton.UseVisualStyleBackColor = true;
             SearchTermButton.Click += OnSearchTerm;
             // 
+            // label6
+            // 
+            resources.ApplyResources(label6, "label6");
+            label6.Name = "label6";
+            // 
+            // DeepLinkSearchTextBox
+            // 
+            resources.ApplyResources(DeepLinkSearchTextBox, "DeepLinkSearchTextBox");
+            DeepLinkSearchTextBox.Name = "DeepLinkSearchTextBox";
+            // 
+            // DeepLinkSearchButton
+            // 
+            resources.ApplyResources(DeepLinkSearchButton, "DeepLinkSearchButton");
+            DeepLinkSearchButton.Name = "DeepLinkSearchButton";
+            DeepLinkSearchButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(DeepLinkSearchButton);
+            Controls.Add(DeepLinkSearchTextBox);
+            Controls.Add(label6);
             Controls.Add(SearchTermButton);
             Controls.Add(SearchTermTextBox);
             Controls.Add(label5);
@@ -170,5 +192,8 @@
         private Label label5;
         private TextBox SearchTermTextBox;
         private Button SearchTermButton;
+        private Label label6;
+        private TextBox DeepLinkSearchTextBox;
+        private Button DeepLinkSearchButton;
     }
 }
