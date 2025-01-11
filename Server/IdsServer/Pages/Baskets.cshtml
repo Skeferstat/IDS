@@ -1,4 +1,5 @@
 ﻿@page
+@using DevExpress.Utils
 @using IdsServer.Models
 @{
     ViewData["Title"] = "Baskets";
@@ -33,6 +34,23 @@
                            )
                            .Columns(columns => {
                                 columns.AddFor(n => n.ArticleNumber).Caption("Article");
+                                columns.AddFor(n => n.Quantity).Caption("Quantity").Format(format =>
+                                {
+                                    format.Type(Format.Decimal);
+                                    format.Precision(2);
+                                });
+                                columns.AddFor(n => n.OfferPrice).Caption("Offer").Format(format =>
+                                {
+                                    format.Type(Format.Currency);
+                                    format.Currency("EUR");
+                                    format.Precision(2);
+                                });
+                                columns.AddFor(n => n.NetPrice).Caption("Net").Format(format =>
+                                {
+                                    format.Type(Format.Currency);
+                                    format.Currency("EUR");
+                                    format.Precision(2);
+                                });
                            })
                            .ShowBorders(true)
                        )
