@@ -54,7 +54,7 @@ namespace IdsSampleClient
                 CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
-                
+                ActionCode = ActionCode.SendBasketToShop,
                 HookUri = new Uri(hookUri),
                 Version = idsVersion,
                 Target = "TOP",

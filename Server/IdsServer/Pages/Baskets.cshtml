@@ -16,6 +16,7 @@
     )
     .RemoteOperations(true) 
     .Columns(columns => {
+        columns.AddFor(x => x.OrderDto.OrderInfoDto.OrderNumber).Caption("Reference");
         columns.AddFor(x => x.BasketInfoDto.Date).Caption("Date").Format("dd.MM.yyyy");
         columns.AddFor(x => x.BasketInfoDto.Time).Caption("Time").Format("HH:mm:ss");
     })

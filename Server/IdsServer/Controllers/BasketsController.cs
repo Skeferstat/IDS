@@ -62,6 +62,7 @@ public class BasketsController : Controller
         {
             var basket = Deserializer.DeserializeBasketReceive(basketXml);
             BasketDto basketDto = _mapper.Map<BasketDto>(basket);
+            basketDto.RawXml = basketXml;
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromSeconds(60))
@@ -118,5 +119,4 @@ public class BasketsController : Controller
         BasketDto basket = baskets.FirstOrDefault(b => b.BasketId == basketId);
         return basket?.OrderDto.OrderItemDtos;
     }
-
 }

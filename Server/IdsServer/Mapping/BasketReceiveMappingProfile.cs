@@ -19,7 +19,12 @@ public class BasketReceiveMappingProfile : Profile
             ;
 
         CreateMap<typeOrder, OrderDto>()
+            .ForMember(dest => dest.OrderInfoDto, opt => opt.MapFrom(src => src.OrderInfo))
             .ForMember(dest => dest.OrderItemDtos, opt => opt.MapFrom(src => src.OrderItem))
+            ;
+
+        CreateMap<typeOrderInfo, OrderInfoDto>()
+            .ForMember(dest => dest.OrderNumber, opt => opt.MapFrom(src => src.PartNo))
             ;
 
         CreateMap<typeOrderItem, OrderItemDto>()

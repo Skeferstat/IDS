@@ -77,6 +77,9 @@ public static class ApiExtensions
         {
             mc.AddProfile<BasketReceiveMappingProfile>();
         });
+
+        mapperConfig.AssertConfigurationIsValid();
+
         IMapper mapper = mapperConfig.CreateMapper();
         services.AddSingleton(mapper);
         return services;
