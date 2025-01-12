@@ -495,13 +495,13 @@
     <value>2</value>
   </data>
   <data name="DeepLinkSearchTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 220</value>
+    <value>109, 220</value>
   </data>
   <data name="DeepLinkSearchTextBox.PlaceholderText" xml:space="preserve">
     <value>Enter the wholesale item number of the item you are looking for...</value>
   </data>
   <data name="DeepLinkSearchTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 27</value>
+    <value>486, 27</value>
   </data>
   <data name="DeepLinkSearchTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -519,7 +519,7 @@
     <value>1</value>
   </data>
   <data name="DeepLinkSearchButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>660, 220</value>
+    <value>656, 218</value>
   </data>
   <data name="DeepLinkSearchButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 29</value>

@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ardalis.SmartEnum"/>
-    <PackageReference Include="FluentValidation"/>
+    <PackageReference Include="Ardalis.SmartEnum" />
+    <PackageReference Include="FluentValidation" />
   </ItemGroup>
 
 </Project>

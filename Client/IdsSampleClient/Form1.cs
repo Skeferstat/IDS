@@ -1,7 +1,9 @@
 using System.Net.Http.Headers;
 using System.Xml;
+using IdsLibrary.Factories;
 using IdsLibrary.Http;
 using IdsLibrary.Models;
+using IdsLibrary.Models.PackageHeaders;
 using IdsLibrary.Serializing;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -47,25 +49,25 @@ namespace IdsSampleClient
                 throw;
             }
 
-            var basket = Deserializer.DeserializeBasketSend(xmlDoc.InnerXml!);
-
-            PackageHeader packageHeader = new PackageHeader
+            BasketSendPackageHeader? packageHeader = new BasketSendPackageHeader
             {
                 CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
-                ActionCode = ActionCode.SendBasketToShop,
-                HookUri = new Uri(hookUri),
                 Version = idsVersion,
-                Target = "TOP",
-                ShopUri = new Uri(shopUrl)
+                ShopUri = new Uri(shopUrl),
+                HookUri = new Uri(hookUri)
             };
 
-            PostCreator postCreator = new PostCreator(packageHeader);
-            (Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers) data = await postCreator.GetAsync(basket!);
+            var factory = new BasketSendPackageFactory();
+            var data = await factory.CreatePackage(packageHeader, xmlDoc.InnerXml);
+
+            var memoryStream = new MemoryStream();
+            data.Content.CopyToAsync(memoryStream).Wait();
+            memoryStream.Position = 0;
 
             WebViewForm webViewForm = new WebViewForm();
-            await webViewForm.SetDataAsync(data.ShopUri, "POST", data.ContentStream, data.Headers);
+            await webViewForm.SetDataAsync(data.ShopUri, data.Method, memoryStream, data.Headers);
             webViewForm.Show();
         }
 
@@ -76,23 +78,25 @@ namespace IdsSampleClient
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string searchTerm = SearchTermTextBox.Text;
 
-            PackageHeader packageHeader = new PackageHeader
+            SearchTermPackageHeader? packageHeader = new SearchTermPackageHeader
             {
                 CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
-                ActionCode = ActionCode.ArticleSearch,
-                HookUri = new Uri(hookUri),
                 Version = idsVersion,
-                Target = "TOP",
-                ShopUri = new Uri(shopUrl)
+                ShopUri = new Uri(shopUrl),
+                HookUri = new Uri(hookUri)
             };
 
-            PostCreator postCreator = new PostCreator(packageHeader);
-            (Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers) data = await postCreator.GetAsync(searchTerm);
+            var factory = new SearchTermPackageFactory();
+            var data = await factory.CreatePackage(packageHeader, searchTerm);
+
+            var memoryStream = new MemoryStream();
+            data.Content.CopyToAsync(memoryStream).Wait();
+            memoryStream.Position = 0;
 
             WebViewForm webViewForm = new WebViewForm();
-            await webViewForm.SetDataAsync(data.ShopUri, "POST", data.ContentStream, data.Headers);
+            await webViewForm.SetDataAsync(data.ShopUri, data.Method, memoryStream, data.Headers);
             webViewForm.Show();
         }
 
@@ -104,23 +108,24 @@ namespace IdsSampleClient
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string articleNumber = this.DeepLinkSearchTextBox.Text;
 
-            PackageHeader packageHeader = new PackageHeader
+            var packageHeader = new DeepLinkPackageHeader
             {
                 CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
-                ActionCode = ActionCode.ArticleDeeplink,
-                HookUri = new Uri(hookUri),
                 Version = idsVersion,
-                Target = "TOP",
                 ShopUri = new Uri(shopUrl)
             };
 
-            PostCreator postCreator = new PostCreator(packageHeader);
-            (Uri ShopUri, MemoryStream ContentStream, HttpContentHeaders Headers) data = await postCreator.GetArticleDeepLinkAsync(articleNumber);
+            var factory = new DeepLinkPackageFactory();
+            var data = await factory.CreatePackage(packageHeader, articleNumber);
+
+            var memoryStream = new MemoryStream();
+            data.Content.CopyToAsync(memoryStream).Wait();
+            memoryStream.Position = 0;
 
             WebViewForm webViewForm = new WebViewForm();
-            await webViewForm.SetDataAsync(data.ShopUri, "POST", data.ContentStream, data.Headers);
+            await webViewForm.SetDataAsync(data.ShopUri, data.Method, memoryStream, data.Headers);
             webViewForm.Show();
         }
     }

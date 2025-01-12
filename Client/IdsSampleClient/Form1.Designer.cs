@@ -148,6 +148,7 @@
             resources.ApplyResources(DeepLinkSearchButton, "DeepLinkSearchButton");
             DeepLinkSearchButton.Name = "DeepLinkSearchButton";
             DeepLinkSearchButton.UseVisualStyleBackColor = true;
+            DeepLinkSearchButton.Click += OnDeepLinkSearchTerm;
             // 
             // MainForm
             // 
