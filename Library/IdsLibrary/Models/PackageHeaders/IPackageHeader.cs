@@ -1,7 +1,8 @@
-﻿using IdsLibrary.Models;
-
-namespace IdsLibrary.Models.PackageHeaders
+﻿namespace IdsLibrary.Models.PackageHeaders
 {
+    /// <summary>
+    /// Interface for package headers.
+    /// </summary>
     public interface IPackageHeader
     {
     }

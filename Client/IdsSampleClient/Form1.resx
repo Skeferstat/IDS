@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="OpenBasketFileButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>601, 130</value>
+    <value>670, 72</value>
   </data>
   <data name="OpenBasketFileButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 29</value>
@@ -138,19 +138,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpenBasketFileButton.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;OpenBasketFileButton.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>1</value>
   </data>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 134</value>
+    <value>18, 76</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -161,6 +158,9 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Basket:</value>
   </data>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="label1.ToolTip" xml:space="preserve">
     <value>An xml file with basket informations inside</value>
   </data>
@@ -171,22 +171,22 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>3</value>
   </data>
   <data name="BasketXmlFileTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="BasketXmlFileTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 131</value>
+    <value>205, 73</value>
   </data>
   <data name="BasketXmlFileTextBox.PlaceholderText" xml:space="preserve">
     <value>Choose a xml file...</value>
   </data>
   <data name="BasketXmlFileTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 27</value>
+    <value>459, 27</value>
   </data>
   <data name="BasketXmlFileTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -198,14 +198,11 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BasketXmlFileTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;BasketXmlFileTextBox.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>2</value>
   </data>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="OpenBasketFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
   </metadata>
@@ -237,16 +234,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>10</value>
   </data>
   <data name="ShopUrlTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="ShopUrlTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 52</value>
+    <value>201, 52</value>
   </data>
   <data name="ShopUrlTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 27</value>
+    <value>457, 27</value>
   </data>
   <data name="ShopUrlTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -261,13 +258,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ShopUrlTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>9</value>
   </data>
   <data name="SendBasketToShopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>656, 131</value>
+    <value>714, 73</value>
   </data>
   <data name="SendBasketToShopButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 29</value>
+    <value>214, 29</value>
   </data>
   <data name="SendBasketToShopButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -282,25 +279,25 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;SendBasketToShopButton.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;SendBasketToShopButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>4</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 94</value>
+    <value>18, 36</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 20</value>
+    <value>120, 20</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Hook-Url:</value>
+    <value>Basket Hook-Url:</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -309,43 +306,43 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>0</value>
   </data>
-  <data name="HookUriTextBox.Enabled" type="System.Boolean, mscorlib">
+  <data name="BasketHookUriTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="HookUriTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 91</value>
+  <data name="BasketHookUriTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 33</value>
   </data>
-  <data name="HookUriTextBox.PlaceholderText" xml:space="preserve">
+  <data name="BasketHookUriTextBox.PlaceholderText" xml:space="preserve">
     <value>Choose a hook url...</value>
   </data>
-  <data name="HookUriTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 27</value>
+  <data name="BasketHookUriTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>457, 27</value>
   </data>
-  <data name="HookUriTextBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="BasketHookUriTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;HookUriTextBox.Name" xml:space="preserve">
-    <value>HookUriTextBox</value>
+  <data name="&gt;&gt;BasketHookUriTextBox.Name" xml:space="preserve">
+    <value>BasketHookUriTextBox</value>
   </data>
-  <data name="&gt;&gt;HookUriTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;BasketHookUriTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;HookUriTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;BasketHookUriTextBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;HookUriTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;BasketHookUriTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="IdsVersionComboBox.Items" xml:space="preserve">
     <value>2.5</value>
   </data>
   <data name="IdsVersionComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 18</value>
+    <value>201, 18</value>
   </data>
   <data name="IdsVersionComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 28</value>
@@ -363,7 +360,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;IdsVersionComboBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -390,13 +387,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 179</value>
+    <value>12, 250</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 20</value>
@@ -417,16 +414,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="SearchTermTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 176</value>
+    <value>199, 246</value>
   </data>
   <data name="SearchTermTextBox.PlaceholderText" xml:space="preserve">
     <value>Enter the name of the item you are looking for...</value>
   </data>
   <data name="SearchTermTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 27</value>
+    <value>459, 27</value>
   </data>
   <data name="SearchTermTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -441,13 +438,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SearchTermTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="SearchTermButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>656, 176</value>
+    <value>708, 246</value>
   </data>
   <data name="SearchTermButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 29</value>
+    <value>214, 29</value>
   </data>
   <data name="SearchTermButton.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -465,13 +462,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SearchTermButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 223</value>
+    <value>12, 293</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 20</value>
@@ -492,16 +489,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="DeepLinkSearchTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 220</value>
+    <value>199, 290</value>
   </data>
   <data name="DeepLinkSearchTextBox.PlaceholderText" xml:space="preserve">
     <value>Enter the wholesale item number of the item you are looking for...</value>
   </data>
   <data name="DeepLinkSearchTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 27</value>
+    <value>459, 27</value>
   </data>
   <data name="DeepLinkSearchTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -516,13 +513,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DeepLinkSearchTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="DeepLinkSearchButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>656, 218</value>
+    <value>708, 288</value>
   </data>
   <data name="DeepLinkSearchButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 29</value>
+    <value>214, 29</value>
   </data>
   <data name="DeepLinkSearchButton.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -540,6 +537,36 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DeepLinkSearchButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="OpenHeatingLabelFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>334, 17</value>
+  </metadata>
+  <data name="OpenHeatingLabelFileDialog.Filter" xml:space="preserve">
+    <value>xml files | *.xml</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 97</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>961, 135</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Basket</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -552,7 +579,7 @@
     <value>8, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>893, 452</value>
+    <value>1015, 353</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>IDS Test Client</value>
@@ -567,6 +594,12 @@
     <value>OpenBasketFileDialog</value>
   </data>
   <data name="&gt;&gt;OpenBasketFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenHeatingLabelFileDialog.Name" xml:space="preserve">
+    <value>OpenHeatingLabelFileDialog</value>
+  </data>
+  <data name="&gt;&gt;OpenHeatingLabelFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

@@ -1,23 +1,29 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BasketSend;
 using IdsLibrary.Models;
 using IdsLibrary.Serializing;
-using System.Xml.Serialization;
 using FluentValidation;
+using IdsLibrary.Converter;
 using IdsLibrary.Models.PackageHeaders;
 using IdsLibrary.Validators;
 
 namespace IdsLibrary.Factories
 {
+    /// <summary>
+    /// Factory to create a package to send a basket to the shop.
+    /// </summary>
     public class BasketSendPackageFactory : IIdsPackageFactory<BasketSendPackageHeader>
     {
-
+        /// <summary>
+        /// Create a package to send a basket to the shop.
+        /// </summary>
+        /// <param name="packageHeader">Package header.</param>
+        /// /// <param name="basketXml">Basket data as xml string.</param>
+        /// <returns>Ids package data.</returns>
+        /// <exception cref="ValidationException">Validation exception.</exception>
         public async Task<IIdsPackage> CreatePackage(BasketSendPackageHeader packageHeader, string basketXml)
         {
-
             var validator = new BasketSendPackageHeaderValidator();
             var validationResult = await validator.ValidateAsync(packageHeader);
             if (!validationResult.IsValid)
@@ -25,8 +31,6 @@ namespace IdsLibrary.Factories
                 var errors = string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage));
                 throw new ValidationException($"PackageHeader is not valid: {errors}");
             }
-
-
 
             var content = new MultipartFormDataContent();
 
@@ -47,10 +51,15 @@ namespace IdsLibrary.Factories
                 content.Add(new StringContent(packageHeader.Target), PackageParameter.Target);
 
             var basket = Deserializer.DeserializeBasketSend(basketXml!);
-            content.Add(ConvertToStringContent(basket), PackageParameter.Basket);
+            if (basket == null)
+            {
+                throw new ValidationException("Basket data is not valid");
+            }
 
+            content.Add(IdsConverter.ConvertToStringContent(basket), PackageParameter.Basket);
+
+            // Command.
             content.Add(new StringContent(ActionCode.SendBasketToShop), PackageParameter.Action);
-
 
             var idsPackage = new IdsPackage()
             {
@@ -61,16 +70,5 @@ namespace IdsLibrary.Factories
 
             return idsPackage;
         }
-
-        private static StringContent ConvertToStringContent(typeWarenkorb basket)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(typeWarenkorb));
-            using StringWriter writer = new StringWriter();
-            serializer.Serialize(writer, basket);
-            string xmlString = writer.ToString();
-
-            return new StringContent(xmlString, System.Text.Encoding.UTF8, "application/xml");
-        }
-
     }
 }

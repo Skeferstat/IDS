@@ -39,7 +39,7 @@
             ShopUrlTextBox = new TextBox();
             SendBasketToShopButton = new Button();
             label3 = new Label();
-            HookUriTextBox = new TextBox();
+            BasketHookUriTextBox = new TextBox();
             IdsVersionComboBox = new ComboBox();
             label4 = new Label();
             label5 = new Label();
@@ -48,6 +48,9 @@
             label6 = new Label();
             DeepLinkSearchTextBox = new TextBox();
             DeepLinkSearchButton = new Button();
+            OpenHeatingLabelFileDialog = new OpenFileDialog();
+            groupBox1 = new GroupBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // OpenBasketFileButton
@@ -98,10 +101,10 @@
             resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
             // 
-            // HookUriTextBox
+            // BasketHookUriTextBox
             // 
-            resources.ApplyResources(HookUriTextBox, "HookUriTextBox");
-            HookUriTextBox.Name = "HookUriTextBox";
+            resources.ApplyResources(BasketHookUriTextBox, "BasketHookUriTextBox");
+            BasketHookUriTextBox.Name = "BasketHookUriTextBox";
             // 
             // IdsVersionComboBox
             // 
@@ -150,10 +153,29 @@
             DeepLinkSearchButton.UseVisualStyleBackColor = true;
             DeepLinkSearchButton.Click += OnDeepLinkSearchTerm;
             // 
+            // OpenHeatingLabelFileDialog
+            // 
+            OpenHeatingLabelFileDialog.DefaultExt = "xml";
+            OpenHeatingLabelFileDialog.FileName = "heatingLabel";
+            resources.ApplyResources(OpenHeatingLabelFileDialog, "OpenHeatingLabelFileDialog");
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(OpenBasketFileButton);
+            groupBox1.Controls.Add(BasketXmlFileTextBox);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(SendBasketToShopButton);
+            groupBox1.Controls.Add(BasketHookUriTextBox);
+            resources.ApplyResources(groupBox1, "groupBox1");
+            groupBox1.Name = "groupBox1";
+            groupBox1.TabStop = false;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(groupBox1);
             Controls.Add(DeepLinkSearchButton);
             Controls.Add(DeepLinkSearchTextBox);
             Controls.Add(label6);
@@ -162,16 +184,12 @@
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(IdsVersionComboBox);
-            Controls.Add(HookUriTextBox);
-            Controls.Add(label3);
-            Controls.Add(SendBasketToShopButton);
             Controls.Add(ShopUrlTextBox);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(BasketXmlFileTextBox);
-            Controls.Add(OpenBasketFileButton);
             Name = "MainForm";
             Click += OnSearchTerm;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -187,7 +205,7 @@
         private TextBox ShopUrlTextBox;
         private Button SendBasketToShopButton;
         private Label label3;
-        private TextBox HookUriTextBox;
+        private TextBox BasketHookUriTextBox;
         private ComboBox IdsVersionComboBox;
         private Label label4;
         private Label label5;
@@ -196,5 +214,7 @@
         private Label label6;
         private TextBox DeepLinkSearchTextBox;
         private Button DeepLinkSearchButton;
+        private OpenFileDialog OpenHeatingLabelFileDialog;
+        private GroupBox groupBox1;
     }
 }

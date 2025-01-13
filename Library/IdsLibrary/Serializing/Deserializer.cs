@@ -7,6 +7,12 @@ namespace IdsLibrary.Serializing
 {
     public static class Deserializer
     {
+        /// <summary>
+        /// Deserialize the basket send xml data.
+        /// </summary>
+        /// <param name="xmlData">Basket xml data.</param>
+        /// <returns>Basket data.</returns>
+        /// <exception cref="FileNotFoundException"></exception>
         public static BasketSend.typeWarenkorb? DeserializeBasketSend(string xmlData)
         {
             XmlReaderSettings settings = new XmlReaderSettings
@@ -21,7 +27,6 @@ namespace IdsLibrary.Serializing
             {
                 throw new FileNotFoundException($"Embedded resource '{resourceName}' not found.");
             }
-
 
             settings.Schemas.Add(null, XmlReader.Create(xsdStream));
 

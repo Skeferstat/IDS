@@ -4,6 +4,9 @@ using System.Net.Http;
 
 namespace IdsLibrary.Models.PackageHeaders
 {
+    /// <summary>
+    /// Constructed package to send data to the shop.
+    /// </summary>
     public class IdsPackage : IIdsPackage
     {
         public Uri ShopUri { get; set; } = new Uri("http://localhost");

@@ -2,6 +2,9 @@
 
 namespace IdsLibrary.Models.PackageHeaders
 {
+    /// <summary>
+    /// Package header to send a basket data to the shop.
+    /// </summary>
     public class BasketSendPackageHeader : IPackageHeader
     {
         public string? CustomerNumber { get; set; }

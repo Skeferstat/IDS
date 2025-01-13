@@ -8,8 +8,19 @@ using IdsLibrary.Validators;
 
 namespace IdsLibrary.Factories
 {
+    /// <summary>
+    /// Factory to create a package to send a deep link to the shop.
+    /// </summary>
     public class DeepLinkPackageFactory : IIdsPackageFactory<DeepLinkPackageHeader>
     {
+        /// <summary>
+        /// Create a package to send a deep link to the shop.
+        /// Deep link is used to search for an article in the shop.
+        /// </summary>
+        /// <param name="packageHeader">Package header.</param>
+        /// /// <param name="articleNumber">Article number.</param>
+        /// <returns>Ids package data.</returns>
+        /// <exception cref="ValidationException">Validation exception.</exception>
         public async Task<IIdsPackage> CreatePackage(DeepLinkPackageHeader packageHeader, string articleNumber)
         {
             var validator = new DeepLinkPackageHeaderValidator();
@@ -29,18 +40,18 @@ namespace IdsLibrary.Factories
             if (string.IsNullOrEmpty(packageHeader.Password) == false)
                 content.Add(new StringContent(packageHeader.Password), PackageParameter.Password);
 
-
-            if (string.IsNullOrEmpty(packageHeader.HookUri?.ToString()) == false)
-                content.Add(new StringContent(packageHeader.HookUri!.ToString()), PackageParameter.HookUri);
+            // Dummy url necessary.
+            content.Add(new StringContent("http://localhost"), PackageParameter.HookUri);
 
             if (packageHeader.Version != null)
                 content.Add(new StringContent(packageHeader.Version), PackageParameter.Version);
             if (packageHeader.Target != null)
                 content.Add(new StringContent(packageHeader.Target), PackageParameter.Target);
 
-          
-            content.Add(new StringContent(articleNumber), PackageParameter.SearchTerm);
-            content.Add(new StringContent(ActionCode.ArticleSearch), PackageParameter.Action);
+            content.Add(new StringContent(articleNumber), PackageParameter.WholesaleArticleNumber);
+
+            // Action code for article search.
+            content.Add(new StringContent(ActionCode.ArticleDeeplink), PackageParameter.Action);
 
             var idsPackage = new IdsPackage()
             {

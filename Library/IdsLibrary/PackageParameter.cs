@@ -1,5 +1,8 @@
 ﻿namespace IdsLibrary
 {
+    /// <summary>
+    /// Parameters for the package.
+    /// </summary>
     internal class PackageParameter
     {
         public const string CustomNumber = "kndnr";

@@ -2,7 +2,7 @@
 public class AppSettings
 {
     public ShopSettings Shop { get; set; } = new();
-    public string HookUri { get; set; } = string.Empty;
+    public string BasketHookUri { get; set; } = string.Empty;
 }
 
 

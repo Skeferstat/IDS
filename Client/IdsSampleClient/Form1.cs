@@ -1,8 +1,6 @@
 using System.Net.Http.Headers;
 using System.Xml;
 using IdsLibrary.Factories;
-using IdsLibrary.Http;
-using IdsLibrary.Models;
 using IdsLibrary.Models.PackageHeaders;
 using IdsLibrary.Serializing;
 using Microsoft.Extensions.Options;
@@ -18,7 +16,7 @@ namespace IdsSampleClient
             _appSettings = appSettings.Value;
             InitializeComponent();
             this.ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
-            this.HookUriTextBox.Text = _appSettings.HookUri;
+            this.BasketHookUriTextBox.Text = _appSettings.BasketHookUri;
             if (IdsVersionComboBox.Items.Count - 1 >= 0)
                 this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
         }
@@ -36,7 +34,7 @@ namespace IdsSampleClient
         private async void OnSendBasketToShop(object sender, EventArgs eventArgs)
         {
             string shopUrl = ShopUrlTextBox.Text;
-            string hookUri = HookUriTextBox.Text;
+            string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             XmlDocument xmlDoc = new XmlDocument();
             try
@@ -74,7 +72,7 @@ namespace IdsSampleClient
         private async void OnSearchTerm(object sender, EventArgs eventArgs)
         {
             string shopUrl = ShopUrlTextBox.Text;
-            string hookUri = HookUriTextBox.Text;
+            string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string searchTerm = SearchTermTextBox.Text;
 
@@ -84,8 +82,7 @@ namespace IdsSampleClient
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
                 Version = idsVersion,
-                ShopUri = new Uri(shopUrl),
-                HookUri = new Uri(hookUri)
+                ShopUri = new Uri(shopUrl)
             };
 
             var factory = new SearchTermPackageFactory();
@@ -104,7 +101,7 @@ namespace IdsSampleClient
         private async void OnDeepLinkSearchTerm(object sender, EventArgs eventArgs)
         {
             string shopUrl = ShopUrlTextBox.Text;
-            string hookUri = HookUriTextBox.Text;
+            string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string articleNumber = this.DeepLinkSearchTextBox.Text;
 
