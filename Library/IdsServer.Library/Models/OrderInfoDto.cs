@@ -1,4 +1,4 @@
-﻿namespace IdsServer.Models;
+﻿namespace IdsServer.Library.Models;
 
 public class OrderInfoDto
 {

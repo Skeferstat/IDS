@@ -3,6 +3,7 @@ using System.Xml;
 using IdsLibrary.Factories;
 using IdsLibrary.Models.PackageHeaders;
 using IdsLibrary.Serializing;
+using IdsSampleClient.InternalServer;
 using Microsoft.Extensions.Options;
 using Serilog;
 
@@ -11,14 +12,18 @@ namespace IdsSampleClient
     public partial class MainForm : Form
     {
         private readonly AppSettings _appSettings;
+
         public MainForm(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
             InitializeComponent();
             this.ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
-            this.BasketHookUriTextBox.Text = _appSettings.BasketHookUri;
+            this.BasketHookUriTextBox.Text = _appSettings.BasketReceiveHookUri;
             if (IdsVersionComboBox.Items.Count - 1 >= 0)
                 this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
+
+            InternalServer.InternalServer internalServer = new InternalServer.InternalServer(_appSettings.InternalBasketReceiveHookUri);
+            internalServer.StartHttpServer();
         }
 
 

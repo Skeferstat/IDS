@@ -1,59 +1,123 @@
 ﻿@page
-@using DevExpress.Utils
-@using IdsServer.Models
+@using IdsServer.Library.Models
+
 @{
     ViewData["Title"] = "Baskets";
 }
 
 <h2>@ViewData["Title"]</h2>
 
+      @(Html.DevExtreme().DataGrid<BasketDto>() 
+          .DataSource(ds => ds.Mvc()
+              .Controller("Baskets") 
+              .LoadAction("Get")
+              .Key("BasketId")
+          )
+          .RemoteOperations(true) 
+          .Columns(columns =>
+          {
+              columns.AddFor(x => x.OrderDto.OrderInfoDto.OrderNumber).Caption("Reference");
+            columns.AddFor(x => x.BasketInfoDto.DateTime).Caption("Date").Format("dd.MM.yyyy HH:mm:ss");
+              columns.Add()
+                  .Type(GridCommandColumnType.Buttons)
+                  .Width(110)
+                  .Buttons(b => {
+                      b.Add()
+                        .Text("Send to client")
+                          .Hint("Send basket data to client")
+                          .OnClick("onSendBasketToClient");
+                  });
 
+        @*       columns.AddFor(x => x.RawXml).Caption("Xml")
+                  .CellTemplate(@<text>
+               @(Html.DevExtreme().Button()
+                      .Text("Show")
+                      .OnClick("function(event) { OnShowRawXml(event,data.RawXml); }")
+                  )
+            </text>); *@
 
-@(Html.DevExtreme().DataGrid<BasketDto>() 
-    .DataSource(ds => ds.Mvc()
-            .Controller("Baskets") 
-            .LoadAction("Get")
-            .Key("BasketId")
-    )
-    .RemoteOperations(true) 
-    .Columns(columns => {
-        columns.AddFor(x => x.OrderDto.OrderInfoDto.OrderNumber).Caption("Reference");
-        columns.AddFor(x => x.BasketInfoDto.Date).Caption("Date").Format("dd.MM.yyyy");
-        columns.AddFor(x => x.BasketInfoDto.Time).Caption("Time").Format("HH:mm:ss");
-    })
-    .Paging(paging => paging.PageSize(10)) 
-    .FilterRow(filterRow => filterRow.Visible(true)) 
-        .MasterDetail(md => md
-        .Enabled(true)
-        .Template(@<text>
+          })
+          .Paging(paging => paging.PageSize(10)) 
+          .FilterRow(filterRow => filterRow.Visible(true)) 
+          .MasterDetail(md => md
+              .Enabled(true)
+              .Template(@<text>
                        @(Html.DevExtreme().DataGrid<OrderItemDto>()
-                           .DataSource(d => d.Mvc()
-                               .Controller("Baskets")
-                               .LoadAction("GetOrderItems")
-                               .LoadParams(new { basketId = new JS("data.BasketId") })
-                           )
-                           .Columns(columns => {
-                                columns.AddFor(n => n.ArticleNumber).Caption("Article");
-                                columns.AddFor(n => n.Quantity).Caption("Quantity").Format(format =>
-                                {
-                                    format.Type(Format.Decimal);
-                                    format.Precision(2);
-                                });
-                                columns.AddFor(n => n.OfferPrice).Caption("Offer").Format(format =>
-                                {
-                                    format.Type(Format.Currency);
-                                    format.Currency("EUR");
-                                    format.Precision(2);
-                                });
-                                columns.AddFor(n => n.NetPrice).Caption("Net").Format(format =>
-                                {
-                                    format.Type(Format.Currency);
-                                    format.Currency("EUR");
-                                    format.Precision(2);
-                                });
-                           })
-                           .ShowBorders(true)
-                       )
+                  .DataSource(d => d.Mvc()
+                      .Controller("Baskets")
+                      .LoadAction("GetOrderItems")
+                      .LoadParams(new { basketId = new JS("data.BasketId") })
+                  )
+                  .Columns(columns => {
+                      columns.AddFor(n => n.ArticleNumber).Caption("Article");
+                      columns.AddFor(n => n.Quantity).Caption("Quantity").Format(format =>
+                      {
+                          format.Type(Format.Decimal);
+                          format.Precision(2);
+                      });
+                      columns.AddFor(n => n.OfferPrice).Caption("Offer").Format(format =>
+                      {
+                          format.Type(Format.Currency);
+                          format.Currency("EUR");
+                          format.Precision(2);
+                      });
+                      columns.AddFor(n => n.NetPrice).Caption("Net").Format(format =>
+                      {
+                          format.Type(Format.Currency);
+                          format.Currency("EUR");
+                          format.Precision(2);
+                      });
+                  })
+                  .ShowBorders(true)
+              )
                    </text>)
-    )
-)
+          )
+      )
+
+                                
+  <script>
+
+    function onSendBasketToClient(e, m) {
+          // var clonedItem = $.extend({}, e.row.data, { ID: ++maxID });
+          const rowData = e.row.data.RawXml;
+          const hookUrl = e.row.data.HookUrl;
+          console.log(rowData,hookUrl);
+
+          // 
+          sendToController(rowData,hookUrl);
+
+          // employees.splice(e.row.rowIndex, 0, clonedItem);
+          // e.component.refresh(true);
+          // e.event.preventDefault();
+      }
+
+
+      function OnShowRawXml(event) {
+          const xnlData = e.row.data.RawXml;
+          const hookUrl = e.row.data.HookUrl;
+
+          // 
+          sendToController(xnlData,hookUrl);
+         
+      }
+
+      function sendToController(xmlData, hookUrl) {
+          fetch('/api/baskets/send', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/xml',
+                      'Hook-Url': hookUrl 
+                  },
+                  body: xmlData
+              })
+              .then(response => response.json())
+              .then(result => {
+                  console.log('Erfolgreich gesendet:', result);
+                  alert('Erfolgreich gesendet');
+              })
+              .catch(error => {
+                  console.error('Fehler beim Senden:', error);
+                  alert('Fehler beim Senden');
+              });
+      }
+  </script>

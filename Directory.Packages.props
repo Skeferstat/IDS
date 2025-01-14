@@ -3,7 +3,6 @@
     <!-- Enable central package management -->
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageVersion Include="Ardalis.SmartEnum" Version="8.2.0" />
     <PackageVersion Include="AutoMapper" Version="13.0.1" />
@@ -14,16 +13,17 @@
     <PackageVersion Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
     <PackageVersion Include="JetBrains.Annotations" Version="2024.3.0" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
-	<PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
     <PackageVersion Include="Microsoft.FeatureManagement" Version="4.0.0" />
-	<PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+    <PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
     <PackageVersion Include="MiniProfiler.AspNetCore.Mvc" Version="4.5.4" />
-	<PackageVersion Include="Serilog" Version="4.2.0" />
+    <PackageVersion Include="Serilog" Version="4.2.0" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
-	<PackageVersion Include="Serilog.Extensions.Hosting" Version="9.0.0" />
-	<PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0" />
-	<PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
-	<PackageVersion Include="Serilog.Sinks.Debug" Version="3.0.0" />
-	<PackageVersion Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageVersion Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+    <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Debug" Version="3.0.0" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageVersion Include="Throw" Version="1.4.0" />
   </ItemGroup>
 </Project>

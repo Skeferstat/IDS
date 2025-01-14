@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,10 +23,12 @@
       <PackageReference Include="Microsoft.FeatureManagement" />
       <PackageReference Include="MiniProfiler.AspNetCore.Mvc" />
       <PackageReference Include="Serilog.AspNetCore" />
+      <PackageReference Include="Throw" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Library\IdsLibrary\IdsLibrary.csproj" />
+      <ProjectReference Include="..\..\Library\IdsServer.Library\IdsServer.Library.csproj" />
     </ItemGroup>
 
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>

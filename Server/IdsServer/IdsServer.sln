@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdsServer", "IdsServer.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdsLibrary", "..\..\Library\IdsLibrary\IdsLibrary.csproj", "{404512BA-FD1F-4E1D-A4C7-565CBD2376A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdsServer.Library", "..\..\Library\IdsServer.Library\IdsServer.Library.csproj", "{5C6CB7BD-E4FF-47BC-927A-35C216647811}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{404512BA-FD1F-4E1D-A4C7-565CBD2376A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{404512BA-FD1F-4E1D-A4C7-565CBD2376A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{404512BA-FD1F-4E1D-A4C7-565CBD2376A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6CB7BD-E4FF-47BC-927A-35C216647811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6CB7BD-E4FF-47BC-927A-35C216647811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6CB7BD-E4FF-47BC-927A-35C216647811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6CB7BD-E4FF-47BC-927A-35C216647811}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

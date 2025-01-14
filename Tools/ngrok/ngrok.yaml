@@ -1,2 +1,14 @@
+version: 3
+
 agent:
-	authtoken: 2qzasKIw8IyXLK8c2VXHeDphS0t_21g52UrVViHr13mrXEDqj
+   authtoken: 2qzasKIw8IyXLK8c2VXHeDphS0t_21g52UrVViHr13mrXEDqj
+    
+tunnels:
+  server:          # == dummy shop
+    proto: http
+    addr: 64141
+    host_header: localhost
+  client:
+    proto: http
+    addr: 3000
+    host_header: localhost

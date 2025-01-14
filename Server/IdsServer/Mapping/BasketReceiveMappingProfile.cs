@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BasketReceive;
-using IdsServer.Models;
+using IdsServer.Library.Models;
 
 namespace IdsServer.Mapping;
 
@@ -15,8 +15,7 @@ public class BasketReceiveMappingProfile : Profile
             ;
 
         CreateMap<typeWarenkorbInfo, BasketInfoDto>()
-            .ForMember(dest => dest.Date, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.Date)))
-            .ForMember(dest => dest.Time, opt => opt.MapFrom(src => TimeOnly.FromDateTime(src.Time.ToLocalTime())))
+            .ForMember(dest => dest.DateTime, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.Date) + " " + TimeOnly.FromDateTime(src.Time)))
             ;
 
         CreateMap<typeOrder, OrderDto>()
