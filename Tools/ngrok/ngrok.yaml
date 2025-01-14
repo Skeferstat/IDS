@@ -8,7 +8,11 @@ tunnels:
     proto: http
     addr: 64141
     host_header: localhost
-  client:
+  client:         # == Handwerkersoftware
     proto: http
     addr: 3000
     host_header: localhost
+
+
+#  How to start ngrok with this config file
+#  ./ngrok.exe  --config ./ngrok.yaml start --all

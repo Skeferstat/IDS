@@ -12,6 +12,8 @@ using BasketReceive;
 using System.Text;
 using System.Net.Http;
 using IdsServer.Library.Models;
+using IdsServer.Database;
+using IdsServer.Database.Models;
 
 namespace IdsServer.Controllers;
 
@@ -24,6 +26,7 @@ public class BasketsController : Controller
     private readonly ILogger _logger;
     private readonly IMapper _mapper;
     private readonly IMemoryCache _cache;
+    private readonly AppDbContext _dbContext;
     private readonly HttpClient _httpClient;
 
     /// <summary>
@@ -33,12 +36,14 @@ public class BasketsController : Controller
     /// <param name="mapper">Mapper.</param>
     /// <param name="httpClientFactory">Factory for creating <see cref="HttpClient"/> instances.</param>
     /// <param name="cache">Memory cache.</param>
-    public BasketsController(ILogger<BasketsController> logger, IMapper mapper, IHttpClientFactory httpClientFactory, IMemoryCache cache)
+    /// <param name="dbContext">Database context.</param>
+    public BasketsController(ILogger<BasketsController> logger, IMapper mapper, IHttpClientFactory httpClientFactory, IMemoryCache cache, AppDbContext dbContext)
     {
         _logger = logger;
         _mapper = mapper;
         _httpClient = httpClientFactory.CreateClient();
         _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+        _dbContext = dbContext;
     }
 
 
@@ -86,6 +91,21 @@ public class BasketsController : Controller
 
             baskets.Add(basketDto);
             _cache.Set(ReceivedBasketsCacheKey, baskets, cacheEntryOptions);
+
+            var dbBasket = _mapper.Map<Basket>(basketDto);
+            dbBasket.LastUpdate = DateTime.UtcNow;
+            _dbContext.Baskets.Add(dbBasket);
+
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, "An error occurred while saving the basket to the database.");
+                throw;
+            }
+           
 
             return Task.FromResult<IActionResult>(Ok(new
             {

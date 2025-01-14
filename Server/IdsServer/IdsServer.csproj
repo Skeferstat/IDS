@@ -20,6 +20,11 @@
       <PackageReference Include="Hellang.Middleware.ProblemDetails" />
       <PackageReference Include="JetBrains.Annotations" />
       <PackageReference Include="MediatR" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
       <PackageReference Include="Microsoft.FeatureManagement" />
       <PackageReference Include="MiniProfiler.AspNetCore.Mvc" />
       <PackageReference Include="Serilog.AspNetCore" />
@@ -29,6 +34,11 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Library\IdsLibrary\IdsLibrary.csproj" />
       <ProjectReference Include="..\..\Library\IdsServer.Library\IdsServer.Library.csproj" />
+      <ProjectReference Include="..\IdsServer.Database\IdsServer.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Mapping\" />
     </ItemGroup>
 
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>

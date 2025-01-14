@@ -56,6 +56,7 @@ else
     app.UseMiniProfiler();
 }
 
+await app.MigrateDatabasesAsync();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();

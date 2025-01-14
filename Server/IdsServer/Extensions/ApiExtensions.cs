@@ -2,7 +2,9 @@
 using FluentValidation;
 using Hellang.Middleware.ProblemDetails;
 using Hellang.Middleware.ProblemDetails.Mvc;
+using IdsServer.Database;
 using IdsServer.Mapping;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.FeatureManagement;
 
 namespace IdsServer.Extensions;
@@ -63,7 +65,19 @@ public static class ApiExtensions
         builder.Services.AddValidatorsFromAssemblyContaining<Program>(ServiceLifetime.Singleton);
         builder.Services.AddHttpContextAccessor();
 
+        builder.RegisterDatabase();
         builder.Services.RegisterMapper();
+    }
+
+    public static IServiceCollection RegisterDatabase(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseSqlite(
+                builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
+
+        return builder.Services;
     }
 
     /// <summary>
@@ -76,6 +90,7 @@ public static class ApiExtensions
         MapperConfiguration mapperConfig = new(mc =>
         {
             mc.AddProfile<BasketReceiveMappingProfile>();
+            mc.AddProfile<DatabaseMappingProfile>();
         });
 
         //mapperConfig.AssertConfigurationIsValid();
