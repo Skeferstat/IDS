@@ -3,7 +3,10 @@ using System.Xml;
 using IdsLibrary.Factories;
 using IdsLibrary.Models.PackageHeaders;
 using IdsLibrary.Serializing;
+using IdsSampleClient.Helpers;
 using IdsSampleClient.InternalServer;
+using IdsSampleClient.InternalServer.Events;
+using IdsServer.Library.Models;
 using Microsoft.Extensions.Options;
 using Serilog;
 
@@ -23,13 +26,36 @@ namespace IdsSampleClient
                 this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
 
             InternalServer.InternalServer internalServer = new InternalServer.InternalServer(_appSettings.InternalBasketReceiveHookUri);
+            internalServer.BasketReceived += OnBasketReceived;
             internalServer.StartHttpServer();
+        }
+
+        private void OnBasketReceived(object? sender, BasketReceivedEventArgs eventArgs)
+        {
+            if (RawBasketTreeView.InvokeRequired)
+            {
+                // Execute the same method on the UI thread
+                RawBasketTreeView.Invoke(new MethodInvoker(() => OnBasketReceived(sender, eventArgs)));
+            }
+            else
+            {
+                // Logic to handle the basket received event.
+                BasketDto basket = eventArgs.Basket;
+                XmlDocument dom = new XmlDocument();
+                dom.LoadXml(basket.RawXml);
+
+                RawBasketTreeView.Nodes.Clear();
+                RawBasketTreeView.Nodes.Add(new TreeNode(dom.DocumentElement!.Name));
+
+                TreeNode treeNode = RawBasketTreeView.Nodes[0];
+                TreeNodeHelper.AddNode(dom.DocumentElement, treeNode);
+            }
         }
 
 
         private void OnOpenBasketFile(object sender, EventArgs eventArgs)
         {
-            var result = this.OpenBasketFileDialog.ShowDialog();
+            DialogResult result = this.OpenBasketFileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
                 this.BasketXmlFileTextBox.Text = this.OpenBasketFileDialog.FileName;
@@ -62,10 +88,10 @@ namespace IdsSampleClient
                 HookUri = new Uri(hookUri)
             };
 
-            var factory = new BasketSendPackageFactory();
-            var data = await factory.CreatePackage(packageHeader, xmlDoc.InnerXml);
+            BasketSendPackageFactory factory = new BasketSendPackageFactory();
+            IIdsPackage data = await factory.CreatePackage(packageHeader, xmlDoc.InnerXml);
 
-            var memoryStream = new MemoryStream();
+            MemoryStream memoryStream = new MemoryStream();
             data.Content.CopyToAsync(memoryStream).Wait();
             memoryStream.Position = 0;
 
@@ -90,10 +116,10 @@ namespace IdsSampleClient
                 ShopUri = new Uri(shopUrl)
             };
 
-            var factory = new SearchTermPackageFactory();
-            var data = await factory.CreatePackage(packageHeader, searchTerm);
+            SearchTermPackageFactory factory = new SearchTermPackageFactory();
+            IIdsPackage data = await factory.CreatePackage(packageHeader, searchTerm);
 
-            var memoryStream = new MemoryStream();
+            MemoryStream memoryStream = new MemoryStream();
             data.Content.CopyToAsync(memoryStream).Wait();
             memoryStream.Position = 0;
 
@@ -110,7 +136,7 @@ namespace IdsSampleClient
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string articleNumber = this.DeepLinkSearchTextBox.Text;
 
-            var packageHeader = new DeepLinkPackageHeader
+            DeepLinkPackageHeader packageHeader = new DeepLinkPackageHeader
             {
                 CustomerNumber = _appSettings.Shop.AuthCustomerNumber,
                 UserName = _appSettings.Shop.AuthUsername,
@@ -119,10 +145,10 @@ namespace IdsSampleClient
                 ShopUri = new Uri(shopUrl)
             };
 
-            var factory = new DeepLinkPackageFactory();
-            var data = await factory.CreatePackage(packageHeader, articleNumber);
+            DeepLinkPackageFactory factory = new DeepLinkPackageFactory();
+            IIdsPackage data = await factory.CreatePackage(packageHeader, articleNumber);
 
-            var memoryStream = new MemoryStream();
+            MemoryStream memoryStream = new MemoryStream();
             data.Content.CopyToAsync(memoryStream).Wait();
             memoryStream.Position = 0;
 

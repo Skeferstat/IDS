@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdsServer.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250114225035_InitialCreate")]
+    [Migration("20250115185539_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -29,6 +29,11 @@ namespace IdsServer.Database.Migrations
                     b.Property<string>("Data")
                         .IsRequired()
                         .HasMaxLength(50000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HookUrl")
+                        .IsRequired()
+                        .HasMaxLength(300)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTimeOffset>("LastUpdate")

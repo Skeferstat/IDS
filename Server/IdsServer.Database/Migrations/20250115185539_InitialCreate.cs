@@ -17,6 +17,7 @@ namespace IdsServer.Database.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Data = table.Column<string>(type: "TEXT", maxLength: 50000, nullable: false),
+                    HookUrl = table.Column<string>(type: "TEXT", maxLength: 300, nullable: false),
                     LastUpdate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

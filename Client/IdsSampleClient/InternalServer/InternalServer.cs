@@ -1,6 +1,7 @@
 ﻿using IdsLibrary.Serializing;
 using System.Net;
 using AutoMapper;
+using IdsSampleClient.InternalServer.Events;
 using IdsServer.Library.Models;
 using IdsSampleClient.Mapping;
 
@@ -9,6 +10,9 @@ internal class InternalServer
 {
     private readonly string _url;
     private readonly Mapper _mapper;
+
+    public event EventHandler<BasketReceivedEventArgs>? BasketReceived;
+    public event EventHandler<Events.ErrorEventArgs>? ErrorOccurred;
 
     public InternalServer(string internalUrl)
     {
@@ -28,20 +32,39 @@ internal class InternalServer
     {
         if (result.AsyncState is HttpListener listener)
         {
-            HttpListenerContext context = listener.EndGetContext(result);
-            HttpListenerRequest request = context.Request;
-
-            if (request.HttpMethod == "POST")
+            HttpListenerContext context = null;
+            try
             {
-                using var reader = new StreamReader(request.InputStream, request.ContentEncoding);
-                string basketXml = reader.ReadToEnd();
-                var basket = Deserializer.DeserializeBasketReceive(basketXml);
-                BasketDto basketDto = _mapper.Map<BasketDto>(basket);
-                basketDto.RawXml = basketXml;
+                context = listener.EndGetContext(result);
+                HttpListenerRequest request = context.Request;
+
+                if (request.HttpMethod == "POST")
+                {
+                    using var reader = new StreamReader(request.InputStream, request.ContentEncoding);
+                    string basketXml = reader.ReadToEnd();
+
+                    var basket = Deserializer.DeserializeBasketReceive(basketXml);
+                    BasketDto basketDto = _mapper.Map<BasketDto>(basket);
+                    basketDto.RawXml = basketXml;
+
+                    BasketReceived?.Invoke(this, new BasketReceivedEventArgs(basketDto));
+                }
+
+                context.Response.StatusCode = 200;
             }
-            context.Response.StatusCode = 200;
-            context.Response.Close();
-            listener.BeginGetContext(OnProcessBasketReceive, listener);
+            catch (Exception exception)
+            {
+                ErrorOccurred?.Invoke(this, new Events.ErrorEventArgs(exception));
+                if (context != null)
+                {
+                    context.Response.StatusCode = 500;
+                }
+            }
+            finally
+            {
+                context?.Response.Close();
+                listener.BeginGetContext(OnProcessBasketReceive, listener);
+            }
         }
     }
 }

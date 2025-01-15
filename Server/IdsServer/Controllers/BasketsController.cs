@@ -25,7 +25,6 @@ public class BasketsController : Controller
 
     private readonly ILogger _logger;
     private readonly IMapper _mapper;
-    private readonly IMemoryCache _cache;
     private readonly AppDbContext _dbContext;
     private readonly HttpClient _httpClient;
 
@@ -35,14 +34,12 @@ public class BasketsController : Controller
     /// <param name="logger">Logger.</param>
     /// <param name="mapper">Mapper.</param>
     /// <param name="httpClientFactory">Factory for creating <see cref="HttpClient"/> instances.</param>
-    /// <param name="cache">Memory cache.</param>
     /// <param name="dbContext">Database context.</param>
-    public BasketsController(ILogger<BasketsController> logger, IMapper mapper, IHttpClientFactory httpClientFactory, IMemoryCache cache, AppDbContext dbContext)
+    public BasketsController(ILogger<BasketsController> logger, IMapper mapper, IHttpClientFactory httpClientFactory, AppDbContext dbContext)
     {
         _logger = logger;
         _mapper = mapper;
         _httpClient = httpClientFactory.CreateClient();
-        _cache = cache ?? throw new ArgumentNullException(nameof(cache));
         _dbContext = dbContext;
     }
 
@@ -50,9 +47,16 @@ public class BasketsController : Controller
     [HttpGet]
     public IActionResult Get()
     {
-        if (_cache.TryGetValue(ReceivedBasketsCacheKey, out List<BasketDto> baskets) == false)
+        var dbBaskets = _dbContext.Baskets.ToList();
+        var baskets = new List<BasketDto>();
+        foreach (Basket dbBasket in dbBaskets)
         {
-            baskets = [];
+            typeWarenkorb rawBasket = Deserializer.DeserializeBasketReceive(dbBasket.Data);
+            BasketDto bskt = _mapper.Map<BasketDto>(rawBasket);
+            bskt.BasketId = dbBasket.Id;
+            bskt.RawXml = dbBasket.Data;
+            bskt.HookUrl = new Uri(dbBasket.HookUrl);
+            baskets.Add(bskt);
         }
 
         return Ok(baskets);
@@ -77,21 +81,6 @@ public class BasketsController : Controller
             basketDto.RawXml = basketXml;
             basketDto.HookUrl = new Uri(hookurl);
 
-            var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromSeconds(60))
-                .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
-                .SetPriority(CacheItemPriority.Normal)
-                .SetSize(1024);
-
-
-            if (_cache.TryGetValue(ReceivedBasketsCacheKey, out List<BasketDto> baskets) == false)
-            {
-                baskets = [];
-            }
-
-            baskets.Add(basketDto);
-            _cache.Set(ReceivedBasketsCacheKey, baskets, cacheEntryOptions);
-
             var dbBasket = _mapper.Map<Basket>(basketDto);
             dbBasket.LastUpdate = DateTime.UtcNow;
             _dbContext.Baskets.Add(dbBasket);
@@ -105,7 +94,7 @@ public class BasketsController : Controller
                 _logger.LogError(exception, "An error occurred while saving the basket to the database.");
                 throw;
             }
-           
+
 
             return Task.FromResult<IActionResult>(Ok(new
             {
@@ -137,22 +126,27 @@ public class BasketsController : Controller
 
     [HttpGet("orderitems")]
     [CanBeNull]
-    public List<OrderItemDto> GetOrderItems(string basketId, DataSourceLoadOptions loadOptions)
+    public List<OrderItemDto> GetOrderItems(Guid basketId, DataSourceLoadOptions loadOptions)
     {
-        if (_cache.TryGetValue(ReceivedBasketsCacheKey, out List<BasketDto> baskets) == false)
+        var dbBasket = _dbContext.Baskets.FirstOrDefault(b => b.Id == basketId);
+        if (dbBasket == null)
         {
             return null;
         }
 
-        BasketDto basket = baskets.FirstOrDefault(b => b.BasketId == basketId);
-        return basket?.OrderDto.OrderItemDtos;
+        var basket = Deserializer.DeserializeBasketReceive(dbBasket.Data);
+        BasketDto basketDto = _mapper.Map<BasketDto>(basket);
+        basketDto.BasketId = dbBasket.Id;
+        basketDto.RawXml = dbBasket.Data;
+        basketDto.HookUrl = new Uri(dbBasket.HookUrl);
+       
+        return basketDto?.OrderDto.OrderItemDtos;
     }
 
     [HttpPost("send")]
     public async Task<IActionResult> SendToClient()
     {
         string hookUrl = Request.Headers["Hook-Url"];
-
 
         using var reader = new StreamReader(Request.Body);
         string xmlData = await reader.ReadToEndAsync();
@@ -193,12 +187,20 @@ public class BasketsController : Controller
             _logger.LogError(exception, "An error occurred while sending the basket to the client.");
             throw;
         }
+    }
 
-       
 
-        return await Task.FromResult<IActionResult>(BadRequest(new
+    [HttpGet("raw")]
+    public IActionResult GetRawBasket(Guid basketId)
+    {
+
+        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == basketId);
+        if (basket == null)
         {
-            Success = false
-        }));
+            return NotFound();
+        }
+
+        typeWarenkorb bskt = Deserializer.DeserializeBasketReceive(basket.Data);
+        return Ok(bskt);
     }
 }

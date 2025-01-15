@@ -5,7 +5,7 @@ namespace IdsServer.Library.Models;
 
 public class BasketDto
 {
-    public string BasketId => BasketInfoDto.DateTime.ToString(CultureInfo.InvariantCulture).Replace(".", "_").Replace(":","_");
+    public Guid BasketId { get; set; }
     public BasketInfoDto BasketInfoDto { get; set; } = new BasketInfoDto();
     public OrderDto OrderDto { get; set; } = new OrderDto();
 

@@ -9,9 +9,11 @@ public class BasketReceiveMappingProfile : Profile
     public BasketReceiveMappingProfile()
     {
         CreateMap<typeWarenkorb, BasketDto>()
+            .ForMember(dest => dest.BasketId, opt => opt.Ignore())
             .ForMember(dest => dest.BasketInfoDto, opt => opt.MapFrom(src => src.WarenkorbInfo))
             .ForMember(dest => dest.OrderDto, opt => opt.MapFrom(src => src.Order))
             .ForMember(dest => dest.RawXml, opt => opt.Ignore())
+            .ForMember(dest => dest.HookUrl, opt => opt.Ignore())
             ;
 
         CreateMap<typeWarenkorbInfo, BasketInfoDto>()

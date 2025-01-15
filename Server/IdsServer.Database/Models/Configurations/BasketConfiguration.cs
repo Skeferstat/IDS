@@ -16,6 +16,10 @@ public partial class BasketConfiguration : IEntityTypeConfiguration<Basket>
             .IsRequired()
             .HasMaxLength(50000);
 
+        entity.Property(e => e.HookUrl)
+            .IsRequired()
+            .HasMaxLength(300);
+
         entity.Property(e => e.LastUpdate)
             .IsRequired();
 

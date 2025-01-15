@@ -50,7 +50,10 @@
             DeepLinkSearchButton = new Button();
             OpenHeatingLabelFileDialog = new OpenFileDialog();
             groupBox1 = new GroupBox();
+            RawBasketTreeView = new TreeView();
+            groupBox2 = new GroupBox();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // OpenBasketFileButton
@@ -161,6 +164,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(OpenBasketFileButton);
             groupBox1.Controls.Add(BasketXmlFileTextBox);
@@ -170,6 +174,18 @@
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
+            // 
+            // RawBasketTreeView
+            // 
+            resources.ApplyResources(RawBasketTreeView, "RawBasketTreeView");
+            RawBasketTreeView.Name = "RawBasketTreeView";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(RawBasketTreeView);
+            resources.ApplyResources(groupBox2, "groupBox2");
+            groupBox2.Name = "groupBox2";
+            groupBox2.TabStop = false;
             // 
             // MainForm
             // 
@@ -190,6 +206,7 @@
             Click += OnSearchTerm;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -216,5 +233,7 @@
         private Button DeepLinkSearchButton;
         private OpenFileDialog OpenHeatingLabelFileDialog;
         private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private TreeView RawBasketTreeView;
     }
 }

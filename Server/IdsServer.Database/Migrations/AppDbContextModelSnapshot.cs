@@ -28,6 +28,11 @@ namespace IdsServer.Database.Migrations
                         .HasMaxLength(50000)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("HookUrl")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTimeOffset>("LastUpdate")
                         .HasColumnType("TEXT");
 
