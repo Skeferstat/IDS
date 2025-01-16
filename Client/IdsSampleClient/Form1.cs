@@ -1,5 +1,7 @@
 using System.Net.Http.Headers;
 using System.Xml;
+using BasketSend;
+using FluentValidation;
 using IdsLibrary.Factories;
 using IdsLibrary.Models.PackageHeaders;
 using IdsLibrary.Serializing;
@@ -25,6 +27,8 @@ namespace IdsSampleClient
             if (IdsVersionComboBox.Items.Count - 1 >= 0)
                 this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
 
+            TreeNodeHelper.AddContextMenu(this.CurrentRawBasketTreeView);
+
             InternalServer.InternalServer internalServer = new InternalServer.InternalServer(_appSettings.InternalBasketReceiveHookUri);
             internalServer.BasketReceived += OnBasketReceived;
             internalServer.StartHttpServer();
@@ -32,23 +36,16 @@ namespace IdsSampleClient
 
         private void OnBasketReceived(object? sender, BasketReceivedEventArgs eventArgs)
         {
-            if (RawBasketTreeView.InvokeRequired)
+            if (ReceivedRawBasketTreeView.InvokeRequired)
             {
                 // Execute the same method on the UI thread
-                RawBasketTreeView.Invoke(new MethodInvoker(() => OnBasketReceived(sender, eventArgs)));
+                ReceivedRawBasketTreeView.Invoke(new MethodInvoker(() => OnBasketReceived(sender, eventArgs)));
             }
             else
             {
                 // Logic to handle the basket received event.
                 BasketDto basket = eventArgs.Basket;
-                XmlDocument dom = new XmlDocument();
-                dom.LoadXml(basket.RawXml);
-
-                RawBasketTreeView.Nodes.Clear();
-                RawBasketTreeView.Nodes.Add(new TreeNode(dom.DocumentElement!.Name));
-
-                TreeNode treeNode = RawBasketTreeView.Nodes[0];
-                TreeNodeHelper.AddNode(dom.DocumentElement, treeNode);
+                BindBasketXmlToTreeView(basket.RawXml, this.ReceivedRawBasketTreeView);
             }
         }
 
@@ -59,6 +56,18 @@ namespace IdsSampleClient
             if (result == DialogResult.OK)
             {
                 this.BasketXmlFileTextBox.Text = this.OpenBasketFileDialog.FileName;
+                XmlDocument xmlDoc = new XmlDocument();
+                try
+                {
+                    xmlDoc.Load(OpenBasketFileDialog.FileName);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Error loading basket file");
+                    throw;
+                }
+
+                BindBasketXmlToTreeView(xmlDoc.InnerXml, this.CurrentRawBasketTreeView);
             }
         }
 
@@ -67,16 +76,8 @@ namespace IdsSampleClient
             string shopUrl = ShopUrlTextBox.Text;
             string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
-            XmlDocument xmlDoc = new XmlDocument();
-            try
-            {
-                xmlDoc.Load(OpenBasketFileDialog.FileName);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Error loading basket file");
-                throw;
-            }
+           
+            var xml = TreeNodeHelper.ConvertToXml(this.CurrentRawBasketTreeView);
 
             BasketSendPackageHeader? packageHeader = new BasketSendPackageHeader
             {
@@ -89,7 +90,7 @@ namespace IdsSampleClient
             };
 
             BasketSendPackageFactory factory = new BasketSendPackageFactory();
-            IIdsPackage data = await factory.CreatePackage(packageHeader, xmlDoc.InnerXml);
+            IIdsPackage data = await factory.CreatePackage(packageHeader, xml);
 
             MemoryStream memoryStream = new MemoryStream();
             data.Content.CopyToAsync(memoryStream).Wait();
@@ -155,6 +156,38 @@ namespace IdsSampleClient
             WebViewForm webViewForm = new WebViewForm();
             await webViewForm.SetDataAsync(data.ShopUri, data.Method, memoryStream, data.Headers);
             webViewForm.Show();
+        }
+
+        private void OnCopyReceivedBasketToCurrentBasket(object sender, EventArgs e)
+        {
+            if (ReceivedRawBasketTreeView.Nodes.Count < 1)
+            {
+                return;
+            }
+
+            var xml = TreeNodeHelper.ConvertToXml(this.ReceivedRawBasketTreeView);
+            BindBasketXmlToTreeView(xml, this.CurrentRawBasketTreeView);
+        }
+
+
+        private void BindBasketXmlToTreeView(string xml, TreeView treeView)
+        {
+            if (string.IsNullOrEmpty(xml))
+            {
+                throw new ArgumentNullException(nameof(xml));
+            }
+
+            XmlDocument xmlDoc = new XmlDocument
+            {
+                InnerXml = xml
+            };
+
+            treeView.Nodes.Clear();
+            treeView.Nodes.Add(new TreeNode(xmlDoc.DocumentElement!.Name));
+            TreeNode treeNode = treeView.Nodes[0];
+            TreeNodeHelper.AddNode(xmlDoc.DocumentElement, treeNode);
+            treeView.ExpandAll();
+            treeView.TopNode = treeView.Nodes[0];
         }
     }
 }

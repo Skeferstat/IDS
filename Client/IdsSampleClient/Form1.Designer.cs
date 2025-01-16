@@ -34,6 +34,7 @@
             label1 = new Label();
             BasketXmlFileTextBox = new TextBox();
             ToolTip = new ToolTip(components);
+            button1 = new Button();
             OpenBasketFileDialog = new OpenFileDialog();
             label2 = new Label();
             ShopUrlTextBox = new TextBox();
@@ -50,9 +51,12 @@
             DeepLinkSearchButton = new Button();
             OpenHeatingLabelFileDialog = new OpenFileDialog();
             groupBox1 = new GroupBox();
-            RawBasketTreeView = new TreeView();
+            groupBox3 = new GroupBox();
+            CurrentRawBasketTreeView = new TreeView();
             groupBox2 = new GroupBox();
+            ReceivedRawBasketTreeView = new TreeView();
             groupBox1.SuspendLayout();
+            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -75,6 +79,14 @@
             resources.ApplyResources(BasketXmlFileTextBox, "BasketXmlFileTextBox");
             BasketXmlFileTextBox.HideSelection = false;
             BasketXmlFileTextBox.Name = "BasketXmlFileTextBox";
+            // 
+            // button1
+            // 
+            resources.ApplyResources(button1, "button1");
+            button1.Name = "button1";
+            ToolTip.SetToolTip(button1, resources.GetString("button1.ToolTip"));
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += OnCopyReceivedBasketToCurrentBasket;
             // 
             // OpenBasketFileDialog
             // 
@@ -164,6 +176,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(groupBox3);
+            groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(OpenBasketFileButton);
@@ -175,17 +189,31 @@
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
             // 
-            // RawBasketTreeView
+            // groupBox3
             // 
-            resources.ApplyResources(RawBasketTreeView, "RawBasketTreeView");
-            RawBasketTreeView.Name = "RawBasketTreeView";
+            groupBox3.Controls.Add(CurrentRawBasketTreeView);
+            resources.ApplyResources(groupBox3, "groupBox3");
+            groupBox3.Name = "groupBox3";
+            groupBox3.TabStop = false;
+            // 
+            // CurrentRawBasketTreeView
+            // 
+            resources.ApplyResources(CurrentRawBasketTreeView, "CurrentRawBasketTreeView");
+            CurrentRawBasketTreeView.LabelEdit = true;
+            CurrentRawBasketTreeView.Name = "CurrentRawBasketTreeView";
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(RawBasketTreeView);
+            groupBox2.Controls.Add(ReceivedRawBasketTreeView);
             resources.ApplyResources(groupBox2, "groupBox2");
             groupBox2.Name = "groupBox2";
             groupBox2.TabStop = false;
+            // 
+            // ReceivedRawBasketTreeView
+            // 
+            resources.ApplyResources(ReceivedRawBasketTreeView, "ReceivedRawBasketTreeView");
+            ReceivedRawBasketTreeView.LabelEdit = true;
+            ReceivedRawBasketTreeView.Name = "ReceivedRawBasketTreeView";
             // 
             // MainForm
             // 
@@ -206,6 +234,7 @@
             Click += OnSearchTerm;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -234,6 +263,9 @@
         private OpenFileDialog OpenHeatingLabelFileDialog;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private TreeView RawBasketTreeView;
+        private TreeView ReceivedRawBasketTreeView;
+        private Button button1;
+        private GroupBox groupBox3;
+        private TreeView CurrentRawBasketTreeView;
     }
 }

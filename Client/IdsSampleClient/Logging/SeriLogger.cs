@@ -2,6 +2,10 @@
 using Serilog;
 
 namespace IdsSampleClient.Logging;
+
+/// <summary>
+/// SeriLogger configuration.
+/// </summary>
 public static class SeriLogger
 {
     /// <summary>

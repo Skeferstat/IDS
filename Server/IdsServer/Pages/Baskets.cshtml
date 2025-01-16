@@ -7,38 +7,52 @@
 
 <h2>@ViewData["Title"]</h2>
 
+
 @(Html.DevExtreme().DataGrid<BasketDto>()
         .DataSource(ds => ds.Mvc()
             .Controller("Baskets")
             .LoadAction("Get")
+            .DeleteAction("Delete")
             .Key("BasketId")
         )
         .RemoteOperations(true)
+        .Editing(editing => {
+            editing.Mode(GridEditMode.Row);
+            editing.AllowUpdating(true);
+            editing.AllowDeleting(true);
+            editing.UseIcons(true);
+        })
         .Columns(columns =>
         {
+            columns.AddFor(x => x.BasketId).Caption("Id");
             columns.AddFor(x => x.OrderDto.OrderInfoDto.OrderNumber).Caption("Reference");
             columns.AddFor(x => x.BasketInfoDto.DateTime).Caption("Date").Format("dd.MM.yyyy HH:mm:ss");
             columns.Add()
                 .Type(GridCommandColumnType.Buttons)
-                .Width(110)
+                
                 .Buttons(b =>
                 {
                     b.Add()
-                      .Text("Send to client")
+                        .Icon("fa-solid fa-right-left")
                         .Hint("Send basket data to client")
                         .OnClick("onSendBasketToClient");
+
+                    b.Add().Name(GridColumnButtonName.Delete)
+                        .Icon("fa-solid fa-trash")
+                        .Hint("Delete basket from database");
                 });
 
-            columns.Add()
+            @* columns.Add()
                 .Type(GridCommandColumnType.Buttons)
                 .Width(110)
                 .Buttons(b =>
                 {
                     b.Add()
                         .Text("Show data")
-                        .Hint("Show raw basket xml data")
+                        
+                        .Hint("Delete basket")
                         .OnClick("onShowRawBasketData");
-                });
+                }); *@
         })
         .Paging(paging => paging.PageSize(10))
         .FilterRow(filterRow => filterRow.Visible(true))
@@ -78,15 +92,7 @@
 )
 
 
-@(Html.DevExtreme().TreeView()
-    .ID("simple-treeview")
-   
-    .DisplayExpr("Text")
-    .ItemsExpr("Items")
-    .ExpandedExpr("Expanded")
-    .Width(300)
-    .OnItemClick("treeViewItemClick")
-)
+
 
 <script>
 
@@ -98,15 +104,8 @@
     }
 
 
-    function onShowRawBasketData(event) {
-        const basketId = event.row.data.BasketId;
-        const rawXml  = getRawBasket(basketId);
-    }
 
-
-
-
-    function sendToClient(xmlData, hookUrl) {
+ function sendToClient(xmlData, hookUrl) {
       fetch('/api/baskets/send', {
               method: 'POST',
               headers: {

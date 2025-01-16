@@ -139,7 +139,7 @@ public class BasketsController : Controller
         basketDto.BasketId = dbBasket.Id;
         basketDto.RawXml = dbBasket.Data;
         basketDto.HookUrl = new Uri(dbBasket.HookUrl);
-       
+
         return basketDto?.OrderDto.OrderItemDtos;
     }
 
@@ -176,7 +176,6 @@ public class BasketsController : Controller
 
             if (response.IsSuccessStatusCode)
             {
-                string responseContent = await response.Content.ReadAsStringAsync();
                 return Ok(new { success = true });
             }
 
@@ -202,5 +201,20 @@ public class BasketsController : Controller
 
         typeWarenkorb bskt = Deserializer.DeserializeBasketReceive(basket.Data);
         return Ok(bskt);
+    }
+
+    [HttpDelete]
+    public IActionResult Delete(Guid BasketId)
+    {
+        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == BasketId);
+        if (basket == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Baskets.Remove(basket);
+        _dbContext.SaveChanges();
+
+        return NotFound();
     }
 }

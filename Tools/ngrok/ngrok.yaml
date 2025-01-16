@@ -4,15 +4,44 @@ agent:
    authtoken: 2qzasKIw8IyXLK8c2VXHeDphS0t_21g52UrVViHr13mrXEDqj
     
 tunnels:
-  server:          # == dummy shop
+  client2server:          # == dummy shop
     proto: http
     addr: 64141
     host_header: localhost
-  client:         # == Handwerkersoftware
+
+  server2client:         # == Handwerkersoftware
     proto: http
     addr: 3000
+    domain: wanted-supreme-mackerel.ngrok-free.app
     host_header: localhost
 
+
+
+
+# endpoints:
+
+#   - name: client2server
+#     url: wanted-supreme-mackerel.ngrok-free.app
+#     upstream:
+#       url: 64141
+#     request_header:
+#       add: ["localhost"]
+
+
+#   - name: server2client
+#     url: wanted-supreme-mackerel.ngrok-free.app
+#     upstream:
+#       url: 3000
+#     request_header:
+#       add: ["localhost"]
+
+      
+  # - name: tunnel_zu_handwerkersoftware
+  #   # proto: http
+  #   upstream:
+  #     url: 3000
+    # host_header: localhost
+  
 
 #  How to start ngrok with this config file
 #  ./ngrok.exe  --config ./ngrok.yaml start --all
