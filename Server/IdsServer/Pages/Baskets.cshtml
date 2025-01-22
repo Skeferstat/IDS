@@ -1,4 +1,5 @@
 ﻿@page
+@using IdsServer.Controllers
 @using IdsServer.Library.Models
 
 @{
@@ -9,89 +10,153 @@
 
 
 @(Html.DevExtreme().DataGrid<BasketDto>()
-        .DataSource(ds => ds.Mvc()
-            .Controller("Baskets")
-            .LoadAction("Get")
-            .DeleteAction("Delete")
-            .Key("BasketId")
-        )
-        .RemoteOperations(true)
-        .Editing(editing => {
-            editing.Mode(GridEditMode.Row);
-            editing.AllowUpdating(true);
-            editing.AllowDeleting(true);
-            editing.UseIcons(true);
+    .DataSource(ds => ds.Mvc()
+        .Controller("Baskets")
+        .LoadAction("Get")
+        .DeleteAction("Delete") 
+        .Key("BasketId")
+    )
+    @* .Selection(s => s.Mode(SelectionMode.Multiple))  *@
+    .RepaintChangesOnly(true) 
+    .Scrolling(x => x.Mode(GridScrollingMode.Virtual)) 
+    .RemoteOperations(true)
+    .Editing(editing =>
+    {
+        editing.RefreshMode(GridEditRefreshMode.Reshape);
+        editing.Mode(GridEditMode.Row);
+        @* editing.AllowUpdating(true); *@
+        editing.AllowDeleting(true);
+        editing.UseIcons(true);
+    })
+    .Columns(columns =>
+    {
+        columns.AddFor(x => x.BasketId).Caption("Id");
+        columns.AddFor(x => x.OrderDto.OrderInfoDto.OrderNumber).Caption("Reference");
+        columns.AddFor(x => x.BasketInfoDto.DateTime).Caption("Date").Format("dd.MM.yyyy HH:mm:ss");
+        columns.Add()
+            .Type(GridCommandColumnType.Buttons)
+                
+            .Buttons(b =>
+            {
+                b.Add()
+                    .Icon("fa-solid fa-right-left")
+                    .Hint("Send basket data to client")
+                    .OnClick("onSendBasketToClient");
+
+                b.Add()
+                    .Icon("fa-solid fa-pencil")
+                    .Hint("Edit basket data")
+                    .OnClick("onEditBasketData")
+                ;
+
+                b.Add().Name(GridColumnButtonName.Delete)
+                    .Icon("fa-solid fa-trash")
+                    .Hint("Delete basket from database");
+            });
+    })
+    .Paging(paging => paging.PageSize(10))
+    .FilterRow(filterRow => filterRow.Visible(true))
+    .MasterDetail(md => md
+        .Enabled(true)
+        .Template(@<text>
+                       @(Html.DevExtreme().DataGrid<OrderItemDto>()
+                           .DataSource(d => d.Mvc()
+                               .Controller("Baskets")
+                               .LoadAction("GetOrderItems")
+                               .LoadParams(new { basketId = new JS("data.BasketId") })
+                           )
+                           .Columns(columns => {
+                               columns.AddFor(n => n.ArticleNumber).Caption("Article");
+                               columns.AddFor(n => n.Quantity).Caption("Quantity").Format(format =>
+                               {
+                                   format.Type(Format.Decimal);
+                                   format.Precision(2);
+                               });
+                               columns.AddFor(n => n.OfferPrice).Caption("Offer").Format(format =>
+                               {
+                                   format.Type(Format.Currency);
+                                   format.Currency("EUR");
+                                   format.Precision(2);
+                               });
+                               columns.AddFor(n => n.NetPrice).Caption("Net").Format(format =>
+                               {
+                                   format.Type(Format.Currency);
+                                   format.Currency("EUR");
+                                   format.Precision(2);
+                               });
+                           })
+                           .ShowBorders(true))
+                   </text>)
+    ))
+
+
+
+@(Html.DevExtreme().Popup()
+        .ID("basket-data-popup")
+        .Width(300)
+        .Height(280)
+        .ResizeEnabled(true)
+        .ShowTitle(true)
+        .Title("Basket data")
+        .DragEnabled(true)
+        .HideOnOutsideClick(false)
+        .ShowCloseButton(true)
+        @* .Position(positionConfig => positionConfig
+            .At(HorizontalAlignment.Center, VerticalAlignment.Bottom)
+            .My(HorizontalAlignment.Center, VerticalAlignment.Center)
+            .Collision(PositionResolveCollision.Fit, PositionResolveCollision.Fit)
+        ) *@
+        .ContentTemplate(new TemplateName("basket-data-popup-template"))
+        .ToolbarItems(barItems =>
+        {
+            barItems.Add()
+                .Toolbar(Toolbar.Bottom)
+                .Location(ToolbarItemLocation.Before)
+                .Widget(widget => widget.Button()
+                .StylingMode(ButtonStylingMode.Contained)
+                .Text("Save")
+                .OnClick("onSaveData")
+                );
+            barItems.Add()
+                .Toolbar(Toolbar.Bottom)
+                .Location(ToolbarItemLocation.After)
+                .Widget(widget => widget.Button()
+                    .Text("Cancel")
+                    .StylingMode(ButtonStylingMode.Outlined)
+                    .Type(ButtonType.Normal)
+                );
         })
+    )
+
+@using (Html.DevExtreme().NamedTemplate("basket-data-popup-template"))
+{
+    @(Html.DevExtreme().TreeList<BasketsController.TreeNode>()
+        .ID("basket-treeList")
+        .DataSource(d => d.Mvc()
+            .Controller("Baskets")
+            .LoadAction("GetTree")
+            .UpdateAction("UpdateBasket")
+            .Key("Id")
+            .LoadParams(new { basketId = new JS("GetBasketId") })
+        )
+        .ShowBorders(true)
+        .ColumnAutoWidth(true)
         .Columns(columns =>
         {
-            columns.AddFor(x => x.BasketId).Caption("Id");
-            columns.AddFor(x => x.OrderDto.OrderInfoDto.OrderNumber).Caption("Reference");
-            columns.AddFor(x => x.BasketInfoDto.DateTime).Caption("Date").Format("dd.MM.yyyy HH:mm:ss");
-            columns.Add()
-                .Type(GridCommandColumnType.Buttons)
-                
-                .Buttons(b =>
-                {
-                    b.Add()
-                        .Icon("fa-solid fa-right-left")
-                        .Hint("Send basket data to client")
-                        .OnClick("onSendBasketToClient");
-
-                    b.Add().Name(GridColumnButtonName.Delete)
-                        .Icon("fa-solid fa-trash")
-                        .Hint("Delete basket from database");
-                });
-
-            @* columns.Add()
-                .Type(GridCommandColumnType.Buttons)
-                .Width(110)
-                .Buttons(b =>
-                {
-                    b.Add()
-                        .Text("Show data")
-                        
-                        .Hint("Delete basket")
-                        .OnClick("onShowRawBasketData");
-                }); *@
+            columns.AddFor(x => x.Name).AllowEditing(false);
+            columns.AddFor(x => x.Value).AllowEditing(true);
         })
-        .Paging(paging => paging.PageSize(10))
-        .FilterRow(filterRow => filterRow.Visible(true))
-        .MasterDetail(md => md
-            .Enabled(true)
-            .Template(@<text>
-                @(Html.DevExtreme().DataGrid<OrderItemDto>()
-                .DataSource(d => d.Mvc()
-                .Controller("Baskets")
-                .LoadAction("GetOrderItems")
-                .LoadParams(new { basketId = new JS("data.BasketId") })
-                )
-                .Columns(columns => {
-                    columns.AddFor(n => n.ArticleNumber).Caption("Article");
-                    columns.AddFor(n => n.Quantity).Caption("Quantity").Format(format =>
-                    {
-                        format.Type(Format.Decimal);
-                        format.Precision(2);
-                    });
-                    columns.AddFor(n => n.OfferPrice).Caption("Offer").Format(format =>
-                    {
-                        format.Type(Format.Currency);
-                        format.Currency("EUR");
-                        format.Precision(2);
-                    });
-                    columns.AddFor(n => n.NetPrice).Caption("Net").Format(format =>
-                    {
-                        format.Type(Format.Currency);
-                        format.Currency("EUR");
-                        format.Precision(2);
-                    });
-                })
-                .ShowBorders(true)
-                )
-            </text>)
-        )
-)
-
-
+        .ExpandedRowKeys(new List<int> {1, 2,6, 7})
+        .KeyExpr("Id")
+        .ParentIdExpr("ParentId")
+            .Editing(editing => editing
+                .Mode(GridEditMode.Row)
+                .AllowAdding(false)
+                .AllowUpdating(true)
+                .AllowDeleting(false)
+            )
+    )
+}
 
 
 <script>
@@ -103,26 +168,115 @@
           // e.event.preventDefault();
     }
 
+   function GetBasketId() {
+       const popup = $("#basket-data-popup").dxPopup("instance");
+          const basketId = popup.option("basketId");
+          return basketId;
+   }
 
 
- function sendToClient(xmlData, hookUrl) {
-      fetch('/api/baskets/send', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/xml',
-                  'Hook-Url': hookUrl
-              },
-              body: xmlData
-          })
-          .then(response => response.json())
-          .then(result => {
-                console.log('Success:', result);
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          }
-      );
+
+         function onSaveData() {
+             const popup = $("#basket-data-popup").dxPopup("instance");
+              const basketId = popup.option("basketId");
+             const hookUrl = popup.option("hookUrl");
+             const treeList = $("#basket-treeList").dxTreeList("instance");
+             
+         
+             let data = [];
+              treeList.forEachNode((e) => {
+                  data.push(e.data);
+             });
+
+              saveBasketData(data,basketId, hookUrl);
+             popup.hide();
+             
+      }
+
+
+
+          function saveBasketData(treeListData,basketId, hookUrl) {
+
+              const filteredData = treeListData.map(item => {
+                 return { 
+                     Id: item.Id,
+                     Name: item.Name,
+                     Value: item.Value,
+                     ParentId: item.ParentId
+                  };
+             });
+
+
+             const treeBasket = {
+                  Id: basketId,
+                  Items: filteredData
+             }
+
+             fetch("/api/baskets/save", {
+                     method: "POST",
+                     headers: {
+                         'Content-Type': 'application/json', // Senden als JSON
+                     },
+                            body: JSON.stringify(treeBasket)
+                 })
+                 .then(response => response.json())
+                 .then(data => {
+                     if (data.Success) {
+                         console.log("Basket data successfully received.");
+                     } else {
+                         console.error("Failed to process basket data.");
+                     }
+                 })
+                 .catch(error => {
+                     console.error("Error:", error);
+                 });
+         }
+         function extractAndRemoveCircularReferences(data) {
+             // WeakSet, um zirkuläre Referenzen zu erkennen
+             const seen = new WeakSet();
+
+             // Hilfsfunktion, um nur 'Name' und 'Status' zu extrahieren
+             function processData(item) {
+                 if (typeof item === 'object' && item !== null) {
+                     // Wenn das Objekt bereits verarbeitet wurde (zirkulär), überspringen
+                     if (seen.has(item)) {
+                         return null;  // Rückgabe `null` bei zirkulären Verweisen
+                     }
+                     seen.add(item);
+
+                     // Neues Objekt mit den gewünschten Feldern erstellen (Name und Status)
+                     let result = {
+                         Name: item.data.Name || '', 
+                            Value: item.data.Value || '',
+                               Id: item.data.Id  || '0',
+                            ParentId: item.data.ParentId  || '0'
+                     };
+
+                     // Wenn das Objekt verschachtelte Daten enthält, rekursiv weiter verarbeiten
+                     if (item.children) {
+                         result.children = item.children.map(processData).filter(x => x !== null);  // Rekursiv für Kinder
+                     }
+
+                     return result;
+                 }
+                 return item;  // Rückgabe des Werts, wenn er kein Objekt ist
+             }
+
+             return data.map(processData).filter(x => x !== null);  // Alle Daten durchlaufen und zirkuläre Objekte entfernen
+         }
+
+
+
+    function onEditBasketData(event) 
+    {
+           const basketId = event.row.data.BasketId;
+              const hookUrl = event.row.data.HookUrl;
+           const popup = $("#basket-data-popup").dxPopup("instance");
+              popup.option("basketId", basketId);
+                    popup.option("hookUrl", hookUrl);
+           popup.show();
     }
+    
 
 
     function getRawBasket(basketId) {

@@ -14,6 +14,9 @@ using System.Net.Http;
 using IdsServer.Library.Models;
 using IdsServer.Database;
 using IdsServer.Database.Models;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using static IdsServer.Controllers.BasketsController;
 
 namespace IdsServer.Controllers;
 
@@ -124,6 +127,30 @@ public class BasketsController : Controller
         }));
     }
 
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateBasket(int key, [FromForm] string values)
+    {
+        return Ok();
+    }
+
+    [HttpPost("save")]
+    public async Task<IActionResult> SaveBasketData([FromBody] TreeBasket treeBasket)
+    {
+        var xml = ConvertToXml(treeBasket.Items);
+        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == treeBasket.Id);
+        if (basket == null)
+        {
+            throw new InvalidOperationException("Basket not found.");
+        }
+
+        basket.Data = xml;
+        basket.LastUpdate = DateTime.UtcNow;
+        await _dbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
     [HttpGet("orderitems")]
     [CanBeNull]
     public List<OrderItemDto> GetOrderItems(Guid basketId, DataSourceLoadOptions loadOptions)
@@ -204,9 +231,9 @@ public class BasketsController : Controller
     }
 
     [HttpDelete]
-    public IActionResult Delete(Guid BasketId)
+    public IActionResult Delete(Guid key)    // DON'T CHANGE THE NAME OF THE PARAMETER
     {
-        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == BasketId);
+        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == key);
         if (basket == null)
         {
             return NotFound();
@@ -215,6 +242,104 @@ public class BasketsController : Controller
         _dbContext.Baskets.Remove(basket);
         _dbContext.SaveChanges();
 
-        return NotFound();
+        return Ok();
     }
+
+
+    [HttpGet("tree")]
+    public List<TreeNode> GetTree(string basketId)
+    {
+        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == Guid.Parse(basketId));
+        if (basket == null)
+        {
+            return [];
+        }
+
+        XDocument doc = XDocument.Parse(basket.Data);
+        List<TreeNode> treeNodes = [];
+        int idCounter = 1;
+
+        ParseElement(doc.Root, 0, treeNodes, ref idCounter);
+
+        return treeNodes;
+    }
+
+
+    private static void ParseElement(XElement element, int parentId, List<TreeNode> nodes, ref int idCounter)
+    {
+        var currentNode = new TreeNode
+        {
+            Id = idCounter++,
+            ParentId = parentId,
+            Name = element.Name.LocalName,
+            Value = element.HasElements ? null : element.Value.Trim()
+        };
+
+        nodes.Add(currentNode);
+
+        foreach (var child in element.Elements())
+        {
+            ParseElement(child, currentNode.Id, nodes, ref idCounter);
+        }
+    }
+
+    public class TreeNode
+    {
+        public int Id { get; set; } 
+        public int ParentId { get; set; } 
+        public string Name { get; set; } 
+        public string Value { get; set; }
+    }
+
+
+
+    public class TreeBasket
+    {
+        public Guid Id { get; set; }
+        public List<TreeBasketItem> Items { get; set; }
+    }
+
+
+    public class TreeBasketItem
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public int Id { get; set; }
+        public int? ParentId { get; set; }
+    }
+
+
+    internal static string ConvertToXml(List<TreeBasketItem> items)
+    {
+        XNamespace ns = "http://www.itek.de/Shop-Anbindung/Warenkorb/";
+
+        var root = items.FirstOrDefault(x => x.ParentId == 0);
+        if (root == null) throw new InvalidOperationException("Root element not found.");
+
+        XElement rootElement = BuildTree(root, items, ns);
+        var xmlDeclaration = new XDeclaration("1.0", "UTF-8", "yes");
+        var document = new XDocument(xmlDeclaration, rootElement);
+
+        return document.ToString();
+    }
+
+
+    public static XElement BuildTree(TreeBasketItem parent, List<TreeBasketItem> allItems, XNamespace namespaceUri)
+    {
+        var children = allItems.Where(x => x.ParentId == parent.Id).ToList();
+        var element = new XElement(namespaceUri + parent.Name);
+
+        if (!string.IsNullOrEmpty(parent.Value))
+        {
+            element.Value = parent.Value;
+        }
+
+        foreach (var child in children)
+        {
+            element.Add(BuildTree(child, allItems, namespaceUri));
+        }
+
+        return element;
+    }
+
 }
