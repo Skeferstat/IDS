@@ -126,7 +126,6 @@ namespace IdsSampleClient
         private async void OnDeepLinkSearchTerm(object sender, EventArgs eventArgs)
         {
             string shopUrl = ShopUrlTextBox.Text;
-            string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string articleNumber = this.DeepLinkSearchTextBox.Text;
 

@@ -7,10 +7,10 @@ namespace IdsLibrary.Models;
 /// </summary>
 public sealed class ActionCode : SmartEnum<ActionCode, string>
 {
-    public static readonly ActionCode Unknown = new ActionCode(nameof(Unknown), "");
-    public static readonly ActionCode SendBasketToShop = new ActionCode(nameof(SendBasketToShop), "WKS");
-    public static readonly ActionCode ArticleSearch = new ActionCode(nameof(ArticleSearch), "AS");
-    public static readonly ActionCode ArticleDeeplink = new ActionCode(nameof(ArticleDeeplink), "ADL");
+    public static readonly ActionCode Unknown = new(nameof(Unknown), "");
+    public static readonly ActionCode SendBasketToShop = new(nameof(SendBasketToShop), "WKS");
+    public static readonly ActionCode ArticleSearch = new(nameof(ArticleSearch), "AS");
+    public static readonly ActionCode ArticleDeeplink = new(nameof(ArticleDeeplink), "ADL");
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ActionCode"/> class.

@@ -17,7 +17,6 @@ namespace IdsServer.Controllers;
 public class BasketsController : Controller
 {
     private readonly ILogger _logger;
-    private readonly IMapper _mapper;
     private readonly AppDbContext _dbContext;
     private readonly HttpClient _httpClient;
 
@@ -25,20 +24,18 @@ public class BasketsController : Controller
     /// Initializes a new instance of the <see cref="BasketsController"/> class.
     /// </summary>
     /// <param name="logger">Logger.</param>
-    /// <param name="mapper">Mapper.</param>
     /// <param name="httpClientFactory">Factory for creating <see cref="HttpClient"/> instances.</param>
     /// <param name="dbContext">Database context.</param>
-    public BasketsController(ILogger<BasketsController> logger, IMapper mapper, IHttpClientFactory httpClientFactory, AppDbContext dbContext)
+    public BasketsController(ILogger<BasketsController> logger, IHttpClientFactory httpClientFactory, AppDbContext dbContext)
     {
         _logger = logger;
-        _mapper = mapper;
         _httpClient = httpClientFactory.CreateClient();
         _dbContext = dbContext;
     }
 
 
     [HttpGet]
-    public IActionResult Get()
+    public ActionResult<List<Basket>> Get()
     {
         List<Basket> dbBaskets = _dbContext.Baskets.ToList();
         return Ok(dbBaskets);
@@ -67,8 +64,6 @@ public class BasketsController : Controller
             _logger.LogError(exception, "An error occurred while updating the basket to the database.");
             throw;
         }
-
-        return BadRequest();
     }
 
     [HttpDelete]
@@ -152,7 +147,6 @@ public class BasketsController : Controller
     }
 
 
-
     [HttpPost("send")]
     public async Task<IActionResult> SendToClient([FromBody]SendRequest sendRequest)
     {
@@ -187,12 +181,6 @@ public class BasketsController : Controller
             throw;
         }
     }
-
-    
-   
-
-
-
 }
 
 public class SendRequest

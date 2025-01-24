@@ -14,33 +14,6 @@ tunnels:
     addr: 3000
     domain: wanted-supreme-mackerel.ngrok-free.app
     host_header: localhost
-
-
-
-
-# endpoints:
-
-#   - name: client2server
-#     url: wanted-supreme-mackerel.ngrok-free.app
-#     upstream:
-#       url: 64141
-#     request_header:
-#       add: ["localhost"]
-
-
-#   - name: server2client
-#     url: wanted-supreme-mackerel.ngrok-free.app
-#     upstream:
-#       url: 3000
-#     request_header:
-#       add: ["localhost"]
-
-      
-  # - name: tunnel_zu_handwerkersoftware
-  #   # proto: http
-  #   upstream:
-  #     url: 3000
-    # host_header: localhost
   
 
 #  How to start ngrok with this config file

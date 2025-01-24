@@ -17,25 +17,22 @@ namespace IdsServer.Controllers;
 public class OrderItemsController : Controller
 {
     private readonly ILogger _logger;
-    private readonly IMapper _mapper;
     private readonly AppDbContext _dbContext;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OrderItemsController"/> class.
     /// </summary>
     /// <param name="logger">Logger.</param>
-    /// <param name="mapper">Mapper.</param>
     /// <param name="dbContext">Database context.</param>
-    public OrderItemsController(ILogger<OrderItemsController> logger, IMapper mapper, AppDbContext dbContext)
+    public OrderItemsController(ILogger<OrderItemsController> logger, AppDbContext dbContext)
     {
         _logger = logger;
-        _mapper = mapper;
         _dbContext = dbContext;
     }
 
 
     [HttpGet]
-    public List<typeOrderItem> Get(Guid basketId, DataSourceLoadOptions loadOptions)
+    public ActionResult<List<typeOrderItem>> Get(Guid basketId, DataSourceLoadOptions loadOptions)
     {
         Basket dbBasket = _dbContext.Baskets.FirstOrDefault(b => b.Id == basketId);
         return dbBasket?.RawBasket?.Order.OrderItem.ToList();

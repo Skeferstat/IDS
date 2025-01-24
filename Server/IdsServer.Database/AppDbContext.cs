@@ -18,6 +18,7 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<Basket> Baskets { get; set; }
+    public virtual DbSet<FakeArticle> Articles { get; set; }
     
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,6 +26,7 @@ public partial class AppDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfiguration(new BasketConfiguration());
+        modelBuilder.ApplyConfiguration(new FakeArticleConfiguration());
 
         OnModelCreatingPartial(modelBuilder);
     }
