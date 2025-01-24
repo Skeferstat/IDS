@@ -42,6 +42,10 @@ public class BasketReceiveMappingProfile : Profile
             .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Qty))
             .ForMember(dest => dest.OfferPrice, opt => opt.MapFrom(src => src.OfferPrice))
             .ForMember(dest => dest.NetPrice, opt => opt.MapFrom(src => src.NetPrice))
+            .ForMember(dest => dest.PriceBasis, opt => opt.MapFrom(src => src.PriceBasis))
+            .ForMember(dest => dest.Vat, opt => opt.MapFrom(src => src.VAT / 100))
+            .ForMember(dest => dest.Supplement, opt => opt.MapFrom(src => src.Zuschlag))
             ;
     }
+
 }
