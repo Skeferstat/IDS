@@ -2,22 +2,13 @@
 using System.Xml;
 using AutoMapper;
 using Microsoft.Extensions.Primitives;
-using Microsoft.Extensions.Caching.Memory;
-using DevExtreme.AspNet.Data;
-using DevExtreme.AspNet.Mvc;
 using IdsLibrary.Serializing;
-using JetBrains.Annotations;
 using System.Xml.Serialization;
 using BasketReceive;
 using System.Text;
 using IdsServer.Database;
 using IdsServer.Database.Models;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using IdsServer.Library.Models;
-using static IdsServer.Controllers.BasketsController;
 using Newtonsoft.Json;
-using Throw;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdsServer.Controllers;

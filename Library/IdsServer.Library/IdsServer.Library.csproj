@@ -10,4 +10,8 @@
     <ProjectReference Include="..\IdsLibrary\IdsLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

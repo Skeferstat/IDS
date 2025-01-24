@@ -1,9 +1,6 @@
-﻿using IdsLibrary.Serializing;
-using System.Net;
+﻿using System.Net;
 using AutoMapper;
-using BasketReceive;
 using IdsSampleClient.InternalServer.Events;
-using IdsServer.Library.Models;
 using IdsSampleClient.Mapping;
 
 namespace IdsSampleClient.InternalServer;
