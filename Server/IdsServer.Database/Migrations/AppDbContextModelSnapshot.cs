@@ -23,17 +23,17 @@ namespace IdsServer.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasMaxLength(50000)
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("HookUrl")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTimeOffset>("LastUpdate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RawBasket")
+                        .IsRequired()
+                        .HasMaxLength(50000)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

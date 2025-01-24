@@ -10,16 +10,15 @@ using JetBrains.Annotations;
 using System.Xml.Serialization;
 using BasketReceive;
 using System.Text;
-using System.Net.Http;
-using System.Text.Json;
-using IdsServer.Library.Models;
 using IdsServer.Database;
 using IdsServer.Database.Models;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using IdsServer.Library.Models;
 using static IdsServer.Controllers.BasketsController;
 using Newtonsoft.Json;
 using Throw;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdsServer.Controllers;
 
@@ -50,61 +49,41 @@ public class BasketsController : Controller
     [HttpGet]
     public IActionResult Get()
     {
-        var dbBaskets = _dbContext.Baskets.ToList();
-        var baskets = new List<BasketDto>();
-        foreach (Basket dbBasket in dbBaskets)
-        {
-            typeWarenkorb rawBasket = Deserializer.DeserializeBasketReceive(dbBasket.Data);
-            BasketDto bskt = _mapper.Map<BasketDto>(rawBasket);
-            bskt.BasketId = dbBasket.Id;
-            bskt.RawXml = dbBasket.Data;
-            bskt.HookUrl = new Uri(dbBasket.HookUrl);
-            baskets.Add(bskt);
-        }
-
-        return Ok(baskets);
+        List<Basket> dbBaskets = _dbContext.Baskets.ToList();
+        return Ok(dbBaskets);
     }
 
 
     [HttpPut]
-    public async Task<IActionResult> Update(Guid key, [FromForm] string values)
+    public async Task<IActionResult> Update(Guid key, string values)
     {
-        var dataFromDb = _dbContext.Baskets.FirstOrDefault(b => b.Id == key);
-        if (dataFromDb == null)
+        Basket dbBasket = _dbContext.Baskets.FirstOrDefault(b => b.Id == key);
+        if (dbBasket == null)
         {
             return NotFound();
         }
 
-        typeWarenkorb rawBasket = Deserializer.DeserializeBasketReceive(dataFromDb.Data);
-        BasketDto bskt = _mapper.Map<BasketDto>(rawBasket);
-        bskt.BasketId = dataFromDb.Id;
-        bskt.HookUrl = new Uri(dataFromDb.HookUrl);
-        JsonConvert.PopulateObject(values, bskt);
-
-
-        var tw =  _mapper.Map<typeWarenkorb>(bskt);
-
-        var serializer = new XmlSerializer(typeof(typeWarenkorb));
-        await using var stringWriter = new StringWriter();
-        serializer.Serialize(stringWriter, tw);
-
-        StringContent content = new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/xml");
-
-      
-        var dbBasket = _mapper.Map<Basket>(bskt);
-        dbBasket.Data = content.ToString();
+        JsonConvert.PopulateObject(values, dbBasket);
         dbBasket.LastUpdate = DateTime.UtcNow;
-        _dbContext.Baskets.Add(dbBasket);
+        _dbContext.Entry(dbBasket).State = EntityState.Modified;
+        try
+        {
+            await _dbContext.SaveChangesAsync();
+            return Ok();
+        }
+        catch (Exception exception)
+        {
+            _logger.LogError(exception, "An error occurred while updating the basket to the database.");
+            throw;
+        }
 
-
-
-        return Ok();
+        return BadRequest();
     }
 
     [HttpDelete]
     public IActionResult Delete(Guid key)    // DON'T CHANGE THE NAME OF THE PARAMETER
     {
-        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == key);
+        Basket basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == key);
         if (basket == null)
         {
             return NotFound();
@@ -126,18 +105,20 @@ public class BasketsController : Controller
         }
 
         IFormCollection form = Request.Form;
-        StringValues hookurl = form["hookurl"];
+        StringValues hookUrl = form["hookurl"];
         StringValues basketXml = form["warenkorb"];
 
         try
         {
-            var basket = Deserializer.DeserializeBasketReceive(basketXml);
-            BasketDto basketDto = _mapper.Map<BasketDto>(basket);
-            basketDto.RawXml = basketXml;
-            basketDto.HookUrl = new Uri(hookurl);
+            typeWarenkorb rawBasket = Deserializer.DeserializeBasketReceive(basketXml);
+            Basket dbBasket = new Basket
+            {
+                Id = Guid.NewGuid(),
+                RawBasket = rawBasket!,
+                HookUrl = hookUrl,
+                LastUpdate = DateTime.UtcNow
+            };
 
-            var dbBasket = _mapper.Map<Basket>(basketDto);
-            dbBasket.LastUpdate = DateTime.UtcNow;
             _dbContext.Baskets.Add(dbBasket);
 
             try
@@ -182,35 +163,25 @@ public class BasketsController : Controller
 
 
     [HttpPost("send")]
-    public async Task<IActionResult> SendToClient()
+    public async Task<IActionResult> SendToClient([FromBody]SendRequest sendRequest)
     {
-        string hookUrl = Request.Headers["Hook-Url"];
-
-        using var reader = new StreamReader(Request.Body);
-        string xmlData = await reader.ReadToEndAsync();
-        typeWarenkorb basket = Deserializer.DeserializeBasketReceive(xmlData);
+        var basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == sendRequest.BasketId);
 
         if (basket == null)
         {
-            _logger.LogError("Deserialization of basket data failed.");
-            throw new InvalidOperationException("Deserialization of basket data failed.");
+            _logger.LogError("Basket not found.");
+            return NotFound();
         }
 
+        XmlSerializer serializer = new XmlSerializer(typeof(typeWarenkorb));
+        await using StringWriter stringWriter = new StringWriter();
+        serializer.Serialize(stringWriter, basket.RawBasket);
 
-        // Manipulate data.
-        var now = DateTime.UtcNow;
-        basket.WarenkorbInfo.Date = now;
-        basket.WarenkorbInfo.Time = now;
-
-        var serializer = new XmlSerializer(typeof(typeWarenkorb));
-        await using var stringWriter = new StringWriter();
-        serializer.Serialize(stringWriter, basket);
-
-        var content = new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/xml");
+        StringContent content = new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/xml");
 
         try
         {
-            HttpResponseMessage response = await _httpClient.PostAsync(hookUrl, content);
+            HttpResponseMessage response = await _httpClient.PostAsync(basket.HookUrl, content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -231,4 +202,9 @@ public class BasketsController : Controller
 
 
 
+}
+
+public class SendRequest
+{
+    public Guid BasketId { get; set; }
 }

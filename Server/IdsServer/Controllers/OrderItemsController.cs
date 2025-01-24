@@ -11,13 +11,18 @@ using System.Xml.Serialization;
 using BasketReceive;
 using System.Text;
 using System.Net.Http;
-using System.Text.Json;
 using IdsServer.Library.Models;
 using IdsServer.Database;
 using IdsServer.Database.Models;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Newtonsoft.Json;
 using static IdsServer.Controllers.BasketsController;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+using Microsoft.EntityFrameworkCore;
+
+// ReSharper disable EntityFramework.NPlusOne.IncompleteDataQuery
+// ReSharper disable EntityFramework.NPlusOne.IncompleteDataUsage
 
 namespace IdsServer.Controllers;
 
@@ -43,29 +48,41 @@ public class OrderItemsController : Controller
 
 
     [HttpGet]
-    [CanBeNull]
-    public List<OrderItemDto> Get(Guid basketId, DataSourceLoadOptions loadOptions)
+    public List<typeOrderItem> Get(Guid basketId, DataSourceLoadOptions loadOptions)
     {
-        var dbBasket = _dbContext.Baskets.FirstOrDefault(b => b.Id == basketId);
-        if (dbBasket == null)
-        {
-            return null;
-        }
-
-        var basket = Deserializer.DeserializeBasketReceive(dbBasket.Data);
-        BasketDto basketDto = _mapper.Map<BasketDto>(basket);
-        basketDto.BasketId = dbBasket.Id;
-        basketDto.RawXml = dbBasket.Data;
-        basketDto.HookUrl = new Uri(dbBasket.HookUrl);
-
-        return basketDto?.OrderDto.OrderItemDtos;
+        Basket dbBasket = _dbContext.Baskets.FirstOrDefault(b => b.Id == basketId);
+        return dbBasket?.RawBasket?.Order.OrderItem.ToList();
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(string key, [FromForm] string values)
+    public async Task<IActionResult> Update(string key, string values)
     {
-        
-        return Ok();
+        var data = JsonSerializer.Deserialize<Dictionary<string, object>>(values);
+
+        if (data != null && data.TryGetValue("basketId", out var basketId))
+        {
+            Basket basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == Guid.Parse(basketId.ToString()));
+            typeOrderItem article = basket!.RawBasket.Order.OrderItem.FirstOrDefault(o => o.ArtNo == key);
+            if (article != null)
+            {
+                JsonConvert.PopulateObject(values, article);
+                basket.LastUpdate = DateTimeOffset.Now;
+                _dbContext.Entry(basket).State = EntityState.Modified;
+                try
+                {
+                   await _dbContext.SaveChangesAsync();
+                }
+                catch (Exception exception)
+                {
+                    _logger.LogError(exception, "An error occurred while updating the basket to the database.");
+                    throw;
+                }
+
+                return Ok();
+            }
+        }
+
+        return BadRequest();    
     }
 
 }

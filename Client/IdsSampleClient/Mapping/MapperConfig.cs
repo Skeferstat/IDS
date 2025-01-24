@@ -7,7 +7,7 @@ internal class MapperConfig
     {
         var config = new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<BasketReceiveMappingProfile>();
+            //cfg.AddProfile<BasketReceiveMappingProfile>();
         });
         var mapper = new Mapper(config);
         return mapper;

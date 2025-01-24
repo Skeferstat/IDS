@@ -1,13 +1,11 @@
-﻿using IdsServer.Library.Models;
-
-namespace IdsSampleClient.InternalServer.Events;
+﻿namespace IdsSampleClient.InternalServer.Events;
 
 internal class BasketReceivedEventArgs : EventArgs
 {
-    public BasketDto Basket { get; }
+    public string Xml { get; }
 
-    public BasketReceivedEventArgs(BasketDto basket)
+    public BasketReceivedEventArgs(string xml)
     {
-        Basket = basket;
+        Xml = xml;
     }
 }

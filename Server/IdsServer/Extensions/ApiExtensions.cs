@@ -89,7 +89,6 @@ public static class ApiExtensions
     {
         MapperConfiguration mapperConfig = new(mc =>
         {
-            mc.AddProfile<BasketReceiveMappingProfile>();
             mc.AddProfile<DatabaseMappingProfile>();
         });
 

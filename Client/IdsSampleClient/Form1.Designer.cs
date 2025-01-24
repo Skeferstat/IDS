@@ -231,7 +231,6 @@
             Controls.Add(ShopUrlTextBox);
             Controls.Add(label2);
             Name = "MainForm";
-            Click += OnSearchTerm;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);

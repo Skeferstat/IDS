@@ -1,6 +1,7 @@
 ﻿using IdsLibrary.Serializing;
 using System.Net;
 using AutoMapper;
+using BasketReceive;
 using IdsSampleClient.InternalServer.Events;
 using IdsServer.Library.Models;
 using IdsSampleClient.Mapping;
@@ -40,14 +41,10 @@ internal class InternalServer
 
                 if (request.HttpMethod == "POST")
                 {
-                    using var reader = new StreamReader(request.InputStream, request.ContentEncoding);
+                    using StreamReader reader = new StreamReader(request.InputStream, request.ContentEncoding);
                     string basketXml = reader.ReadToEnd();
 
-                    var basket = Deserializer.DeserializeBasketReceive(basketXml);
-                    BasketDto basketDto = _mapper.Map<BasketDto>(basket);
-                    basketDto.RawXml = basketXml;
-
-                    BasketReceived?.Invoke(this, new BasketReceivedEventArgs(basketDto));
+                    BasketReceived?.Invoke(this, new BasketReceivedEventArgs(basketXml));
                 }
 
                 context.Response.StatusCode = 200;

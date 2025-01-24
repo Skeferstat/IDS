@@ -72,7 +72,7 @@ internal class TreeNodeHelper
             }
         };
 
-        contextMenu.Items.AddRange(new[] { editItem });
+        contextMenu.Items.AddRange(editItem);
         treeView.ContextMenuStrip = contextMenu;
     }
 

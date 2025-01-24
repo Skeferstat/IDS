@@ -268,7 +268,7 @@
     <value>False</value>
   </data>
   <data name="ShopUrlTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 52</value>
+    <value>199, 52</value>
   </data>
   <data name="ShopUrlTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>457, 27</value>
@@ -370,7 +370,7 @@
     <value>2.5</value>
   </data>
   <data name="IdsVersionComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 18</value>
+    <value>199, 18</value>
   </data>
   <data name="IdsVersionComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 28</value>

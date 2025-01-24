@@ -1,14 +1,8 @@
-using System.Net.Http.Headers;
 using System.Xml;
-using BasketSend;
-using FluentValidation;
 using IdsLibrary.Factories;
 using IdsLibrary.Models.PackageHeaders;
-using IdsLibrary.Serializing;
 using IdsSampleClient.Helpers;
-using IdsSampleClient.InternalServer;
 using IdsSampleClient.InternalServer.Events;
-using IdsServer.Library.Models;
 using Microsoft.Extensions.Options;
 using Serilog;
 
@@ -28,7 +22,7 @@ namespace IdsSampleClient
                 this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
 
             TreeNodeHelper.AddContextMenu(this.CurrentRawBasketTreeView);
-
+           
             InternalServer.InternalServer internalServer = new InternalServer.InternalServer(_appSettings.InternalBasketReceiveHookUri);
             internalServer.BasketReceived += OnBasketReceived;
             internalServer.StartHttpServer();
@@ -44,8 +38,7 @@ namespace IdsSampleClient
             else
             {
                 // Logic to handle the basket received event.
-                BasketDto basket = eventArgs.Basket;
-                BindBasketXmlToTreeView(basket.RawXml, this.ReceivedRawBasketTreeView);
+                BindBasketXmlToTreeView(eventArgs.Xml, this.ReceivedRawBasketTreeView);
             }
         }
 
@@ -76,8 +69,8 @@ namespace IdsSampleClient
             string shopUrl = ShopUrlTextBox.Text;
             string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
-           
-            var xml = TreeNodeHelper.ConvertToXml(this.CurrentRawBasketTreeView);
+
+            string xml = TreeNodeHelper.ConvertToXml(this.CurrentRawBasketTreeView);
 
             BasketSendPackageHeader? packageHeader = new BasketSendPackageHeader
             {
@@ -165,7 +158,7 @@ namespace IdsSampleClient
                 return;
             }
 
-            var xml = TreeNodeHelper.ConvertToXml(this.ReceivedRawBasketTreeView);
+            string xml = TreeNodeHelper.ConvertToXml(this.ReceivedRawBasketTreeView);
             BindBasketXmlToTreeView(xml, this.CurrentRawBasketTreeView);
         }
 
@@ -189,5 +182,7 @@ namespace IdsSampleClient
             treeView.ExpandAll();
             treeView.TopNode = treeView.Nodes[0];
         }
+
+      
     }
 }
