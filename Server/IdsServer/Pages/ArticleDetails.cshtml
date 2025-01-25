@@ -1,0 +1,17 @@
+﻿@page "{id:guid}"
+@model IdsServer.Pages.ArticleDetailsModel
+@{
+    Layout = null;
+}
+
+<h1>Article Details</h1>
+
+
+<div>
+    <h2>@Model.Article.Name</h2>
+    <p><strong>Article Number:</strong> @Model.Article.ArticleNumber</p>
+    <p><strong>Description:</strong> @Model.Article.Description</p>
+    <p><strong>Price:</strong> @Model.Article.Price.ToString("C")</p>
+    <p><strong>List Price:</strong> @Model.Article.ListPrice.ToString("C")</p>
+    <img src="@Model.Article.ImageUrl" alt="Article Image" />
+</div>

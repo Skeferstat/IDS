@@ -2,6 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using BasketReceive;
+using IdsLibrary.Models;
 using IdsLibrary.Serializing;
 using IdsServer.Database;
 using IdsServer.Database.Models;
@@ -29,12 +30,53 @@ public class ReceiverController : Controller
     [HttpPost]
     public Task<IActionResult> ReceiveFromClient()
     {
-        if (Request.HasFormContentType == false || !Request.Form.ContainsKey("warenkorb"))
+        if (Request.HasFormContentType == false || Request.Form.ContainsKey("action") == false)
         {
-            return Task.FromResult<IActionResult>(BadRequest("Invalid request format or missing 'warenkorb'."));
+            return Task.FromResult<IActionResult>(BadRequest("Invalid request format or missing action code."));
         }
 
         IFormCollection form = Request.Form;
+        StringValues action = form["action"];
+
+        ActionCode code = ActionCode.FromValue(action);
+
+        switch (code)
+        {
+            case var _ when code == ActionCode.SendBasketToShop:
+                return ReceiveBasket(form);
+
+            case var _ when code == ActionCode.ArticleSearch:
+                return SearchArticle(form);
+
+            case var _ when code == ActionCode.ArticleDeeplink:
+                return CreateDeeplink(form);
+
+            default:
+                throw new InvalidOperationException($"Unbekannter ActionCode: {code}");
+        }
+    }
+
+    private Task<IActionResult> CreateDeeplink(IFormCollection form)
+    {
+        StringValues articleNumber = form["ghnummer"];
+        FakeArticle article =
+            _dbContext.Articles.FirstOrDefault(x => x.ArticleNumber.ToLower() == articleNumber.ToString().ToLower());
+        if (article == null)
+        {
+            return Task.FromResult<IActionResult>(NotFound());
+        }
+
+        IActionResult result = RedirectToPage("/ArticleDetails", new { id = article.Id });
+        return Task.FromResult(result);
+    }
+
+    private Task<IActionResult> SearchArticle(IFormCollection form)
+    {
+        throw new NotImplementedException();
+    }
+
+    private Task<IActionResult> ReceiveBasket(IFormCollection form)
+    {
         StringValues hookUrl = form["hookurl"];
         StringValues basketXml = form["warenkorb"];
 
@@ -62,10 +104,8 @@ public class ReceiverController : Controller
             }
 
 
-            return Task.FromResult<IActionResult>(Ok(new
-            {
-                Success = true,
-            }));
+            IActionResult result = RedirectToPage("/BasketDetails", new { id = dbBasket.Id });
+            return Task.FromResult(result);
         }
         catch (InvalidOperationException exception)
         {

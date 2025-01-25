@@ -1,0 +1,53 @@
+﻿@page "{id:guid}"
+@using IdsServer.Database.Models
+@model IdsServer.Pages.BasketDetailsModel
+@{
+    
+    var x = Model.Id;
+}
+<h3>BasketDetails</h3>
+
+
+
+
+
+@(Html.DevExtreme().DataGrid<Basket>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("Baskets")
+        .LoadAction("GetBasket")
+        .LoadParams(new { basketId = Model.Id })
+        .UpdateAction("Update")
+        .Key("Id")
+    )
+    .RepaintChangesOnly(true) 
+    .Scrolling(x => x.Mode(GridScrollingMode.Virtual)) 
+    .RemoteOperations(true)
+    .Editing(editing =>
+    {
+        editing.RefreshMode(GridEditRefreshMode.Reshape);
+        editing.Mode(GridEditMode.Row); 
+        editing.AllowUpdating(true);
+        editing.AllowDeleting(true);
+        editing.UseIcons(true);
+    })
+    .Columns(columns =>
+    {
+        columns.AddFor(x => x.RawBasket.Order.OrderInfo.PartNo).Caption("Reference");
+        columns.AddFor(x => x.RawBasket.WarenkorbInfo.Date).Caption("Date").Format("dd.MM.yyyy");
+        columns.AddFor(x => x.RawBasket.WarenkorbInfo.Time)
+            .Format("HH:mm:ss")
+            .DataType(GridColumnDataType.DateTime)
+            .Caption("Time")
+            .EditorOptions(new { type = "time", displayFormat = "HH:mm:ss", calendarOptions = new { visible = false } });
+        columns.Add()
+            .Type(GridCommandColumnType.Buttons)
+                
+            .Buttons(b =>
+            {
+                b.Add().Name(GridColumnButtonName.Edit);
+            }); 
+    })
+    .Paging(paging => paging.PageSize(10))
+    .FilterRow(filterRow => filterRow.Visible(true))
+     
+)

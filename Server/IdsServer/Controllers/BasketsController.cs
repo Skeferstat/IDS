@@ -41,6 +41,13 @@ public class BasketsController : Controller
         return Ok(dbBaskets);
     }
 
+    [HttpGet("details")]
+    public ActionResult<List<Basket>> GetBasket(Guid basketId)
+    {
+        List<Basket> dbBaskets = _dbContext.Baskets.Where(x => x.Id == basketId).ToList();
+        return Ok(dbBaskets);
+    }
+
 
     [HttpPut]
     public async Task<IActionResult> Update(Guid key, string values)
