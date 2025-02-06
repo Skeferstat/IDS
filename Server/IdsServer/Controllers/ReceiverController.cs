@@ -103,7 +103,6 @@ public class ReceiverController : Controller
                 throw;
             }
 
-
             IActionResult result = RedirectToPage("/BasketDetails", new { id = dbBasket.Id });
             return Task.FromResult(result);
         }
