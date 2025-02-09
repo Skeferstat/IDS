@@ -1,17 +1,28 @@
-﻿@page "{id:guid}"
+﻿@page "{articleNumber}"
 @model IdsServer.Pages.ArticleDetailsModel
 @{
-    Layout = null;
+    // Layout = null;
 }
 
-<h1>Article Details</h1>
+<h1>Article details for @Model.Article.ArticleNumber</h1>
 
+<style>
+    .card-img-custom {
+        width: 100%;
+        height: 200px;
+        -webkit-object-fit: cover;
+        object-fit: cover;
+    }
+</style>
 
-<div>
-    <h2>@Model.Article.Name</h2>
-    <p><strong>Article Number:</strong> @Model.Article.ArticleNumber</p>
-    <p><strong>Description:</strong> @Model.Article.Description</p>
-    <p><strong>Price:</strong> @Model.Article.Price.ToString("C")</p>
-    <p><strong>List Price:</strong> @Model.Article.ListPrice.ToString("C")</p>
-    <img src="@Model.Article.ImageUrl" alt="Article Image" />
+<div class="card">
+    <img src="@Model.Article.ImageUrl" class="card-img-top card-img-custom" alt="Article Image">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Article.Name</h5>
+        <p class="card-text"><strong>Article Number:</strong> @Model.Article.ArticleNumber</p>
+        <p class="card-text"><strong>Description:</strong> @Model.Article.Description</p>
+        <p class="card-text"><strong>Price:</strong> @Model.Article.Price.ToString("C")</p>
+        <p class="card-text"><strong>List Price:</strong> @Model.Article.ListPrice.ToString("C")</p>
+        <a href="#" class="btn btn-primary">Buy Now</a>
+    </div>
 </div>

@@ -19,13 +19,13 @@ namespace IdsServer.Pages
         }
 
         [BindProperty(SupportsGet = true)]
-        public Guid Id { get; set; }
+        public string ArticleNumber { get; set; }
 
         public FakeArticle Article { get; private set; }
 
         public IActionResult OnGet()
         {
-            Article = _dbContext.Articles.FirstOrDefault(a => a.Id == Id);
+            Article = _dbContext.Articles.FirstOrDefault(a => a.ArticleNumber == ArticleNumber);
             if (Article == null)
             {
                 return NotFound();

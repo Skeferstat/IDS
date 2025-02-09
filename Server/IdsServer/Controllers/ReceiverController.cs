@@ -66,13 +66,23 @@ public class ReceiverController : Controller
             return Task.FromResult<IActionResult>(NotFound());
         }
 
-        IActionResult result = RedirectToPage("/ArticleDetails", new { id = article.Id });
+        IActionResult result = RedirectToPage("/ArticleDetails", new { articleNumber = article.ArticleNumber });
         return Task.FromResult(result);
     }
 
     private Task<IActionResult> SearchArticle(IFormCollection form)
     {
-        throw new NotImplementedException();
+        string searchTerm = form["searchTerm"];
+
+        var articles =
+            _dbContext.Articles.Where(x => x.ArticleNumber.ToLower() == searchTerm.ToLower());
+        if (articles.Any() == false)
+        {
+            IActionResult result = RedirectToPage("/articles");
+            return Task.FromResult(result);
+        }
+
+        return Task.FromResult<IActionResult>(NotFound());
     }
 
     private Task<IActionResult> ReceiveBasket(IFormCollection form)

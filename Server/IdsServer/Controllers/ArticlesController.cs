@@ -22,18 +22,29 @@ public class ArticlesController : Controller
     }
 
 
+    /// <summary>
+    /// Get all articles.
+    /// </summary>
+    /// <returns>All articles.</returns>
     [HttpGet]
     public IActionResult Get()
     {
+        _logger.LogInformation("Getting all articles.");
         List<FakeArticle> articles = _dbContext.Articles.ToList();
         return Ok(articles);
     }
 
 
-    [HttpGet("{id:guid}")]
-    public ActionResult<FakeArticle> Get(Guid id)
+    /// <summary>
+    /// Get article by article number.
+    /// </summary>
+    /// <param name="no">Article number.</param>
+    /// <returns>Article details.</returns>
+    [HttpGet("{no}")]
+    public ActionResult<FakeArticle> Get(string no)
     {
-        FakeArticle article = _dbContext.Articles.FirstOrDefault(x => x.Id == id);
+        _logger.LogInformation("Getting article by article number.");
+        FakeArticle article = _dbContext.Articles.FirstOrDefault(x => x.ArticleNumber == no);
         if (article == null)
         {
             return NotFound();

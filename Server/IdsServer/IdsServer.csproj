@@ -41,6 +41,13 @@
       <Folder Include="Mapping\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="Pages\Articles.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>
 
 </Project>

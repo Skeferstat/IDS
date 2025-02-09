@@ -23,6 +23,11 @@ namespace IdsServer.Pages
 
         public Basket Basket { get; private set; }
 
+
+        /// <summary>
+        /// Get basket by id.
+        /// </summary>
+        /// <returns>Basket details.</returns>
         public IActionResult OnGet()
         {
             Basket = _dbContext.Baskets.FirstOrDefault(a => a.Id == Id);

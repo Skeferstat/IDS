@@ -23,9 +23,6 @@ builder.Services.AddOptions<AppOptions>()
     .ValidateFluently()
     .ValidateOnStart();
 
-
-builder.Services.AddMemoryCache(); 
-
 // Add services to the container.
 builder.Services
     .AddRazorPages()

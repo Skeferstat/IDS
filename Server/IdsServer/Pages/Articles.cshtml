@@ -1,0 +1,73 @@
+﻿@page
+@using IdsServer.Database.Models
+
+
+@{
+    ViewData["Title"] = "Articles";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+@(Html.DevExtreme().DataGrid<FakeArticle>()
+    .DataSource(ds => ds.Mvc()
+        .Controller("Articles")
+        .LoadAction("Get")
+        .Key("ArticleNumber")
+    )
+    .RepaintChangesOnly(true) 
+    .Scrolling(x => x.Mode(GridScrollingMode.Virtual)) 
+    .RemoteOperations(true)
+    .Selection(s => s.Mode(SelectionMode.Single))
+    .HoverStateEnabled(true)
+    .Editing(editing =>
+    {
+        editing.RefreshMode(GridEditRefreshMode.Reshape);
+        editing.Mode(GridEditMode.Row); 
+        editing.AllowDeleting(true);
+        editing.UseIcons(true);
+    })
+    .Columns(columns =>
+    {
+        columns.AddFor(x => x.ArticleNumber).Caption("Article");
+        columns.AddFor(x => x.Name).Caption("Name");
+        columns.AddFor(n => n.Price).Caption("Price").Format(format =>
+        {
+            format.Type(Format.Currency);
+            format.Currency("EUR");
+            format.Precision(2);
+        });
+        columns.AddFor(n => n.ListPrice).Caption("ListPrice").Format(format =>
+        {
+            format.Type(Format.Currency);
+            format.Currency("EUR");
+            format.Precision(2);
+        });
+        
+        columns.Add()
+            .Type(GridCommandColumnType.Buttons)
+                
+            .Buttons(b =>
+            {
+                b.Add()
+                    .CssClass("dcm-button")
+                    .Icon("fa-regular fa-eye")
+                    .Hint("Show article details")
+                    .OnClick("onShowArticleDetails");
+            }); 
+    })
+    .Paging(paging => paging.PageSize(10))
+    .FilterRow(filterRow => filterRow.Visible(true))
+)
+
+
+
+<script>
+
+    function onShowArticleDetails (event) {
+        const articleNumber = event.row.data.ArticleNumber;
+        window.location.href = "/ArticleDetails/" + articleNumber;
+        // e.event.preventDefault();
+    }
+
+</script>
