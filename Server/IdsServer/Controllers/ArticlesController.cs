@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using IdsServer.Database;
 using IdsServer.Database.Models;
+using DevExtreme.AspNet.Mvc;
+using IdsServer.Pages;
+using Newtonsoft.Json;
 
 namespace IdsServer.Controllers;
 
@@ -23,33 +26,24 @@ public class ArticlesController : Controller
 
 
     /// <summary>
-    /// Get all articles.
+    /// Get all articles with the desired article number or all articles.
     /// </summary>
-    /// <returns>All articles.</returns>
+    /// <param name="articleNumbers">Article numbers, separated by ','.</param>
+    /// <returns>All articles with the desired article number or all articles.</returns>
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get(string articleNumbers = "")
     {
         _logger.LogInformation("Getting all articles.");
-        List<FakeArticle> articles = _dbContext.Articles.ToList();
-        return Ok(articles);
-    }
+        List<string> numbers = JsonConvert.DeserializeObject<List<string>>(articleNumbers);
+        List<FakeArticle> articles;
 
-
-    /// <summary>
-    /// Get article by article number.
-    /// </summary>
-    /// <param name="no">Article number.</param>
-    /// <returns>Article details.</returns>
-    [HttpGet("{no}")]
-    public ActionResult<FakeArticle> Get(string no)
-    {
-        _logger.LogInformation("Getting article by article number.");
-        FakeArticle article = _dbContext.Articles.FirstOrDefault(x => x.ArticleNumber == no);
-        if (article == null)
+        if (numbers == null || numbers.Any() == false)
         {
-            return NotFound();
+            articles = _dbContext.Articles.ToList();
+            return Ok(articles);
         }
 
-        return Ok(article);
+        articles = _dbContext.Articles.Where(x => numbers.Contains(x.ArticleNumber)).ToList();
+        return Ok(articles);
     }
 }

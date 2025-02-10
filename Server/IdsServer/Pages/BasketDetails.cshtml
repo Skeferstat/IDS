@@ -46,6 +46,7 @@
                     .OnClick("onSendBasketToClient");
             }); 
     })
+    .OnContentReady("onContentReady")
     .MasterDetail(md => md
         .Enabled(true)
         .Template(new TemplateName("basket-item-template"))
@@ -62,23 +63,32 @@
                 .Controller("OrderItems")
                 .LoadAction("Get")
                 .UpdateAction("Update")
+                .DeleteAction("Delete")
+                .InsertAction("Insert")
                 .LoadParams(new { basketId = new JS("data.Id") })
+                .OnRemoving("function(event) {onOrderItemRemoving(event, data.Id)}")
+                .OnInserting("function(event) {onOrderItemInserting(event, data.Id)}")
+                .OnBeforeSend("onBeforeSend")
                 .Key("ArtNo")
             )
-            .OnRowUpdating("function(event) {onOrderItemsUpdating(event, data.Id)}")
+            .OnRowUpdating("function(event) {onOrderItemUpdating(event, data.Id)}")
             .RepaintChangesOnly(true)
             .Scrolling(x => x.Mode(GridScrollingMode.Virtual))
+            .Selection(s => s.Mode(SelectionMode.Single))
+            .RowAlternationEnabled(true)
             .RemoteOperations(true)
             .Editing(editing =>
             {
                 editing.RefreshMode(GridEditRefreshMode.Reshape);
                 editing.Mode(GridEditMode.Row);
                 editing.AllowUpdating(true);
+                editing.AllowDeleting(true);
+                editing.AllowAdding(true);
                 editing.UseIcons(true);
             })
             .Columns(columns =>
             {
-                columns.AddFor(n => n.ArtNo).Caption("Article");
+                columns.AddFor(n => n.ArtNo).Caption("Article").AllowSorting(true);
                 columns.AddFor(n => n.Qty).Caption("Quantity").Format(format =>
                 {
                     format.Type(Format.Decimal);
@@ -126,8 +136,36 @@
 
                 
 <script>
-    function onOrderItemsUpdating(event, basketId) {
-        event.newData.basketId = basketId;
+
+
+    let basketId;
+    function onOrderItemRemoving(event,basketIdent) {
+        basketId = basketIdent;
+    } 
+
+    function onOrderItemInserting(event,basketIdent) {
+        basketId = basketIdent;
+    } 
+
+    function onBeforeSend(method, ajaxOptions) {  
+        if ( (method === "delete" || method === "insert") && basketId) {
+            ajaxOptions.data.basketId = basketId;
+        }  
+    } 
+
+    let collapsed = false;
+    function onContentReady(event) {
+        if(!collapsed) {
+            collapsed = true;
+            if (event.component.getVisibleRows().length > 0) {
+                let firstRowKey = event.component.getVisibleRows()[0].key;
+                event.component.expandRow(firstRowKey);
+            }
+        }
+    }
+
+    function onOrderItemUpdating(event, basketId) {
+        event.data = basketId;
     }
 
     function onSendBasketToClient(event) {

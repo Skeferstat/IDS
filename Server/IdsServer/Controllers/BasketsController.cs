@@ -10,6 +10,9 @@ using IdsServer.Database;
 using IdsServer.Database.Models;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
+using DevExtreme.AspNet.Mvc;
 
 namespace IdsServer.Controllers;
 
@@ -35,10 +38,10 @@ public class BasketsController : Controller
 
 
     [HttpGet]
-    public ActionResult<List<Basket>> Get()
+    public LoadResult Get(DataSourceLoadOptions loadOptions)
     {
-        List<Basket> dbBaskets = _dbContext.Baskets.ToList();
-        return Ok(dbBaskets);
+        var baskets = _dbContext.Baskets.ToList();
+        return DataSourceLoader.Load(baskets, loadOptions);
     }
 
     [HttpGet("details")]
@@ -47,7 +50,6 @@ public class BasketsController : Controller
         List<Basket> dbBaskets = _dbContext.Baskets.Where(x => x.Id == basketId).ToList();
         return Ok(dbBaskets);
     }
-
 
     [HttpPut]
     public async Task<IActionResult> Update(Guid key, string values)
@@ -86,71 +88,6 @@ public class BasketsController : Controller
         _dbContext.SaveChanges();
 
         return Ok();
-    }
-
-
-    [HttpPost]
-    public Task<IActionResult> ReceiveFromClient()
-    {
-        if (Request.HasFormContentType == false || !Request.Form.ContainsKey("warenkorb"))
-        {
-            return Task.FromResult<IActionResult>(BadRequest("Invalid request format or missing 'warenkorb'."));
-        }
-
-        IFormCollection form = Request.Form;
-        StringValues hookUrl = form["hookurl"];
-        StringValues basketXml = form["warenkorb"];
-
-        try
-        {
-            typeWarenkorb rawBasket = Deserializer.DeserializeBasketReceive(basketXml);
-            Basket dbBasket = new Basket
-            {
-                Id = Guid.NewGuid(),
-                RawBasket = rawBasket!,
-                HookUrl = hookUrl,
-                LastUpdate = DateTime.UtcNow
-            };
-
-            _dbContext.Baskets.Add(dbBasket);
-
-            try
-            {
-                _dbContext.SaveChanges();
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(exception, "An error occurred while saving the basket to the database.");
-                throw;
-            }
-
-
-            return Task.FromResult<IActionResult>(Ok(new
-            {
-                Success = true,
-            }));
-        }
-        catch (InvalidOperationException exception)
-        {
-            _logger.LogError(exception.Message);
-        }
-        catch (XmlException exception)
-        {
-            _logger.LogError($"XML Error at line {exception.LineNumber}: {exception.Message}");
-        }
-        catch (NotSupportedException exception)
-        {
-            _logger.LogError($"Unsupported operation: {exception.Message}");
-        }
-        catch (Exception exception)
-        {
-            _logger.LogError($"An error occurred: {exception.Message}");
-        }
-
-        return Task.FromResult<IActionResult>(BadRequest(new
-        {
-            Success = false
-        }));
     }
 
 

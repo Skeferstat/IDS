@@ -7,6 +7,8 @@ using IdsServer.Database.Models;
 using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using Microsoft.EntityFrameworkCore;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data.ResponseModel;
 
 // ReSharper disable EntityFramework.NPlusOne.IncompleteDataQuery
 // ReSharper disable EntityFramework.NPlusOne.IncompleteDataUsage
@@ -32,10 +34,16 @@ public class OrderItemsController : Controller
 
 
     [HttpGet]
-    public ActionResult<List<typeOrderItem>> Get(Guid basketId, DataSourceLoadOptions loadOptions)
+    public LoadResult Get(Guid basketId, DataSourceLoadOptions loadOptions)
     {
         Basket dbBasket = _dbContext.Baskets.FirstOrDefault(b => b.Id == basketId);
-        return dbBasket?.RawBasket?.Order.OrderItem.ToList();
+
+        if (dbBasket != null && dbBasket?.RawBasket?.Order.OrderItem == null)
+        {
+            dbBasket.RawBasket.Order.OrderItem = [];
+        }
+
+        return DataSourceLoader.Load(dbBasket?.RawBasket.Order.OrderItem, loadOptions);
     }
 
     [HttpPut]
@@ -54,7 +62,7 @@ public class OrderItemsController : Controller
                 _dbContext.Entry(basket).State = EntityState.Modified;
                 try
                 {
-                   await _dbContext.SaveChangesAsync();
+                    await _dbContext.SaveChangesAsync();
                 }
                 catch (Exception exception)
                 {
@@ -66,7 +74,59 @@ public class OrderItemsController : Controller
             }
         }
 
-        return BadRequest();    
+        return BadRequest();
+    }
+
+
+    [HttpPost]
+    public async Task<ActionResult> Insert(string values, Guid basketId, DataSourceLoadOptions loadOptions)
+    {
+        var dbBasket = _dbContext.Baskets.FirstOrDefault(x => x.Id == basketId);
+        if (dbBasket == null)
+        {
+            return NotFound();
+        }
+
+        typeOrderItem article = new();
+        JsonConvert.PopulateObject(values, article);
+
+        if (dbBasket?.RawBasket?.Order.OrderItem == null)
+        {
+            dbBasket.RawBasket.Order.OrderItem = [];
+        }
+
+        List<typeOrderItem> items = dbBasket.RawBasket.Order.OrderItem.ToList();
+        items.Add(article);
+        dbBasket.RawBasket.Order.OrderItem = items.ToArray();
+        dbBasket.LastUpdate = DateTimeOffset.Now;
+        _dbContext.Entry(dbBasket).State = EntityState.Modified;
+        await _dbContext.SaveChangesAsync();
+
+
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult> Delete(string key, Guid basketId, DataSourceLoadOptions loadOptions)
+    {
+        var dbBasket = _dbContext.Baskets.FirstOrDefault(x => x.Id == basketId);
+        if (dbBasket == null)
+        {
+            return NotFound();
+        }
+
+        typeOrderItem article = dbBasket!.RawBasket.Order.OrderItem.FirstOrDefault(o => o.ArtNo == key);
+        if (article != null)
+        {
+            List<typeOrderItem> items = dbBasket.RawBasket.Order.OrderItem.ToList();
+            items.Remove(article);
+            dbBasket.RawBasket.Order.OrderItem = items.ToArray();
+            dbBasket.LastUpdate = DateTimeOffset.Now;
+            _dbContext.Entry(dbBasket).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        return Ok();
     }
 
 }

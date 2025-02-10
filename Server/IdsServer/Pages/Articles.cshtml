@@ -1,5 +1,9 @@
 ﻿@page
+
+@model IdsServer.Pages.ArticlesModel
+
 @using IdsServer.Database.Models
+@using Newtonsoft.Json
 
 
 @{
@@ -13,6 +17,7 @@
     .DataSource(ds => ds.Mvc()
         .Controller("Articles")
         .LoadAction("Get")
+        .LoadParams(new { articleNumbers = JsonConvert.SerializeObject(Model.ArticleNumbers) })
         .Key("ArticleNumber")
     )
     .RepaintChangesOnly(true) 
@@ -69,5 +74,6 @@
         window.location.href = "/ArticleDetails/" + articleNumber;
         // e.event.preventDefault();
     }
+
 
 </script>

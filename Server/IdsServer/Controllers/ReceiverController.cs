@@ -6,6 +6,7 @@ using IdsLibrary.Models;
 using IdsLibrary.Serializing;
 using IdsServer.Database;
 using IdsServer.Database.Models;
+using IdsServer.Pages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 
@@ -63,7 +64,7 @@ public class ReceiverController : Controller
             _dbContext.Articles.FirstOrDefault(x => x.ArticleNumber.ToLower() == articleNumber.ToString().ToLower());
         if (article == null)
         {
-            return Task.FromResult<IActionResult>(NotFound());
+            return Task.FromResult<IActionResult>(NotFound("Article not found"));
         }
 
         IActionResult result = RedirectToPage("/ArticleDetails", new { articleNumber = article.ArticleNumber });
@@ -75,12 +76,15 @@ public class ReceiverController : Controller
         string searchTerm = form["searchTerm"];
 
         var articles =
-            _dbContext.Articles.Where(x => x.ArticleNumber.ToLower() == searchTerm.ToLower());
-        if (articles.Any() == false)
+            _dbContext.Articles.Where(x => x.ArticleNumber.ToLower().Contains(searchTerm.ToLower()));
+
+        List<string> articleNumbers = articles.Select(x => x.ArticleNumber).ToList();
+        if (articles.Any() == true)
         {
-            IActionResult result = RedirectToPage("/articles");
+            IActionResult result = RedirectToPage("/articles", new ArticlesModel() { ArticleNumbers = articleNumbers });
             return Task.FromResult(result);
-        }
+        };
+
 
         return Task.FromResult<IActionResult>(NotFound());
     }
