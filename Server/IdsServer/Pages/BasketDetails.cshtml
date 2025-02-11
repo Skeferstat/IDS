@@ -130,7 +130,7 @@
 
 @(Html.DevExtreme().Toast()
     .ID("toast")
-    .Width(300)
+    .Width(400)
     .DisplayTime(4000)
 )
 
@@ -184,9 +184,8 @@
             })
             .then(response => response.json())
             .then(result => {
-                console.log('Success:', result);
-                const type = result.success === "true"? "success" :"error" ;
-                const message = result.success === "true"? "Sending the data to the client successful" : "Error sending data to client";
+                const type = result.success? "success" :"error" ;
+                const message = result.success? "Sending the data to the client successful" : "Error sending data to client";
                 $("#toast").dxToast("instance").option({
                     type,
                     message,

@@ -7,11 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Controllers\SampleDataController.cs" />
-    </ItemGroup>
-  
-
-    <ItemGroup>
       <PackageReference Include="AutoMapper" />
       <PackageReference Include="DevExtreme.AspNet.Data" />
       <PackageReference Include="DevExtreme.AspNet.Core" />
@@ -35,10 +30,6 @@
       <ProjectReference Include="..\..\Library\IdsLibrary\IdsLibrary.csproj" />
       <ProjectReference Include="..\..\Library\IdsServer.Library\IdsServer.Library.csproj" />
       <ProjectReference Include="..\IdsServer.Database\IdsServer.Database.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Mapping\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,21 +1,21 @@
 ﻿using System.Net;
-using AutoMapper;
 using IdsSampleClient.InternalServer.Events;
-using IdsSampleClient.Mapping;
 
 namespace IdsSampleClient.InternalServer;
 internal class InternalServer
 {
     private readonly string _url;
-    private readonly Mapper _mapper;
 
     public event EventHandler<BasketReceivedEventArgs>? BasketReceived;
     public event EventHandler<Events.ErrorEventArgs>? ErrorOccurred;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InternalServer"/> class.
+    /// </summary>
+    /// <param name="internalUrl">The url where you want to listen.</param>
     public InternalServer(string internalUrl)
     {
         _url = internalUrl;
-        _mapper = MapperConfig.Get();
     }
 
     internal void StartHttpServer()
@@ -30,7 +30,7 @@ internal class InternalServer
     {
         if (result.AsyncState is HttpListener listener)
         {
-            HttpListenerContext context = null;
+            HttpListenerContext? context = null;
             try
             {
                 context = listener.EndGetContext(result);

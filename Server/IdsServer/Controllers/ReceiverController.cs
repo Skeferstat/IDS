@@ -53,7 +53,7 @@ public class ReceiverController : Controller
                 return CreateDeeplink(form);
 
             default:
-                throw new InvalidOperationException($"Unbekannter ActionCode: {code}");
+                throw new InvalidOperationException($"Unknown ActionCode: {code}");
         }
     }
 
@@ -76,7 +76,10 @@ public class ReceiverController : Controller
         string searchTerm = form["searchTerm"];
 
         var articles =
-            _dbContext.Articles.Where(x => x.ArticleNumber.ToLower().Contains(searchTerm.ToLower()));
+            _dbContext.Articles.Where(x => x.ArticleNumber.ToLower().Contains(searchTerm.ToLower())
+               || x.Name.ToLower().Contains(searchTerm.ToLower())
+               || x.Description.ToLower().Contains(searchTerm.ToLower())
+            );
 
         List<string> articleNumbers = articles.Select(x => x.ArticleNumber).ToList();
         if (articles.Any() == true)
