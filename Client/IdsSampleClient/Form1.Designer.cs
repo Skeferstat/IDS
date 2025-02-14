@@ -51,10 +51,12 @@
             DeepLinkSearchButton = new Button();
             OpenHeatingLabelFileDialog = new OpenFileDialog();
             groupBox1 = new GroupBox();
+            SaveBasketButton = new Button();
             groupBox3 = new GroupBox();
             CurrentRawBasketTreeView = new TreeView();
             groupBox2 = new GroupBox();
             ReceivedRawBasketTreeView = new TreeView();
+            SaveBasketFileDialog = new SaveFileDialog();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -176,6 +178,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(SaveBasketButton);
             groupBox1.Controls.Add(groupBox3);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(groupBox2);
@@ -188,6 +191,13 @@
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
+            // 
+            // SaveBasketButton
+            // 
+            resources.ApplyResources(SaveBasketButton, "SaveBasketButton");
+            SaveBasketButton.Name = "SaveBasketButton";
+            SaveBasketButton.UseVisualStyleBackColor = true;
+            SaveBasketButton.Click += OnSaveBasket;
             // 
             // groupBox3
             // 
@@ -214,6 +224,12 @@
             resources.ApplyResources(ReceivedRawBasketTreeView, "ReceivedRawBasketTreeView");
             ReceivedRawBasketTreeView.LabelEdit = true;
             ReceivedRawBasketTreeView.Name = "ReceivedRawBasketTreeView";
+            // 
+            // SaveBasketFileDialog
+            // 
+            SaveBasketFileDialog.FileName = "basket";
+            resources.ApplyResources(SaveBasketFileDialog, "SaveBasketFileDialog");
+            SaveBasketFileDialog.RestoreDirectory = true;
             // 
             // MainForm
             // 
@@ -266,5 +282,7 @@
         private Button button1;
         private GroupBox groupBox3;
         private TreeView CurrentRawBasketTreeView;
+        private Button SaveBasketButton;
+        private SaveFileDialog SaveBasketFileDialog;
     }
 }

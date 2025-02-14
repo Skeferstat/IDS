@@ -141,7 +141,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;OpenBasketFileButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -174,7 +174,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="BasketXmlFileTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -201,7 +201,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;BasketXmlFileTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>649, 473</value>
@@ -229,7 +229,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="OpenBasketFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
@@ -289,7 +289,7 @@
     <value>9</value>
   </data>
   <data name="SendBasketToShopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 473</value>
+    <value>234, 473</value>
   </data>
   <data name="SendBasketToShopButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 29</value>
@@ -310,7 +310,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;SendBasketToShopButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -337,7 +337,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="BasketHookUriTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -364,7 +364,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;BasketHookUriTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="IdsVersionComboBox.Items" xml:space="preserve">
     <value>2.5</value>
@@ -573,6 +573,30 @@
   <data name="OpenHeatingLabelFileDialog.Filter" xml:space="preserve">
     <value>xml files | *.xml</value>
   </data>
+  <data name="SaveBasketButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 473</value>
+  </data>
+  <data name="SaveBasketButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 29</value>
+  </data>
+  <data name="SaveBasketButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="SaveBasketButton.Text" xml:space="preserve">
+    <value>Save basket</value>
+  </data>
+  <data name="&gt;&gt;SaveBasketButton.Name" xml:space="preserve">
+    <value>SaveBasketButton</value>
+  </data>
+  <data name="&gt;&gt;SaveBasketButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveBasketButton.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;SaveBasketButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CurrentRawBasketTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -620,7 +644,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="ReceivedRawBasketTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -668,7 +692,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 215</value>
@@ -693,6 +717,12 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <metadata name="SaveBasketFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>587, 17</value>
+  </metadata>
+  <data name="SaveBasketFileDialog.Filter" xml:space="preserve">
+    <value>xml files | *.xml</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -726,6 +756,12 @@
   </data>
   <data name="&gt;&gt;OpenHeatingLabelFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveBasketFileDialog.Name" xml:space="preserve">
+    <value>SaveBasketFileDialog</value>
+  </data>
+  <data name="&gt;&gt;SaveBasketFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

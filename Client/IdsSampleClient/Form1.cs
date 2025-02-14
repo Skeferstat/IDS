@@ -16,12 +16,12 @@ namespace IdsSampleClient
         {
             _appSettings = appSettings.Value;
             InitializeComponent();
-            this.ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
-            this.BasketHookUriTextBox.Text = _appSettings.BasketReceiveHookUri;
+            ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
+            BasketHookUriTextBox.Text = _appSettings.BasketReceiveHookUri;
             if (IdsVersionComboBox.Items.Count - 1 >= 0)
-                this.IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
+                IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
 
-            TreeNodeHelper.AddContextMenu(this.CurrentRawBasketTreeView);
+            TreeNodeHelper.AddContextMenu(CurrentRawBasketTreeView);
            
             InternalServer.InternalServer internalServer = new InternalServer.InternalServer(_appSettings.InternalBasketReceiveHookUri);
             internalServer.BasketReceived += OnBasketReceived;
@@ -38,17 +38,17 @@ namespace IdsSampleClient
             else
             {
                 // Logic to handle the basket received event.
-                BindBasketXmlToTreeView(eventArgs.Xml, this.ReceivedRawBasketTreeView);
+                BindBasketXmlToTreeView(eventArgs.Xml, ReceivedRawBasketTreeView);
             }
         }
 
 
         private void OnOpenBasketFile(object sender, EventArgs eventArgs)
         {
-            DialogResult result = this.OpenBasketFileDialog.ShowDialog();
+            DialogResult result = OpenBasketFileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                this.BasketXmlFileTextBox.Text = this.OpenBasketFileDialog.FileName;
+                BasketXmlFileTextBox.Text = OpenBasketFileDialog.FileName;
                 XmlDocument xmlDoc = new XmlDocument();
                 try
                 {
@@ -60,7 +60,19 @@ namespace IdsSampleClient
                     throw;
                 }
 
-                BindBasketXmlToTreeView(xmlDoc.InnerXml, this.CurrentRawBasketTreeView);
+                BindBasketXmlToTreeView(xmlDoc.InnerXml, CurrentRawBasketTreeView);
+            }
+        }
+
+        private void OnSaveBasket(object sender, EventArgs eventArgs)
+        {
+            DialogResult result = SaveBasketFileDialog.ShowDialog();
+            if (result == DialogResult.OK && SaveBasketFileDialog.FileName != "")
+            {
+                TextWriter writer = new StreamWriter(SaveBasketFileDialog.FileName);
+                string xml = TreeNodeHelper.ConvertToXml(CurrentRawBasketTreeView);
+                writer.Write(xml);
+                writer.Close();
             }
         }
 
@@ -70,7 +82,7 @@ namespace IdsSampleClient
             string hookUri = BasketHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
 
-            string xml = TreeNodeHelper.ConvertToXml(this.CurrentRawBasketTreeView);
+            string xml = TreeNodeHelper.ConvertToXml(CurrentRawBasketTreeView);
 
             BasketSendPackageHeader? packageHeader = new BasketSendPackageHeader
             {
@@ -127,7 +139,7 @@ namespace IdsSampleClient
         {
             string shopUrl = ShopUrlTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
-            string articleNumber = this.DeepLinkSearchTextBox.Text;
+            string articleNumber = DeepLinkSearchTextBox.Text;
 
             DeepLinkPackageHeader packageHeader = new DeepLinkPackageHeader
             {
@@ -157,8 +169,8 @@ namespace IdsSampleClient
                 return;
             }
 
-            string xml = TreeNodeHelper.ConvertToXml(this.ReceivedRawBasketTreeView);
-            BindBasketXmlToTreeView(xml, this.CurrentRawBasketTreeView);
+            string xml = TreeNodeHelper.ConvertToXml(ReceivedRawBasketTreeView);
+            BindBasketXmlToTreeView(xml, CurrentRawBasketTreeView);
         }
 
 
