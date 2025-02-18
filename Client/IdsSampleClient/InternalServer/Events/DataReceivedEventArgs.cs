@@ -1,10 +1,10 @@
 ﻿namespace IdsSampleClient.InternalServer.Events;
 
-internal class BasketReceivedEventArgs : EventArgs
+internal class DataReceivedEventArgs : EventArgs
 {
     public string Xml { get; }
 
-    public BasketReceivedEventArgs(string xml)
+    public DataReceivedEventArgs(string xml)
     {
         Xml = xml;
     }

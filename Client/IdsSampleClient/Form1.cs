@@ -17,18 +17,37 @@ namespace IdsSampleClient
             _appSettings = appSettings.Value;
             InitializeComponent();
             ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
-            BasketHookUriTextBox.Text = _appSettings.BasketReceiveHookUri;
+            BasketHookUriTextBox.Text = _appSettings.BasketsReceiveHookUri;
             if (IdsVersionComboBox.Items.Count - 1 >= 0)
                 IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
 
             TreeNodeHelper.AddContextMenu(CurrentRawBasketTreeView);
            
-            InternalServer.InternalServer internalServer = new InternalServer.InternalServer(_appSettings.InternalBasketReceiveHookUri);
-            internalServer.BasketReceived += OnBasketReceived;
-            internalServer.StartHttpServer();
+            InternalServer.InternalBasketServer internalBasketServer = new InternalServer.InternalBasketServer(_appSettings.InternalBasketsReceiveHookUri);
+            internalBasketServer.BasketReceived += OnBasketReceived;
+
+            InternalServer.InternalArticleServer internalArticlesServer = new InternalServer.InternalArticleServer(_appSettings.InternalArticlesReceiveHookUri);
+            internalArticlesServer.ArticlesReceived += OnArticlesReceived;
+
+            internalBasketServer.StartHttpServer();
+            internalArticlesServer.StartHttpServer();
         }
 
-        private void OnBasketReceived(object? sender, BasketReceivedEventArgs eventArgs)
+        private void OnBasketReceived(object? sender, DataReceivedEventArgs eventArgs)
+        {
+            if (ReceivedRawBasketTreeView.InvokeRequired)
+            {
+                // Execute the same method on the UI thread
+                ReceivedRawBasketTreeView.Invoke(new MethodInvoker(() => OnBasketReceived(sender, eventArgs)));
+            }
+            else
+            {
+                // Logic to handle the basket received event.
+                BindBasketXmlToTreeView(eventArgs.Xml, ReceivedRawBasketTreeView);
+            }
+        }
+
+        private void OnArticlesReceived(object? sender, DataReceivedEventArgs eventArgs)
         {
             if (ReceivedRawBasketTreeView.InvokeRequired)
             {

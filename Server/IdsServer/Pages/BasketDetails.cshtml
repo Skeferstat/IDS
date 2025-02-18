@@ -68,10 +68,11 @@
                 .LoadParams(new { basketId = new JS("data.Id") })
                 .OnRemoving("function(event) {onOrderItemRemoving(event, data.Id)}")
                 .OnInserting("function(event) {onOrderItemInserting(event, data.Id)}")
+                        .OnUpdating("function(event) {onOrderItemUpdating(event, data.Id)}")
                 .OnBeforeSend("onBeforeSend")
                 .Key("ArtNo")
             )
-            .OnRowUpdating("function(event) {onOrderItemUpdating(event, data.Id)}")
+            @* .OnRowUpdating("function(event) {onOrderItemUpdating(event, data.Id)}") *@
             .RepaintChangesOnly(true)
             .Scrolling(x => x.Mode(GridScrollingMode.Virtual))
             .Selection(s => s.Mode(SelectionMode.Single))
@@ -147,8 +148,12 @@
         basketId = basketIdent;
     } 
 
+    function onOrderItemUpdating(event,basketIdent) {
+        basketId = basketIdent;
+    } 
+
     function onBeforeSend(method, ajaxOptions) {  
-        if ( (method === "delete" || method === "insert") && basketId) {
+        if ( (method === "delete" || method === "insert" || method === "update") && basketId) {
             ajaxOptions.data.basketId = basketId;
         }  
     } 
@@ -164,17 +169,13 @@
         }
     }
 
-    function onOrderItemUpdating(event, basketId) {
-        event.data = basketId;
-    }
-
     function onSendBasketToClient(event) {
         const basketId = event.row.data.Id;
-        sendToClient(basketId);
+        sendBasketToClient(basketId);
         // e.event.preventDefault();
     }
 
-    function sendToClient(basketId) {
+    function sendBasketToClient(basketId) {
         fetch('/api/baskets/send', {
                 method: 'POST',
                 headers: {
@@ -185,7 +186,7 @@
             .then(response => response.json())
             .then(result => {
                 const type = result.success? "success" :"error" ;
-                const message = result.success? "Sending the data to the client successful" : "Error sending data to client";
+                const message = result.success? "Sending the basket data to the client successful" : "Error sending basket data to client";
                 $("#toast").dxToast("instance").option({
                     type,
                     message,
@@ -195,7 +196,7 @@
             .catch(error => {
                     console.error('Error:', error);
                     const type = "error";
-                    const message = "Error sending data to client";
+                    const message = "Error sending basket data to client";
                     $("#toast").dxToast("instance").option({
                         type,
                         message,

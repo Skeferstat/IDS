@@ -2,18 +2,18 @@
 using IdsSampleClient.InternalServer.Events;
 
 namespace IdsSampleClient.InternalServer;
-internal class InternalServer
+internal class InternalArticleServer
 {
     private readonly string _url;
 
-    public event EventHandler<BasketReceivedEventArgs>? BasketReceived;
+    public event EventHandler<DataReceivedEventArgs>? ArticlesReceived;
     public event EventHandler<Events.ErrorEventArgs>? ErrorOccurred;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="InternalServer"/> class.
+    /// Initializes a new instance of the <see cref="InternalArticleServer"/> class.
     /// </summary>
     /// <param name="internalUrl">The url where you want to listen.</param>
-    public InternalServer(string internalUrl)
+    public InternalArticleServer(string internalUrl)
     {
         _url = internalUrl;
     }
@@ -23,10 +23,10 @@ internal class InternalServer
         HttpListener listener = new HttpListener();
         listener.Prefixes.Add(_url);
         listener.Start();
-        listener.BeginGetContext(OnProcessBasketReceive, listener);
+        listener.BeginGetContext(OnProcessArticleReceive, listener);
     }
 
-    private void OnProcessBasketReceive(IAsyncResult result)
+    private void OnProcessArticleReceive(IAsyncResult result)
     {
         if (result.AsyncState is HttpListener listener)
         {
@@ -39,9 +39,9 @@ internal class InternalServer
                 if (request.HttpMethod == "POST")
                 {
                     using StreamReader reader = new StreamReader(request.InputStream, request.ContentEncoding);
-                    string basketXml = reader.ReadToEnd();
+                    string articlesXml = reader.ReadToEnd();
 
-                    BasketReceived?.Invoke(this, new BasketReceivedEventArgs(basketXml));
+                    ArticlesReceived?.Invoke(this, new DataReceivedEventArgs(articlesXml));
                 }
 
                 context.Response.StatusCode = 200;
@@ -57,7 +57,7 @@ internal class InternalServer
             finally
             {
                 context?.Response.Close();
-                listener.BeginGetContext(OnProcessBasketReceive, listener);
+                listener.BeginGetContext(OnProcessArticleReceive, listener);
             }
         }
     }

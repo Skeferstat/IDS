@@ -9,6 +9,9 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 using Microsoft.EntityFrameworkCore;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Data.ResponseModel;
+using System.Net.Http;
+using System.Text;
+using System.Xml.Serialization;
 
 // ReSharper disable EntityFramework.NPlusOne.IncompleteDataQuery
 // ReSharper disable EntityFramework.NPlusOne.IncompleteDataUsage
@@ -47,11 +50,11 @@ public class OrderItemsController : Controller
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(string key, string values)
+    public async Task<IActionResult> Update(string key, string values, Guid basketId)
     {
         var data = JsonSerializer.Deserialize<Dictionary<string, object>>(values);
 
-        if (data != null && data.TryGetValue("basketId", out var basketId))
+        //if (data != null && data.TryGetValue("basketId", out var basketId))
         {
             Basket basket = _dbContext.Baskets.FirstOrDefault(b => b.Id == Guid.Parse(basketId.ToString()));
             typeOrderItem article = basket!.RawBasket.Order.OrderItem.FirstOrDefault(o => o.ArtNo == key);
@@ -129,4 +132,6 @@ public class OrderItemsController : Controller
         return Ok();
     }
 
+
+    
 }
