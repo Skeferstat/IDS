@@ -35,6 +35,8 @@
             BasketXmlFileTextBox = new TextBox();
             ToolTip = new ToolTip(components);
             button1 = new Button();
+            label8 = new Label();
+            SearchTermTextBox = new TextBox();
             OpenBasketFileDialog = new OpenFileDialog();
             label2 = new Label();
             ShopUrlTextBox = new TextBox();
@@ -43,8 +45,6 @@
             BasketHookUriTextBox = new TextBox();
             IdsVersionComboBox = new ComboBox();
             label4 = new Label();
-            label5 = new Label();
-            SearchTermTextBox = new TextBox();
             SearchTermButton = new Button();
             label6 = new Label();
             DeepLinkSearchTextBox = new TextBox();
@@ -57,9 +57,16 @@
             groupBox2 = new GroupBox();
             ReceivedRawBasketTreeView = new TreeView();
             SaveBasketFileDialog = new SaveFileDialog();
+            groupBox4 = new GroupBox();
+            groupBox6 = new GroupBox();
+            ReceivedRawArticlesTreeView = new TreeView();
+            label7 = new Label();
+            SearchArticleHookUriTextBox = new TextBox();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // OpenBasketFileButton
@@ -89,6 +96,19 @@
             ToolTip.SetToolTip(button1, resources.GetString("button1.ToolTip"));
             button1.UseVisualStyleBackColor = true;
             button1.Click += OnCopyReceivedBasketToCurrentBasket;
+            // 
+            // label8
+            // 
+            label8.AutoEllipsis = true;
+            resources.ApplyResources(label8, "label8");
+            label8.Name = "label8";
+            ToolTip.SetToolTip(label8, resources.GetString("label8.ToolTip"));
+            // 
+            // SearchTermTextBox
+            // 
+            resources.ApplyResources(SearchTermTextBox, "SearchTermTextBox");
+            SearchTermTextBox.Name = "SearchTermTextBox";
+            ToolTip.SetToolTip(SearchTermTextBox, resources.GetString("SearchTermTextBox.ToolTip"));
             // 
             // OpenBasketFileDialog
             // 
@@ -135,16 +155,6 @@
             // 
             resources.ApplyResources(label4, "label4");
             label4.Name = "label4";
-            // 
-            // label5
-            // 
-            resources.ApplyResources(label5, "label5");
-            label5.Name = "label5";
-            // 
-            // SearchTermTextBox
-            // 
-            resources.ApplyResources(SearchTermTextBox, "SearchTermTextBox");
-            SearchTermTextBox.Name = "SearchTermTextBox";
             // 
             // SearchTermButton
             // 
@@ -231,26 +241,62 @@
             resources.ApplyResources(SaveBasketFileDialog, "SaveBasketFileDialog");
             SaveBasketFileDialog.RestoreDirectory = true;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(groupBox6);
+            groupBox4.Controls.Add(label7);
+            groupBox4.Controls.Add(label8);
+            groupBox4.Controls.Add(SearchArticleHookUriTextBox);
+            groupBox4.Controls.Add(SearchTermTextBox);
+            groupBox4.Controls.Add(SearchTermButton);
+            resources.ApplyResources(groupBox4, "groupBox4");
+            groupBox4.Name = "groupBox4";
+            groupBox4.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(ReceivedRawArticlesTreeView);
+            resources.ApplyResources(groupBox6, "groupBox6");
+            groupBox6.Name = "groupBox6";
+            groupBox6.TabStop = false;
+            // 
+            // ReceivedRawArticlesTreeView
+            // 
+            resources.ApplyResources(ReceivedRawArticlesTreeView, "ReceivedRawArticlesTreeView");
+            ReceivedRawArticlesTreeView.LabelEdit = true;
+            ReceivedRawArticlesTreeView.Name = "ReceivedRawArticlesTreeView";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(label7, "label7");
+            label7.Name = "label7";
+            // 
+            // SearchArticleHookUriTextBox
+            // 
+            resources.ApplyResources(SearchArticleHookUriTextBox, "SearchArticleHookUriTextBox");
+            SearchArticleHookUriTextBox.Name = "SearchArticleHookUriTextBox";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(groupBox4);
             Controls.Add(groupBox1);
             Controls.Add(DeepLinkSearchButton);
-            Controls.Add(DeepLinkSearchTextBox);
-            Controls.Add(label6);
-            Controls.Add(SearchTermButton);
-            Controls.Add(SearchTermTextBox);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(IdsVersionComboBox);
+            Controls.Add(DeepLinkSearchTextBox);
             Controls.Add(ShopUrlTextBox);
             Controls.Add(label2);
+            Controls.Add(label6);
             Name = "MainForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox6.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -269,7 +315,6 @@
         private TextBox BasketHookUriTextBox;
         private ComboBox IdsVersionComboBox;
         private Label label4;
-        private Label label5;
         private TextBox SearchTermTextBox;
         private Button SearchTermButton;
         private Label label6;
@@ -284,5 +329,11 @@
         private TreeView CurrentRawBasketTreeView;
         private Button SaveBasketButton;
         private SaveFileDialog SaveBasketFileDialog;
+        private GroupBox groupBox4;
+        private GroupBox groupBox6;
+        private TreeView ReceivedRawArticlesTreeView;
+        private Label label7;
+        private Label label8;
+        private TextBox SearchArticleHookUriTextBox;
     }
 }

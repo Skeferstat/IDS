@@ -73,11 +73,24 @@ public class ArticlesController : Controller
         }
 
         List<typeOrderItem> articles = _mapper.Map<List<typeOrderItem>>(fakeArticles);
+        foreach (var article in articles)
+        {
+            article.NetPriceSpecified = true;
+            article.OfferPriceSpecified = true;
+            article.Qty = 1;
+        }
 
-        XmlSerializer serializer = new XmlSerializer(typeof(List<typeOrderItem>));
+        XmlSerializer serializer = new XmlSerializer(typeof(List<typeOrderItem>), new XmlRootAttribute("Articles")
+        {
+            Namespace = "http://www.itek.de/Shop-Anbindung/Warenkorb/"
+        });
         await using StringWriter stringWriter = new StringWriter();
+        XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+        namespaces.Add("", "http://www.itek.de/Shop-Anbindung/Warenkorb/"); 
+        serializer.Serialize(stringWriter, articles, namespaces);
 
-        serializer.Serialize(stringWriter, articles);
+        var b = stringWriter.ToString();
+
 
         StringContent content = new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/xml");
 

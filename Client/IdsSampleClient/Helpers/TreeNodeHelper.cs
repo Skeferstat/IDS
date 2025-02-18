@@ -1,5 +1,4 @@
 ﻿using System.Xml;
-using System.Xml.Linq;
 
 namespace IdsSampleClient.Helpers;
 internal class TreeNodeHelper

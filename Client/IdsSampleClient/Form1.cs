@@ -18,6 +18,8 @@ namespace IdsSampleClient
             InitializeComponent();
             ShopUrlTextBox.Text = _appSettings.Shop.AuthUrl;
             BasketHookUriTextBox.Text = _appSettings.BasketsReceiveHookUri;
+            SearchArticleHookUriTextBox.Text = _appSettings.ArticlesReceiveHookUri;
+
             if (IdsVersionComboBox.Items.Count - 1 >= 0)
                 IdsVersionComboBox.SelectedIndex = IdsVersionComboBox.Items.Count - 1;
 
@@ -49,15 +51,15 @@ namespace IdsSampleClient
 
         private void OnArticlesReceived(object? sender, DataReceivedEventArgs eventArgs)
         {
-            if (ReceivedRawBasketTreeView.InvokeRequired)
+            if (ReceivedRawArticlesTreeView.InvokeRequired)
             {
                 // Execute the same method on the UI thread
-                ReceivedRawBasketTreeView.Invoke(new MethodInvoker(() => OnBasketReceived(sender, eventArgs)));
+                ReceivedRawArticlesTreeView.Invoke(new MethodInvoker(() => OnArticlesReceived(sender, eventArgs)));
             }
             else
             {
-                // Logic to handle the basket received event.
-                BindBasketXmlToTreeView(eventArgs.Xml, ReceivedRawBasketTreeView);
+                // Logic to handle the articles received event.
+                BindArticlesXmlToTreeView(eventArgs.Xml, ReceivedRawArticlesTreeView);
             }
         }
 
@@ -213,6 +215,26 @@ namespace IdsSampleClient
             treeView.TopNode = treeView.Nodes[0];
         }
 
-      
+        private void BindArticlesXmlToTreeView(string xml, TreeView treeView)
+        {
+            if (string.IsNullOrEmpty(xml))
+            {
+                throw new ArgumentNullException(nameof(xml));
+            }
+
+            XmlDocument xmlDoc = new XmlDocument
+            {
+                InnerXml = xml
+            };
+
+            treeView.Nodes.Clear();
+            treeView.Nodes.Add(new TreeNode(xmlDoc.DocumentElement!.Name));
+            TreeNode treeNode = treeView.Nodes[0];
+            TreeNodeHelper.AddNode(xmlDoc.DocumentElement, treeNode);
+            treeView.ExpandAll();
+            treeView.TopNode = treeView.Nodes[0];
+        }
+
+
     }
 }
