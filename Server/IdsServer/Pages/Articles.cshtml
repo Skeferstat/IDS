@@ -36,13 +36,13 @@
     {
         columns.AddFor(x => x.ArticleNumber).Caption("Article");
         columns.AddFor(x => x.Name).Caption("Name");
-        columns.AddFor(n => n.Price).Caption("Price").Format(format =>
+        columns.AddFor(n => n.NetPrice).Caption("Price").Format(format =>
         {
             format.Type(Format.Currency);
             format.Currency("EUR");
             format.Precision(2);
         });
-        columns.AddFor(n => n.ListPrice).Caption("ListPrice").Format(format =>
+        columns.AddFor(n => n.OfferPrice).Caption("ListPrice").Format(format =>
         {
             format.Type(Format.Currency);
             format.Currency("EUR");

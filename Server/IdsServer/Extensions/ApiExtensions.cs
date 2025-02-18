@@ -3,6 +3,7 @@ using FluentValidation;
 using Hellang.Middleware.ProblemDetails;
 using Hellang.Middleware.ProblemDetails.Mvc;
 using IdsServer.Database;
+using IdsServer.Mappings.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.FeatureManagement;
 
@@ -88,7 +89,7 @@ public static class ApiExtensions
     {
         MapperConfiguration mapperConfig = new(mc =>
         {
-            //mc.AddProfile<DatabaseMappingProfile>();
+            mc.AddProfile<CommonMappingProfile>();
         });
 
         //mapperConfig.AssertConfigurationIsValid();

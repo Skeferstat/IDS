@@ -52,11 +52,6 @@ namespace IdsServer.Database.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -67,16 +62,16 @@ namespace IdsServer.Database.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("ListPrice")
-                        .HasPrecision(2)
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("NetPrice")
+                        .HasPrecision(2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("OfferPrice")
                         .HasPrecision(2)
                         .HasColumnType("TEXT");
 
@@ -89,23 +84,21 @@ namespace IdsServer.Database.Migrations
                         {
                             Id = new Guid("fd7aed7f-7ef6-409b-a34f-da22a663aae5"),
                             ArticleNumber = "1085922350000",
-                            Currency = "EUR",
                             Description = "Bacon ipsum dolor amet filet mignon shank drumstick sausage, cow sirloin rump corned beef tongue chicken kevin. Salami ham corned beef, kevin cow fatback bresaola sausage jerky hamburger tail capicola. Biltong pork jerky fatback venison pig. Jowl strip steak short ribs ham spare ribs, swine jerky pork belly frankfurter alcatra pork picanha boudin tongue beef. Doner meatloaf ribeye prosciutto tri-tip capicola. Landjaeger ham hock swine corned beef ground round tail biltong salami pastrami pork belly. Jerky shank landjaeger biltong, doner porchetta chicken pancetta shankle shoulder sausage pork chop corned beef burgdoggen.",
                             ImageUrl = "https://placehold.co/500x400",
-                            ListPrice = 237.99m,
                             Name = "filet mignon shank drumstick",
-                            Price = 200.67m
+                            NetPrice = 200.67m,
+                            OfferPrice = 237.99m
                         },
                         new
                         {
                             Id = new Guid("c3e89e64-9f00-4dc0-8adf-55223601d9f6"),
                             ArticleNumber = "24485918350056",
-                            Currency = "EUR",
                             Description = "Bresaola picanha landjaeger prosciutto ball tip burgdoggen pork belly. Swine ham hock salami spare ribs turducken venison tri-tip biltong t-bone prosciutto jowl beef ribs turkey beef shank. Hamburger picanha strip steak, pork chop buffalo tenderloin corned beef ball tip jowl sirloin bacon pork. Ribeye kevin shankle, tongue short loin beef ribs pancetta tenderloin tri-tip short ribs. Strip steak brisket rump, boudin ham landjaeger chuck spare ribs.",
                             ImageUrl = "https://placehold.co/500x400",
-                            ListPrice = 123.00m,
                             Name = "Bresaola picanha landjaeger",
-                            Price = 100.12m
+                            NetPrice = 100.12m,
+                            OfferPrice = 123.00m
                         });
                 });
 #pragma warning restore 612, 618

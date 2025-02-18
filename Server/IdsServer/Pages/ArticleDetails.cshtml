@@ -1,7 +1,8 @@
 ﻿@page "{articleNumber}"
+@using System.Text.Json
 @model IdsServer.Pages.ArticleDetailsModel
 @{
-    // Layout = null;
+            // Layout = null;
 }
 
 <h1>Article details for @Model.Article.ArticleNumber</h1>
@@ -21,8 +22,47 @@
         <h5 class="card-title">@Model.Article.Name</h5>
         <p class="card-text"><strong>Article Number:</strong> @Model.Article.ArticleNumber</p>
         <p class="card-text"><strong>Description:</strong> @Model.Article.Description</p>
-        <p class="card-text"><strong>Price:</strong> @Model.Article.Price.ToString("C")</p>
-        <p class="card-text"><strong>List Price:</strong> @Model.Article.ListPrice.ToString("C")</p>
+        <p class="card-text"><strong>Net Price:</strong> @Model.Article.NetPrice.ToString("C")</p>
+        <p class="card-text"><strong>Offer Price:</strong> @Model.Article.OfferPrice.ToString("C")</p>
         <a href="#" class="btn btn-primary">Buy Now</a>
+        <a href="#" class="btn btn-secondary" onclick="sendArticleToClient()">Send to client</a>
     </div>
 </div>
+
+
+<script>
+    function sendArticleToClient() {
+
+        const article = @Html.Raw(JsonSerializer.Serialize(Model.Article));
+        const articles = [article];
+
+        fetch('/api/articles/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ articles: articles})
+            })
+            .then(response => response.json())
+            .then(result => {
+                const type = result.success? "success" :"error" ;
+                const message = result.success? "Sending the article data to the client successful" : "Error sending article data to client";
+                $("#toast").dxToast("instance").option({
+                    type,
+                    message,
+                    visible: true
+                });
+            })
+            .catch(error => {
+                    console.error('Error:', error);
+                    const type = "error";
+                    const message = "Error sending article data to client";
+                    $("#toast").dxToast("instance").option({
+                        type,
+                        message,
+                        visible: true
+                    });
+                }
+            );
+    }
+</script>
