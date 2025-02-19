@@ -37,12 +37,13 @@
             button1 = new Button();
             label8 = new Label();
             SearchTermTextBox = new TextBox();
+            label3 = new Label();
+            BasketHookUriTextBox = new TextBox();
+            label7 = new Label();
             OpenBasketFileDialog = new OpenFileDialog();
             label2 = new Label();
             ShopUrlTextBox = new TextBox();
             SendBasketToShopButton = new Button();
-            label3 = new Label();
-            BasketHookUriTextBox = new TextBox();
             IdsVersionComboBox = new ComboBox();
             label4 = new Label();
             SearchTermButton = new Button();
@@ -60,13 +61,22 @@
             groupBox4 = new GroupBox();
             groupBox6 = new GroupBox();
             ReceivedRawArticlesTreeView = new TreeView();
-            label7 = new Label();
             SearchArticleHookUriTextBox = new TextBox();
+            groupBox5 = new GroupBox();
+            tabControl1 = new TabControl();
+            BaksetTabPage = new TabPage();
+            ArticlesTabPage = new TabPage();
+            DeppLinkTabPage = new TabPage();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox6.SuspendLayout();
+            groupBox5.SuspendLayout();
+            tabControl1.SuspendLayout();
+            BaksetTabPage.SuspendLayout();
+            ArticlesTabPage.SuspendLayout();
+            DeppLinkTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // OpenBasketFileButton
@@ -110,6 +120,24 @@
             SearchTermTextBox.Name = "SearchTermTextBox";
             ToolTip.SetToolTip(SearchTermTextBox, resources.GetString("SearchTermTextBox.ToolTip"));
             // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.Name = "label3";
+            ToolTip.SetToolTip(label3, resources.GetString("label3.ToolTip"));
+            // 
+            // BasketHookUriTextBox
+            // 
+            resources.ApplyResources(BasketHookUriTextBox, "BasketHookUriTextBox");
+            BasketHookUriTextBox.Name = "BasketHookUriTextBox";
+            ToolTip.SetToolTip(BasketHookUriTextBox, resources.GetString("BasketHookUriTextBox.ToolTip"));
+            // 
+            // label7
+            // 
+            resources.ApplyResources(label7, "label7");
+            label7.Name = "label7";
+            ToolTip.SetToolTip(label7, resources.GetString("label7.ToolTip"));
+            // 
             // OpenBasketFileDialog
             // 
             OpenBasketFileDialog.DefaultExt = "xml";
@@ -132,16 +160,6 @@
             SendBasketToShopButton.Name = "SendBasketToShopButton";
             SendBasketToShopButton.UseVisualStyleBackColor = true;
             SendBasketToShopButton.Click += OnSendBasketToShop;
-            // 
-            // label3
-            // 
-            resources.ApplyResources(label3, "label3");
-            label3.Name = "label3";
-            // 
-            // BasketHookUriTextBox
-            // 
-            resources.ApplyResources(BasketHookUriTextBox, "BasketHookUriTextBox");
-            BasketHookUriTextBox.Name = "BasketHookUriTextBox";
             // 
             // IdsVersionComboBox
             // 
@@ -266,29 +284,59 @@
             ReceivedRawArticlesTreeView.LabelEdit = true;
             ReceivedRawArticlesTreeView.Name = "ReceivedRawArticlesTreeView";
             // 
-            // label7
-            // 
-            resources.ApplyResources(label7, "label7");
-            label7.Name = "label7";
-            // 
             // SearchArticleHookUriTextBox
             // 
             resources.ApplyResources(SearchArticleHookUriTextBox, "SearchArticleHookUriTextBox");
             SearchArticleHookUriTextBox.Name = "SearchArticleHookUriTextBox";
             // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(DeepLinkSearchButton);
+            groupBox5.Controls.Add(DeepLinkSearchTextBox);
+            groupBox5.Controls.Add(label6);
+            resources.ApplyResources(groupBox5, "groupBox5");
+            groupBox5.Name = "groupBox5";
+            groupBox5.TabStop = false;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(BaksetTabPage);
+            tabControl1.Controls.Add(ArticlesTabPage);
+            tabControl1.Controls.Add(DeppLinkTabPage);
+            resources.ApplyResources(tabControl1, "tabControl1");
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            // 
+            // BaksetTabPage
+            // 
+            BaksetTabPage.Controls.Add(groupBox1);
+            resources.ApplyResources(BaksetTabPage, "BaksetTabPage");
+            BaksetTabPage.Name = "BaksetTabPage";
+            BaksetTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ArticlesTabPage
+            // 
+            ArticlesTabPage.Controls.Add(groupBox4);
+            resources.ApplyResources(ArticlesTabPage, "ArticlesTabPage");
+            ArticlesTabPage.Name = "ArticlesTabPage";
+            ArticlesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // DeppLinkTabPage
+            // 
+            DeppLinkTabPage.Controls.Add(groupBox5);
+            resources.ApplyResources(DeppLinkTabPage, "DeppLinkTabPage");
+            DeppLinkTabPage.Name = "DeppLinkTabPage";
+            DeppLinkTabPage.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(groupBox4);
-            Controls.Add(groupBox1);
-            Controls.Add(DeepLinkSearchButton);
+            Controls.Add(tabControl1);
             Controls.Add(label4);
             Controls.Add(IdsVersionComboBox);
-            Controls.Add(DeepLinkSearchTextBox);
             Controls.Add(ShopUrlTextBox);
             Controls.Add(label2);
-            Controls.Add(label6);
             Name = "MainForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -297,6 +345,12 @@
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox6.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            BaksetTabPage.ResumeLayout(false);
+            ArticlesTabPage.ResumeLayout(false);
+            DeppLinkTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -325,8 +379,6 @@
         private GroupBox groupBox2;
         private TreeView ReceivedRawBasketTreeView;
         private Button button1;
-        private GroupBox groupBox3;
-        private TreeView CurrentRawBasketTreeView;
         private Button SaveBasketButton;
         private SaveFileDialog SaveBasketFileDialog;
         private GroupBox groupBox4;
@@ -335,5 +387,12 @@
         private Label label7;
         private Label label8;
         private TextBox SearchArticleHookUriTextBox;
+        private GroupBox groupBox3;
+        private TreeView CurrentRawBasketTreeView;
+        private GroupBox groupBox5;
+        private TabControl tabControl1;
+        private TabPage BaksetTabPage;
+        private TabPage ArticlesTabPage;
+        private TabPage DeppLinkTabPage;
     }
 }

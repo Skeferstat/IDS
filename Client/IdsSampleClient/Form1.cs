@@ -130,7 +130,7 @@ namespace IdsSampleClient
         private async void OnSearchTerm(object sender, EventArgs eventArgs)
         {
             string shopUrl = ShopUrlTextBox.Text;
-            string hookUri = BasketHookUriTextBox.Text;
+            string hookUri = SearchArticleHookUriTextBox.Text;
             string? idsVersion = IdsVersionComboBox.SelectedItem!.ToString();
             string searchTerm = SearchTermTextBox.Text;
 
@@ -140,7 +140,8 @@ namespace IdsSampleClient
                 UserName = _appSettings.Shop.AuthUsername,
                 Password = _appSettings.Shop.AuthPassword,
                 Version = idsVersion,
-                ShopUri = new Uri(shopUrl)
+                ShopUri = new Uri(shopUrl),
+                HookUri = new Uri(hookUri)
             };
 
             SearchTermPackageFactory factory = new SearchTermPackageFactory();

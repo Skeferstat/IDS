@@ -13,6 +13,7 @@ namespace IdsLibrary.Models.PackageHeaders
         public string? Version { get; set; } = "2.5";
         public string? Target { get; set; } = "TOP";
 
+        public Uri HookUri { get; set; } = new Uri("http://localhost");
         public Uri ShopUri { get; set; } = new Uri("http://localhost");
     }
 }
