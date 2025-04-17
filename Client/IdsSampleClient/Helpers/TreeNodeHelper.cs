@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.IO;
+using System.Xml;
 
 namespace IdsSampleClient.Helpers;
 internal class TreeNodeHelper
@@ -78,7 +79,7 @@ internal class TreeNodeHelper
 
 
     /// <summary>
-    /// Convert a tree view to an xml string.
+    /// Convert a tree view to a xml string.
     /// </summary>
     /// <param name="treeView">Tree view.</param>
     /// <returns>Xml string.</returns>

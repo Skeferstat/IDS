@@ -54,9 +54,11 @@
             groupBox1 = new GroupBox();
             SaveBasketButton = new Button();
             groupBox3 = new GroupBox();
-            CurrentRawBasketTreeView = new TreeView();
+            CurrentBasketGridControl = new DevExpress.XtraGrid.GridControl();
+            gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             groupBox2 = new GroupBox();
-            ReceivedRawBasketTreeView = new TreeView();
+            ReceivedBasketGridControl = new DevExpress.XtraGrid.GridControl();
+            gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             SaveBasketFileDialog = new SaveFileDialog();
             groupBox4 = new GroupBox();
             groupBox6 = new GroupBox();
@@ -69,7 +71,11 @@
             DeppLinkTabPage = new TabPage();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CurrentBasketGridControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ReceivedBasketGridControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridView2).BeginInit();
             groupBox4.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox5.SuspendLayout();
@@ -229,29 +235,43 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(CurrentRawBasketTreeView);
+            groupBox3.Controls.Add(CurrentBasketGridControl);
             resources.ApplyResources(groupBox3, "groupBox3");
             groupBox3.Name = "groupBox3";
             groupBox3.TabStop = false;
             // 
-            // CurrentRawBasketTreeView
+            // CurrentBasketGridControl
             // 
-            resources.ApplyResources(CurrentRawBasketTreeView, "CurrentRawBasketTreeView");
-            CurrentRawBasketTreeView.LabelEdit = true;
-            CurrentRawBasketTreeView.Name = "CurrentRawBasketTreeView";
+            resources.ApplyResources(CurrentBasketGridControl, "CurrentBasketGridControl");
+            CurrentBasketGridControl.MainView = gridView1;
+            CurrentBasketGridControl.Name = "CurrentBasketGridControl";
+            CurrentBasketGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
+            // 
+            // gridView1
+            // 
+            gridView1.GridControl = CurrentBasketGridControl;
+            gridView1.Name = "gridView1";
+            gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(ReceivedRawBasketTreeView);
+            groupBox2.Controls.Add(ReceivedBasketGridControl);
             resources.ApplyResources(groupBox2, "groupBox2");
             groupBox2.Name = "groupBox2";
             groupBox2.TabStop = false;
             // 
-            // ReceivedRawBasketTreeView
+            // ReceivedBasketGridControl
             // 
-            resources.ApplyResources(ReceivedRawBasketTreeView, "ReceivedRawBasketTreeView");
-            ReceivedRawBasketTreeView.LabelEdit = true;
-            ReceivedRawBasketTreeView.Name = "ReceivedRawBasketTreeView";
+            resources.ApplyResources(ReceivedBasketGridControl, "ReceivedBasketGridControl");
+            ReceivedBasketGridControl.MainView = gridView2;
+            ReceivedBasketGridControl.Name = "ReceivedBasketGridControl";
+            ReceivedBasketGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView2 });
+            // 
+            // gridView2
+            // 
+            gridView2.GridControl = ReceivedBasketGridControl;
+            gridView2.Name = "gridView2";
+            gridView2.OptionsView.ShowGroupPanel = false;
             // 
             // SaveBasketFileDialog
             // 
@@ -341,7 +361,11 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)CurrentBasketGridControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
             groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ReceivedBasketGridControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView2).EndInit();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox6.ResumeLayout(false);
@@ -377,7 +401,6 @@
         private OpenFileDialog OpenHeatingLabelFileDialog;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private TreeView ReceivedRawBasketTreeView;
         private Button button1;
         private Button SaveBasketButton;
         private SaveFileDialog SaveBasketFileDialog;
@@ -388,11 +411,14 @@
         private Label label8;
         private TextBox SearchArticleHookUriTextBox;
         private GroupBox groupBox3;
-        private TreeView CurrentRawBasketTreeView;
         private GroupBox groupBox5;
         private TabControl tabControl1;
         private TabPage BaksetTabPage;
         private TabPage ArticlesTabPage;
         private TabPage DeppLinkTabPage;
+        private DevExpress.XtraGrid.GridControl CurrentBasketGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl ReceivedBasketGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }

@@ -143,9 +143,6 @@
   <data name="&gt;&gt;OpenBasketFileButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -161,6 +158,9 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Basket:</value>
   </data>
+  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="label1.ToolTip" xml:space="preserve">
     <value>An xml file with basket informations inside</value>
   </data>
@@ -203,9 +203,6 @@
   <data name="&gt;&gt;BasketXmlFileTextBox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>490, 416</value>
   </data>
@@ -625,66 +622,6 @@
   <data name="OpenHeatingLabelFileDialog.Filter" xml:space="preserve">
     <value>xml files | *.xml</value>
   </data>
-  <data name="&gt;&gt;SaveBasketButton.Name" xml:space="preserve">
-    <value>SaveBasketButton</value>
-  </data>
-  <data name="&gt;&gt;SaveBasketButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SaveBasketButton.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;SaveBasketButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 483</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>BaksetTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="SaveBasketButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 419</value>
   </data>
@@ -709,16 +646,28 @@
   <data name="&gt;&gt;SaveBasketButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.Name" xml:space="preserve">
-    <value>CurrentRawBasketTreeView</value>
+  <data name="CurrentBasketGridControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CurrentBasketGridControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
   </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.Parent" xml:space="preserve">
+  <data name="CurrentBasketGridControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>590, 245</value>
+  </data>
+  <data name="CurrentBasketGridControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;CurrentBasketGridControl.Name" xml:space="preserve">
+    <value>CurrentBasketGridControl</value>
+  </data>
+  <data name="&gt;&gt;CurrentBasketGridControl.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v24.2, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;CurrentBasketGridControl.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CurrentBasketGridControl.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
@@ -729,7 +678,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>420, 275</value>
+    <value>600, 275</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -749,50 +698,38 @@
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="CurrentRawBasketTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="ReceivedBasketGridControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="CurrentRawBasketTreeView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="ReceivedBasketGridControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 25</value>
   </data>
-  <data name="CurrentRawBasketTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>410, 245</value>
+  <data name="ReceivedBasketGridControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>590, 245</value>
   </data>
-  <data name="CurrentRawBasketTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.Name" xml:space="preserve">
-    <value>CurrentRawBasketTreeView</value>
-  </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;CurrentRawBasketTreeView.ZOrder" xml:space="preserve">
+  <data name="ReceivedBasketGridControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.Name" xml:space="preserve">
-    <value>ReceivedRawBasketTreeView</value>
+  <data name="&gt;&gt;ReceivedBasketGridControl.Name" xml:space="preserve">
+    <value>ReceivedBasketGridControl</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ReceivedBasketGridControl.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v24.2, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ReceivedBasketGridControl.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;ReceivedBasketGridControl.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>490, 138</value>
+    <value>637, 138</value>
   </data>
   <data name="groupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>420, 275</value>
+    <value>600, 275</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -812,28 +749,28 @@
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="ReceivedRawBasketTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="ReceivedRawBasketTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 25</value>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="ReceivedRawBasketTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>410, 245</value>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1251, 483</value>
   </data>
-  <data name="ReceivedRawBasketTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.Name" xml:space="preserve">
-    <value>ReceivedRawBasketTreeView</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>BaksetTabPage</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawBasketTreeView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="SaveBasketFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -842,56 +779,17 @@
   <data name="SaveBasketFileDialog.Filter" xml:space="preserve">
     <value>xml files | *.xml</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;SearchArticleHookUriTextBox.Name" xml:space="preserve">
-    <value>SearchArticleHookUriTextBox</value>
-  </data>
-  <data name="&gt;&gt;SearchArticleHookUriTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SearchArticleHookUriTextBox.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;SearchArticleHookUriTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="ReceivedRawArticlesTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="ReceivedRawArticlesTreeView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
   </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 483</value>
+  <data name="ReceivedRawArticlesTreeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>872, 223</value>
   </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Article search</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>ArticlesTabPage</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="ReceivedRawArticlesTreeView.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;ReceivedRawArticlesTreeView.Name" xml:space="preserve">
     <value>ReceivedRawArticlesTreeView</value>
@@ -932,30 +830,6 @@
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="ReceivedRawArticlesTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ReceivedRawArticlesTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 25</value>
-  </data>
-  <data name="ReceivedRawArticlesTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>872, 223</value>
-  </data>
-  <data name="ReceivedRawArticlesTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.Name" xml:space="preserve">
-    <value>ReceivedRawArticlesTreeView</value>
-  </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="SearchArticleHookUriTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -982,6 +856,33 @@
   </data>
   <data name="&gt;&gt;SearchArticleHookUriTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="groupBox4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>924, 483</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Article search</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>ArticlesTabPage</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="groupBox5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1017,7 +918,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="BaksetTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>930, 489</value>
+    <value>1257, 489</value>
   </data>
   <data name="BaksetTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1092,7 +993,7 @@
     <value>12, 63</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>938, 522</value>
+    <value>1265, 522</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1119,7 +1020,7 @@
     <value>8, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>962, 601</value>
+    <value>1289, 603</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>IDS Test Client</value>
@@ -1141,6 +1042,18 @@
   </data>
   <data name="&gt;&gt;OpenHeatingLabelFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gridView1.Name" xml:space="preserve">
+    <value>gridView1</value>
+  </data>
+  <data name="&gt;&gt;gridView1.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v24.2, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;gridView2.Name" xml:space="preserve">
+    <value>gridView2</value>
+  </data>
+  <data name="&gt;&gt;gridView2.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v24.2, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;SaveBasketFileDialog.Name" xml:space="preserve">
     <value>SaveBasketFileDialog</value>

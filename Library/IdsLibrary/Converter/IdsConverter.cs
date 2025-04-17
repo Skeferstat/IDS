@@ -5,9 +5,9 @@ using BasketSend;
 
 namespace IdsLibrary.Converter
 {
-    internal class IdsConverter
+    public static class IdsConverter
     {
-        internal static StringContent ConvertToStringContent(typeWarenkorb basket)
+        public static StringContent ConvertToStringContent(typeWarenkorb basket)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(typeWarenkorb));
             using StringWriter writer = new StringWriter();
@@ -17,5 +17,14 @@ namespace IdsLibrary.Converter
             return new StringContent(xmlString, System.Text.Encoding.UTF8, "application/xml");
         }
 
+        public static string ConvertToXml(typeWarenkorb basket)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(typeWarenkorb));
+            using StringWriter writer = new StringWriter();
+            serializer.Serialize(writer, basket);
+            string xmlString = writer.ToString();
+
+            return xmlString;
+        }
     }
 }
