@@ -1,0 +1,46 @@
+﻿@page
+@model IdsServer.Pages.ImportModel
+@{
+}
+
+<div id="file-container">
+    <input type="file" id="xml-file" accept=".xml" />
+    @(Html.DevExtreme().Button()
+        .Text("Import")
+        .Type(ButtonType.Normal)
+        .OnClick("onSendToApi")
+        )
+</div>
+
+
+
+<script>
+    function onSendToApi() {
+        var fileInput = document.getElementById('xml-file');
+        var file = fileInput.files[0];
+
+        if (!file) {
+            DevExpress.ui.notify("Bitte wähle eine XML-Datei aus.", "error", 2000);
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("xmlFile", file);
+
+        $.ajax({
+            url: '/api/imports', 
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                DevExpress.ui.notify("XML erfolgreich hochgeladen!", "success", 2000);
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                DevExpress.ui.notify("Fehler beim Hochladen der XML.", "error", 2000);
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>

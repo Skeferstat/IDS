@@ -4,6 +4,7 @@ using Hellang.Middleware.ProblemDetails;
 using Hellang.Middleware.ProblemDetails.Mvc;
 using IdsServer.Database;
 using IdsServer.Mappings.Profiles;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.FeatureManagement;
 
@@ -41,6 +42,7 @@ public static class ApiExtensions
         builder.Services.AddHealthChecks();
         builder.Services.AddMemoryCache();
         builder.Services.AddHttpClient();
+
         builder.Services.AddProblemDetails(options =>
         {
             options.IncludeExceptionDetails = (context, ex) =>
@@ -77,6 +79,29 @@ public static class ApiExtensions
                 builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
+        return builder.Services;
+    }
+
+    public static IServiceCollection RegisterIdentity(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+        {
+            options.SignIn.RequireConfirmedAccount = false;
+            options.User.RequireUniqueEmail = true;
+            options.Password.RequireDigit = false;
+            options.Password.RequiredLength = 6;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireLowercase = false;
+        })
+        .AddEntityFrameworkStores<AppDbContext>()
+        .AddDefaultTokenProviders();
+
+        //builder.Services.ConfigureApplicationCookie(options =>
+        //{
+        //    options.LoginPath = "/Identity/Account/Login";
+        //    options.LogoutPath = "/Identity/Account/Logout";
+        //});
         return builder.Services;
     }
 

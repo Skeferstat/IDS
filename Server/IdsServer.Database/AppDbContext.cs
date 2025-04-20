@@ -2,11 +2,12 @@
 
 using IdsServer.Database.Models;
 using IdsServer.Database.Models.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdsServer.Database;
 
-public partial class AppDbContext : DbContext
+public partial class AppDbContext : IdentityDbContext
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="AppDbContext"/> class.

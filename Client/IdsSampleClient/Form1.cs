@@ -113,7 +113,7 @@ namespace IdsSampleClient
                 Time = basketGridData.WarenkorbInfo.Time.ToString("HH:mm:ss"),
 
                 Version = Helper.GetXmlEnumValue(basketGridData.WarenkorbInfo.Version),
-               // OrderItems = basketGridData.Order.OrderItem.ToList()
+                OrderItems = basketGridData.Order.OrderItem.ToList()
             };
 
             var masterList = new List<BasketGridData> { master };

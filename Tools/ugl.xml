@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Generic>
+  <fileInfo>
+    <name>B0001445985N.001</name>
+    <size>3 KB</size>
+    <creation>2024-03-11T11:27:23</creation>
+    <lastwrite>2023-07-19T16:38:11</lastwrite>
+    <format>UGL</format>
+  </fileInfo>
+  <header>
+    <AN_KreditorNr>0_11582</AN_KreditorNr>
+    <AG_DebitorNr>holter</AG_DebitorNr>
+    <DI_DP>PA</DI_DP>
+    <AN_VergNr>Wilo und Grundf</AN_VergNr>
+    <PI_Name>Wilo und Grundfos</PI_Name>
+    <PI_Bez>Wilo und Grundfos</PI_Bez>
+    <AG_VergNr>0001445985</AG_VergNr>
+    <PI_Waehrung>EUR</PI_Waehrung>
+    <DI_Version>04.00</DI_Version>
+    <BI_SachBearb>NIKLASD</BI_SachBearb>
+    <DI_Datum>2023-07-18</DI_Datum>
+  </header>
+  <ArtPos>
+    <PosNrHW>0000000010</PosNrHW>
+    <PosNrGH>0000000010</PosNrGH>
+    <ArtNr>ALP1/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>641.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>175.82</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>0</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000020</PosNrHW>
+    <PosNrGH>0000000020</PosNrGH>
+    <ArtNr>ALP1/25/40/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-40, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>566.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>155.27</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>1</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000030</PosNrHW>
+    <PosNrGH>0000000030</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>2</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000040</PosNrHW>
+    <PosNrGH>0000000040</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>3</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000050</PosNrHW>
+    <PosNrGH>0000000050</PosNrGH>
+    <ArtNr>KEM574XL15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti XL Außenarmatur 574 05</Kurztext1>
+    <Kurztext2>frostsicher DN15 Einbaulänge 530mm</Kurztext2>
+    <PrBrutto>323.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>67.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>4</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000060</PosNrHW>
+    <PosNrGH>0000000060</PosNrGH>
+    <ArtNr>KEM574/15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti plus Außenarmatur 574 00</Kurztext1>
+    <Kurztext2>frostsicher DN15 1/2' Schaftlänge 415mm</Kurztext2>
+    <PrBrutto>263.84</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>61.24</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>5</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000070</PosNrHW>
+    <PosNrGH>0000000070</PosNrGH>
+    <ArtNr>LIMFM60</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22004 für Lüfter</Kurztext1>
+    <Kurztext2>mit Abdeckung</Kurztext2>
+    <PrBrutto>215.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>101.52</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>6</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000080</PosNrHW>
+    <PosNrGH>0000000080</PosNrGH>
+    <ArtNr>LIMFM60CNR</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22008 f.Lüfter m.</Kurztext1>
+    <Kurztext2>Abd.u.einstellbarem Nachlaufrelais C-NR</Kurztext2>
+    <PrBrutto>282.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>133.70</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>7</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000090</PosNrHW>
+    <PosNrGH>0000000090</PosNrGH>
+    <ArtNr>LIMFM</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M Gehäuse 21018</Kurztext1>
+    <Kurztext2>Anschlussstutzen links oben</Kurztext2>
+    <PrBrutto>34.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>16.59</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>8</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000100</PosNrHW>
+    <PosNrGH>0000000100</PosNrGH>
+    <ArtNr>SCH04907</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Schell Eckventil 04907 regulierbar,</Kurztext1>
+    <Kurztext2>nicht selbstdichtend 1/2' chrom</Kurztext2>
+    <PrBrutto>15.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>2.79</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>9</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000110</PosNrHW>
+    <PosNrGH>0000000110</PosNrGH>
+    <ArtNr>HU1010</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1010-</Kurztext1>
+    <Kurztext2>G mit Geberit UP-Spülkasten UP320</Kurztext2>
+    <PrBrutto>370.47</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>170.92</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>10</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000120</PosNrHW>
+    <PosNrGH>0000000120</PosNrGH>
+    <ArtNr>HU1020</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1020-</Kurztext1>
+    <Kurztext2>G m.Geberit UP-SPK m.Twico2 50x15x108cm</Kurztext2>
+    <PrBrutto>483.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>212.91</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>11</OZ>
+  </ArtPos>
+   <ArtPos>
+    <PosNrHW>0000000010</PosNrHW>
+    <PosNrGH>0000000010</PosNrGH>
+    <ArtNr>ALP1/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>641.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>175.82</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>0</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000020</PosNrHW>
+    <PosNrGH>0000000020</PosNrGH>
+    <ArtNr>ALP1/25/40/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-40, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>566.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>155.27</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>1</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000030</PosNrHW>
+    <PosNrGH>0000000030</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>2</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000040</PosNrHW>
+    <PosNrGH>0000000040</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>3</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000050</PosNrHW>
+    <PosNrGH>0000000050</PosNrGH>
+    <ArtNr>KEM574XL15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti XL Außenarmatur 574 05</Kurztext1>
+    <Kurztext2>frostsicher DN15 Einbaulänge 530mm</Kurztext2>
+    <PrBrutto>323.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>67.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>4</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000060</PosNrHW>
+    <PosNrGH>0000000060</PosNrGH>
+    <ArtNr>KEM574/15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti plus Außenarmatur 574 00</Kurztext1>
+    <Kurztext2>frostsicher DN15 1/2' Schaftlänge 415mm</Kurztext2>
+    <PrBrutto>263.84</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>61.24</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>5</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000070</PosNrHW>
+    <PosNrGH>0000000070</PosNrGH>
+    <ArtNr>LIMFM60</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22004 für Lüfter</Kurztext1>
+    <Kurztext2>mit Abdeckung</Kurztext2>
+    <PrBrutto>215.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>101.52</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>6</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000080</PosNrHW>
+    <PosNrGH>0000000080</PosNrGH>
+    <ArtNr>LIMFM60CNR</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22008 f.Lüfter m.</Kurztext1>
+    <Kurztext2>Abd.u.einstellbarem Nachlaufrelais C-NR</Kurztext2>
+    <PrBrutto>282.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>133.70</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>7</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000090</PosNrHW>
+    <PosNrGH>0000000090</PosNrGH>
+    <ArtNr>LIMFM</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M Gehäuse 21018</Kurztext1>
+    <Kurztext2>Anschlussstutzen links oben</Kurztext2>
+    <PrBrutto>34.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>16.59</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>8</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000100</PosNrHW>
+    <PosNrGH>0000000100</PosNrGH>
+    <ArtNr>SCH04907</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Schell Eckventil 04907 regulierbar,</Kurztext1>
+    <Kurztext2>nicht selbstdichtend 1/2' chrom</Kurztext2>
+    <PrBrutto>15.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>2.79</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>9</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000110</PosNrHW>
+    <PosNrGH>0000000110</PosNrGH>
+    <ArtNr>HU1010</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1010-</Kurztext1>
+    <Kurztext2>G mit Geberit UP-Spülkasten UP320</Kurztext2>
+    <PrBrutto>370.47</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>170.92</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>10</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000120</PosNrHW>
+    <PosNrGH>0000000120</PosNrGH>
+    <ArtNr>HU1020</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1020-</Kurztext1>
+    <Kurztext2>G m.Geberit UP-SPK m.Twico2 50x15x108cm</Kurztext2>
+    <PrBrutto>483.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>212.91</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>11</OZ>
+  </ArtPos>
+    <ArtPos>
+    <PosNrHW>0000000010</PosNrHW>
+    <PosNrGH>0000000010</PosNrGH>
+    <ArtNr>ALP1/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>641.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>175.82</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>0</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000020</PosNrHW>
+    <PosNrGH>0000000020</PosNrGH>
+    <ArtNr>ALP1/25/40/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-40, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>566.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>155.27</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>1</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000030</PosNrHW>
+    <PosNrGH>0000000030</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>2</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000040</PosNrHW>
+    <PosNrGH>0000000040</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>3</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000050</PosNrHW>
+    <PosNrGH>0000000050</PosNrGH>
+    <ArtNr>KEM574XL15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti XL Außenarmatur 574 05</Kurztext1>
+    <Kurztext2>frostsicher DN15 Einbaulänge 530mm</Kurztext2>
+    <PrBrutto>323.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>67.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>4</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000060</PosNrHW>
+    <PosNrGH>0000000060</PosNrGH>
+    <ArtNr>KEM574/15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti plus Außenarmatur 574 00</Kurztext1>
+    <Kurztext2>frostsicher DN15 1/2' Schaftlänge 415mm</Kurztext2>
+    <PrBrutto>263.84</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>61.24</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>5</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000070</PosNrHW>
+    <PosNrGH>0000000070</PosNrGH>
+    <ArtNr>LIMFM60</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22004 für Lüfter</Kurztext1>
+    <Kurztext2>mit Abdeckung</Kurztext2>
+    <PrBrutto>215.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>101.52</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>6</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000080</PosNrHW>
+    <PosNrGH>0000000080</PosNrGH>
+    <ArtNr>LIMFM60CNR</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22008 f.Lüfter m.</Kurztext1>
+    <Kurztext2>Abd.u.einstellbarem Nachlaufrelais C-NR</Kurztext2>
+    <PrBrutto>282.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>133.70</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>7</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000090</PosNrHW>
+    <PosNrGH>0000000090</PosNrGH>
+    <ArtNr>LIMFM</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M Gehäuse 21018</Kurztext1>
+    <Kurztext2>Anschlussstutzen links oben</Kurztext2>
+    <PrBrutto>34.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>16.59</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>8</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000100</PosNrHW>
+    <PosNrGH>0000000100</PosNrGH>
+    <ArtNr>SCH04907</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Schell Eckventil 04907 regulierbar,</Kurztext1>
+    <Kurztext2>nicht selbstdichtend 1/2' chrom</Kurztext2>
+    <PrBrutto>15.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>2.79</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>9</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000110</PosNrHW>
+    <PosNrGH>0000000110</PosNrGH>
+    <ArtNr>HU1010</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1010-</Kurztext1>
+    <Kurztext2>G mit Geberit UP-Spülkasten UP320</Kurztext2>
+    <PrBrutto>370.47</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>170.92</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>10</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000120</PosNrHW>
+    <PosNrGH>0000000120</PosNrGH>
+    <ArtNr>HU1020</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1020-</Kurztext1>
+    <Kurztext2>G m.Geberit UP-SPK m.Twico2 50x15x108cm</Kurztext2>
+    <PrBrutto>483.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>212.91</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>11</OZ>
+  </ArtPos>
+   <ArtPos>
+    <PosNrHW>0000000010</PosNrHW>
+    <PosNrGH>0000000010</PosNrGH>
+    <ArtNr>ALP1/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>641.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>175.82</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>0</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000020</PosNrHW>
+    <PosNrGH>0000000020</PosNrGH>
+    <ArtNr>ALP1/25/40/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha1 Umwälzpumpe 25-40, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>566.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>155.27</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>1</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000030</PosNrHW>
+    <PosNrGH>0000000030</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>2</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000040</PosNrHW>
+    <PosNrGH>0000000040</PosNrGH>
+    <ArtNr>ALP2/25/60/180</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Grundfos Alpha2 Umwälzpumpe 25-60, 180mm</Kurztext1>
+    <Kurztext2>Rp 1',PN10, 230V, inkl. Isolierung</Kurztext2>
+    <PrBrutto>841.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>245.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>3</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000050</PosNrHW>
+    <PosNrGH>0000000050</PosNrGH>
+    <ArtNr>KEM574XL15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti XL Außenarmatur 574 05</Kurztext1>
+    <Kurztext2>frostsicher DN15 Einbaulänge 530mm</Kurztext2>
+    <PrBrutto>323.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>67.34</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>4</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000060</PosNrHW>
+    <PosNrGH>0000000060</PosNrGH>
+    <ArtNr>KEM574/15</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Kemper Frosti plus Außenarmatur 574 00</Kurztext1>
+    <Kurztext2>frostsicher DN15 1/2' Schaftlänge 415mm</Kurztext2>
+    <PrBrutto>263.84</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>61.24</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>5</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000070</PosNrHW>
+    <PosNrGH>0000000070</PosNrGH>
+    <ArtNr>LIMFM60</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22004 für Lüfter</Kurztext1>
+    <Kurztext2>mit Abdeckung</Kurztext2>
+    <PrBrutto>215.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>101.52</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>6</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000080</PosNrHW>
+    <PosNrGH>0000000080</PosNrGH>
+    <ArtNr>LIMFM60CNR</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M60 Einsatz 22008 f.Lüfter m.</Kurztext1>
+    <Kurztext2>Abd.u.einstellbarem Nachlaufrelais C-NR</Kurztext2>
+    <PrBrutto>282.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>133.70</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>7</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000090</PosNrHW>
+    <PosNrGH>0000000090</PosNrGH>
+    <ArtNr>LIMFM</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Limodor F/M Gehäuse 21018</Kurztext1>
+    <Kurztext2>Anschlussstutzen links oben</Kurztext2>
+    <PrBrutto>34.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>16.59</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>8</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000100</PosNrHW>
+    <PosNrGH>0000000100</PosNrGH>
+    <ArtNr>SCH04907</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Schell Eckventil 04907 regulierbar,</Kurztext1>
+    <Kurztext2>nicht selbstdichtend 1/2' chrom</Kurztext2>
+    <PrBrutto>15.00</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>2.79</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>9</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000110</PosNrHW>
+    <PosNrGH>0000000110</PosNrGH>
+    <ArtNr>HU1010</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1010-</Kurztext1>
+    <Kurztext2>G mit Geberit UP-Spülkasten UP320</Kurztext2>
+    <PrBrutto>370.47</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>170.92</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>10</OZ>
+  </ArtPos>
+  <ArtPos>
+    <PosNrHW>0000000120</PosNrHW>
+    <PosNrGH>0000000120</PosNrGH>
+    <ArtNr>HU1020</ArtNr>
+    <Menge>1.000</Menge>
+    <Kurztext1>Huter Matro WC-Montageelement HU-WC1020-</Kurztext1>
+    <Kurztext2>G m.Geberit UP-SPK m.Twico2 50x15x108cm</Kurztext2>
+    <PrBrutto>483.12</PrBrutto>
+    <PrBasis>1</PrBasis>
+    <PrNetto>212.91</PrNetto>
+    <Rabatt1>0.00</Rabatt1>
+    <Rabatt2>0.00</Rabatt2>
+    <Art>N</Art>
+    <Einheit>PCE</Einheit>
+    <PreisKZ>1</PreisKZ>
+    <Lagerkennzeichen>L</Lagerkennzeichen>
+    <OZ>11</OZ>
+  </ArtPos>
+</Generic>
