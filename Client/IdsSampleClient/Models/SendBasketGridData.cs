@@ -3,7 +3,7 @@
 using BasketSend;
 
 namespace IdsSampleClient.Models;
-internal class SendBasketGridData
+internal class BasketGridData
 {
     public DateTime Date { get; set; }
     public string Time { get; set; }

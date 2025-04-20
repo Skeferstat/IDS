@@ -204,7 +204,7 @@
     <value>6</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>490, 416</value>
+    <value>642, 419</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 29</value>
@@ -779,28 +779,28 @@
   <data name="SaveBasketFileDialog.Filter" xml:space="preserve">
     <value>xml files | *.xml</value>
   </data>
-  <data name="ReceivedRawArticlesTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="ReceivedRawArticlesGridControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="ReceivedRawArticlesTreeView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="ReceivedRawArticlesGridControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 25</value>
   </data>
-  <data name="ReceivedRawArticlesTreeView.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="ReceivedRawArticlesGridControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>872, 223</value>
   </data>
-  <data name="ReceivedRawArticlesTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="ReceivedRawArticlesGridControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.Name" xml:space="preserve">
-    <value>ReceivedRawArticlesTreeView</value>
+  <data name="&gt;&gt;ReceivedRawArticlesGridControl.Name" xml:space="preserve">
+    <value>ReceivedRawArticlesGridControl</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ReceivedRawArticlesGridControl.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v24.2, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ReceivedRawArticlesGridControl.Parent" xml:space="preserve">
     <value>groupBox6</value>
   </data>
-  <data name="&gt;&gt;ReceivedRawArticlesTreeView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;ReceivedRawArticlesGridControl.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
@@ -864,7 +864,7 @@
     <value>3, 3</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 483</value>
+    <value>1251, 483</value>
   </data>
   <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -891,7 +891,7 @@
     <value>0, 0</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>930, 489</value>
+    <value>1257, 489</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -945,7 +945,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="ArticlesTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>930, 489</value>
+    <value>1257, 489</value>
   </data>
   <data name="ArticlesTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -969,7 +969,7 @@
     <value>4, 29</value>
   </data>
   <data name="DeppLinkTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>930, 489</value>
+    <value>1257, 489</value>
   </data>
   <data name="DeppLinkTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1014,7 +1014,7 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>46</value>
+    <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 20</value>
@@ -1060,6 +1060,12 @@
   </data>
   <data name="&gt;&gt;SaveBasketFileDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gridView3.Name" xml:space="preserve">
+    <value>gridView3</value>
+  </data>
+  <data name="&gt;&gt;gridView3.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Views.Grid.GridView, DevExpress.XtraGrid.v24.2, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

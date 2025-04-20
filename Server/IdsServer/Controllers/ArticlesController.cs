@@ -9,6 +9,7 @@ using System.Text;
 using System.Xml.Serialization;
 using AutoMapper;
 using BasketSend;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace IdsServer.Controllers;
 
@@ -88,8 +89,6 @@ public class ArticlesController : Controller
         XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
         namespaces.Add("", "http://www.itek.de/Shop-Anbindung/Warenkorb/"); 
         serializer.Serialize(stringWriter, articles, namespaces);
-
-        var b = stringWriter.ToString();
 
 
         StringContent content = new StringContent(stringWriter.ToString(), Encoding.UTF8, "application/xml");

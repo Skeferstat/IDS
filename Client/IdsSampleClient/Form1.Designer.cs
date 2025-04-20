@@ -62,13 +62,14 @@
             SaveBasketFileDialog = new SaveFileDialog();
             groupBox4 = new GroupBox();
             groupBox6 = new GroupBox();
-            ReceivedRawArticlesTreeView = new TreeView();
             SearchArticleHookUriTextBox = new TextBox();
             groupBox5 = new GroupBox();
             tabControl1 = new TabControl();
             BaksetTabPage = new TabPage();
             ArticlesTabPage = new TabPage();
             DeppLinkTabPage = new TabPage();
+            ReceivedRawArticlesGridControl = new DevExpress.XtraGrid.GridControl();
+            gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CurrentBasketGridControl).BeginInit();
@@ -83,6 +84,8 @@
             BaksetTabPage.SuspendLayout();
             ArticlesTabPage.SuspendLayout();
             DeppLinkTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ReceivedRawArticlesGridControl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridView3).BeginInit();
             SuspendLayout();
             // 
             // OpenBasketFileButton
@@ -293,16 +296,10 @@
             // 
             // groupBox6
             // 
-            groupBox6.Controls.Add(ReceivedRawArticlesTreeView);
+            groupBox6.Controls.Add(ReceivedRawArticlesGridControl);
             resources.ApplyResources(groupBox6, "groupBox6");
             groupBox6.Name = "groupBox6";
             groupBox6.TabStop = false;
-            // 
-            // ReceivedRawArticlesTreeView
-            // 
-            resources.ApplyResources(ReceivedRawArticlesTreeView, "ReceivedRawArticlesTreeView");
-            ReceivedRawArticlesTreeView.LabelEdit = true;
-            ReceivedRawArticlesTreeView.Name = "ReceivedRawArticlesTreeView";
             // 
             // SearchArticleHookUriTextBox
             // 
@@ -348,6 +345,19 @@
             DeppLinkTabPage.Name = "DeppLinkTabPage";
             DeppLinkTabPage.UseVisualStyleBackColor = true;
             // 
+            // ReceivedRawArticlesGridControl
+            // 
+            resources.ApplyResources(ReceivedRawArticlesGridControl, "ReceivedRawArticlesGridControl");
+            ReceivedRawArticlesGridControl.MainView = gridView3;
+            ReceivedRawArticlesGridControl.Name = "ReceivedRawArticlesGridControl";
+            ReceivedRawArticlesGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView3 });
+            // 
+            // gridView3
+            // 
+            gridView3.GridControl = ReceivedRawArticlesGridControl;
+            gridView3.Name = "gridView3";
+            gridView3.OptionsView.ShowGroupPanel = false;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -375,6 +385,8 @@
             BaksetTabPage.ResumeLayout(false);
             ArticlesTabPage.ResumeLayout(false);
             DeppLinkTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ReceivedRawArticlesGridControl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -406,7 +418,6 @@
         private SaveFileDialog SaveBasketFileDialog;
         private GroupBox groupBox4;
         private GroupBox groupBox6;
-        private TreeView ReceivedRawArticlesTreeView;
         private Label label7;
         private Label label8;
         private TextBox SearchArticleHookUriTextBox;
@@ -420,5 +431,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.GridControl ReceivedBasketGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.GridControl ReceivedRawArticlesGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
     }
 }

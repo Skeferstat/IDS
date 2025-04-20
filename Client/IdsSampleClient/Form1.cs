@@ -30,6 +30,7 @@ namespace IdsSampleClient
     {
         private readonly AppSettings _appSettings;
         private typeWarenkorb? _currentBasketGridData;
+        private typeWarenkorb? _receivedBasketGridData;
 
         public MainForm(IOptions<AppSettings> appSettings)
         {
@@ -62,22 +63,23 @@ namespace IdsSampleClient
             else
             {
                 // Logic to handle the basket received event.
+                _receivedBasketGridData = IdsLibrary.Serializing.Deserializer.DeserializeBasketSend(eventArgs.Xml);
                 BindToDataGrid(eventArgs.Xml, ReceivedBasketGridControl);
             }
         }
 
         private void OnArticlesReceived(object? sender, DataReceivedEventArgs eventArgs)
         {
-            //if (ReceivedRawArticlesTreeView.InvokeRequired)
-            //{
-            //    // Execute the same method on the UI thread
-            //    ReceivedRawArticlesTreeView.Invoke(new MethodInvoker(() => OnArticlesReceived(sender, eventArgs)));
-            //}
-            //else
-            //{
-            //    // Logic to handle the articles received event.
-            //    BindArticlesXmlToTreeView(eventArgs.Xml, ReceivedRawArticlesTreeView);
-            //}
+            if (ReceivedRawArticlesGridControl.InvokeRequired)
+            {
+                // Execute the same method on the UI thread
+                ReceivedRawArticlesGridControl.Invoke(new MethodInvoker(() => OnArticlesReceived(sender, eventArgs)));
+            }
+            else
+            {
+                // Logic to handle the articles received event.
+                BindToDataGrid(eventArgs.Xml, ReceivedRawArticlesGridControl);
+            }
         }
 
         private void OnOpenBasketFile(object sender, EventArgs eventArgs)
@@ -97,23 +99,24 @@ namespace IdsSampleClient
                     throw;
                 }
 
+                _currentBasketGridData = IdsLibrary.Serializing.Deserializer.DeserializeBasketSend(xmlDoc.InnerXml);
                 BindToDataGrid(xmlDoc.InnerXml, CurrentBasketGridControl);
             }
         }
 
         private void BindToDataGrid(string xmlData, GridControl gridControl)
         {
-            _currentBasketGridData = IdsLibrary.Serializing.Deserializer.DeserializeBasketSend(xmlData);
-            var master = new SendBasketGridData
+            var basketGridData = IdsLibrary.Serializing.Deserializer.DeserializeBasketSend(xmlData);
+            var master = new BasketGridData
             {
-                Date = _currentBasketGridData!.WarenkorbInfo.Date,
-                Time = _currentBasketGridData.WarenkorbInfo.Time.ToString("HH:mm:ss"),
+                Date = basketGridData!.WarenkorbInfo.Date,
+                Time = basketGridData.WarenkorbInfo.Time.ToString("HH:mm:ss"),
 
-                Version = Helper.GetXmlEnumValue(_currentBasketGridData.WarenkorbInfo.Version),
-                OrderItems = _currentBasketGridData.Order.OrderItem.ToList()
+                Version = Helper.GetXmlEnumValue(basketGridData.WarenkorbInfo.Version),
+               // OrderItems = basketGridData.Order.OrderItem.ToList()
             };
 
-            var masterList = new List<SendBasketGridData> { master };
+            var masterList = new List<BasketGridData> { master };
             gridControl.DataSource = masterList;
 
             GridView detailView = new GridView(gridControl);
@@ -137,7 +140,7 @@ namespace IdsSampleClient
         {
             DialogResult result = SaveBasketFileDialog.ShowDialog();
 
-            SendBasketGridData? gridBasket = ((CurrentBasketGridControl.DataSource as List<SendBasketGridData>)!).FirstOrDefault();
+            BasketGridData? gridBasket = ((CurrentBasketGridControl.DataSource as List<BasketGridData>)!).FirstOrDefault();
 
             _currentBasketGridData!.WarenkorbInfo.Date = gridBasket!.Date;
             _currentBasketGridData.WarenkorbInfo.Time = DateTime.ParseExact(gridBasket.Time, "HH:mm:ss", CultureInfo.InvariantCulture);
@@ -158,7 +161,7 @@ namespace IdsSampleClient
 
         private async void OnSendBasketToShop(object sender, EventArgs eventArgs)
         {
-            SendBasketGridData? gridBasket = ((CurrentBasketGridControl.DataSource as List<SendBasketGridData>)!).FirstOrDefault();
+            BasketGridData? gridBasket = ((CurrentBasketGridControl.DataSource as List<BasketGridData>)!).FirstOrDefault();
 
             _currentBasketGridData!.WarenkorbInfo.Date = gridBasket!.Date;
             _currentBasketGridData.WarenkorbInfo.Time = DateTime.ParseExact(gridBasket.Time, "HH:mm:ss", CultureInfo.InvariantCulture);
@@ -251,23 +254,14 @@ namespace IdsSampleClient
 
         private void OnCopyReceivedBasketToCurrentBasket(object sender, EventArgs e)
         {
-            //if (ReceivedRawBasketTreeView.Nodes.Count < 1)
-            //{
-            //    return;
-            //}
+            BasketGridData? gridBasket = ((ReceivedBasketGridControl.DataSource as List<BasketGridData>)!).FirstOrDefault();
+            if (gridBasket == null)
+            {
+                return;
+            }
 
-            //string xml = TreeNodeHelper.ConvertToXml(ReceivedRawBasketTreeView);
-            //BindBasketXmlToTreeView(xml, CurrentRawBasketTreeView);
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
+            var xml = IdsConverter.ConvertToXml(_receivedBasketGridData!);
+            BindToDataGrid(xml, CurrentBasketGridControl);
         }
     }
 }
