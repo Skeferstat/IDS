@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
@@ -19,7 +19,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
       <PackageReference Include="Microsoft.FeatureManagement" />
       <PackageReference Include="MiniProfiler.AspNetCore.Mvc" />
       <PackageReference Include="Serilog.AspNetCore" />
@@ -28,7 +28,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Library\IdsLibrary\IdsLibrary.csproj" />
-      <ProjectReference Include="..\..\Library\IdsServer.Library\IdsServer.Library.csproj" />
       <ProjectReference Include="..\IdsServer.Database\IdsServer.Database.csproj" />
     </ItemGroup>
 

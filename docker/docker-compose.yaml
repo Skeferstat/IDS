@@ -1,0 +1,21 @@
+
+services:
+
+ mssql-db-ids:
+    container_name: mssql-db-ids
+    hostname: mssql-db-ids
+    build:
+      dockerfile: sqlserver-fulltext/Dockerfile
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_USER: 'sa'
+      MSSQL_SA_PASSWORD: 'A!tr0ngP@ssw0rd!'
+      MSSQL_DATABASE: 'IdsServerDb' 
+      # MSSQL_DATA_DIR: /var/opt/mssql/data
+      MSSQL_PID: 'Developer' 
+    ports: 
+      - "1480:1433"
+    # volumes:
+    #   - ./data:/var/opt/mssql/data
+    #   - ./log:/var/opt/mssql/log
+    #   - ./secrets:/var/opt/mssql/secrets

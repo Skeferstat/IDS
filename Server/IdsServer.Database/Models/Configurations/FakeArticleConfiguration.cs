@@ -24,8 +24,11 @@ public partial class FakeArticleConfiguration : IEntityTypeConfiguration<FakeArt
         entity.Property(e => e.Description)
             .HasMaxLength(300);
 
-        entity.Property(e => e.NetPrice).HasPrecision(2);
-        entity.Property(e => e.OfferPrice).HasPrecision(2);
+        entity.Property(e => e.NetPrice)
+            .HasPrecision(18, 2);
+
+        entity.Property(e => e.OfferPrice)
+            .HasPrecision(18, 2);
 
         entity.Property(e => e.ImageUrl)
             .HasMaxLength(300);

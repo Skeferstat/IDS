@@ -73,7 +73,7 @@ public static class ApiExtensions
     {
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
-            options.UseSqlite(
+            options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
@@ -87,19 +87,23 @@ public static class ApiExtensions
     /// <returns>Services collection.</returns>
     public static IServiceCollection RegisterMapper(this IServiceCollection services)
     {
+        using var loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+            builder.AddDebug();
+        });
+
         MapperConfiguration mapperConfig = new(mc =>
         {
             mc.AddProfile<CommonMappingProfile>();
-        });
-
-        //mapperConfig.AssertConfigurationIsValid();
+        }, loggerFactory);
 
         IMapper mapper = mapperConfig.CreateMapper();
         services.AddSingleton(mapper);
         return services;
     }
 
-    
+
 
     public static void RegisterFeatureManagement(this WebApplicationBuilder builder)
     {
