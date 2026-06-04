@@ -146,7 +146,7 @@ namespace IdsSampleClient
             _currentBasketGridData.WarenkorbInfo.Time = DateTime.ParseExact(gridBasket.Time, "HH:mm:ss", CultureInfo.InvariantCulture);
             _currentBasketGridData.WarenkorbInfo.Version = Helper.GetEnumFromXmlValue<typeWarenkorbInfoVersion>(gridBasket.Version);
 
-            _currentBasketGridData.Order.OrderItem = gridBasket.OrderItems.ToArray();
+            _currentBasketGridData.Order.OrderItem = gridBasket.OrderItems?.ToArray() ?? [];
             var xml = IdsConverter.ConvertToXml(_currentBasketGridData!);
 
             xml = xml.Replace("encoding=\"utf-16\"", "encoding=\"utf-8\"");
@@ -167,7 +167,7 @@ namespace IdsSampleClient
             _currentBasketGridData.WarenkorbInfo.Time = DateTime.ParseExact(gridBasket.Time, "HH:mm:ss", CultureInfo.InvariantCulture);
             _currentBasketGridData.WarenkorbInfo.Version = Helper.GetEnumFromXmlValue<typeWarenkorbInfoVersion>(gridBasket.Version);
 
-            _currentBasketGridData.Order.OrderItem = gridBasket.OrderItems.ToArray();
+            _currentBasketGridData.Order.OrderItem = gridBasket.OrderItems?.ToArray() ?? [];
 
             string shopUrl = ShopUrlTextBox.Text;
             string hookUri = BasketHookUriTextBox.Text;

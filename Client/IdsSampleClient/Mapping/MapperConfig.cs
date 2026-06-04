@@ -8,7 +8,7 @@ internal class MapperConfig
         var config = new MapperConfiguration(cfg =>
         {
             //cfg.AddProfile<BasketReceiveMappingProfile>();
-        });
+        }, loggerFactory: null);
         var mapper = new Mapper(config);
         return mapper;
     }

@@ -14,7 +14,7 @@ public class Helper
         {
             if (memInfo[0].GetCustomAttributes(typeof(XmlEnumAttribute), false).FirstOrDefault() is XmlEnumAttribute attr)
             {
-                return attr.Name;
+                return attr.Name ?? value.ToString();
             }
         }
         return value.ToString();
