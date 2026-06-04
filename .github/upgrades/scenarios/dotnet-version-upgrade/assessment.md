@@ -16,8 +16,10 @@ This document provides a comprehensive overview of the projects and their depend
 - [Projects Relationship Graph](#projects-relationship-graph)
 - [Project Details](#project-details)
 
-  - [IdsSampleClient.csproj](#idssampleclientcsproj)
+  - [IdsServer.csproj](#idsservercsproj)
   - [X:\workspaces\dtcrssmd\IDS\Library\IdsLibrary\IdsLibrary.csproj](#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj)
+  - [X:\workspaces\dtcrssmd\IDS\Library\IdsServer.Library\IdsServer.Library.csproj](#x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj)
+  - [X:\workspaces\dtcrssmd\IDS\Server\IdsServer.Database\IdsServer.Database.csproj](#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj)
 
 
 ## Executive Summary
@@ -26,56 +28,64 @@ This document provides a comprehensive overview of the projects and their depend
 
 | Metric | Count | Status |
 | :--- | :---: | :--- |
-| Total Projects | 2 | All require upgrade |
-| Total NuGet Packages | 12 | 3 need upgrade |
-| Total Code Files | 35 |  |
-| Total Code Files with Incidents | 20 |  |
-| Total Lines of Code | 5201 |  |
-| Total Number of Issues | 774 |  |
-| Estimated LOC to modify | 770+ | at least 14,8% of codebase |
+| Total Projects | 4 | 1 require upgrade |
+| Total NuGet Packages | 18 | 2 need upgrade |
+| Total Code Files | 56 |  |
+| Total Code Files with Incidents | 5 |  |
+| Total Lines of Code | 6028 |  |
+| Total Number of Issues | 8 |  |
+| Estimated LOC to modify | 5+ | at least 0,1% of codebase |
 
 ### Projects Compatibility
 
 | Project | Target Framework | Difficulty | Package Issues | API Issues | Est. LOC Impact | Description |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| [IdsSampleClient.csproj](#idssampleclientcsproj) | net9.0-windows | 🟡 Medium | 3 | 729 | 729+ | Wpf, Sdk Style = True |
-| [X:\workspaces\dtcrssmd\IDS\Library\IdsLibrary\IdsLibrary.csproj](#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj) | netstandard2.1 | 🟢 Low | 0 | 41 | 41+ | ClassLibrary, Sdk Style = True |
+| [IdsServer.csproj](#idsservercsproj) | net8.0 | 🟢 Low | 2 | 5 | 5+ | AspNetCore, Sdk Style = True |
+| [X:\workspaces\dtcrssmd\IDS\Library\IdsLibrary\IdsLibrary.csproj](#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj) | net10.0 | ✅ None | 0 | 0 |  | ClassLibrary, Sdk Style = True |
+| [X:\workspaces\dtcrssmd\IDS\Library\IdsServer.Library\IdsServer.Library.csproj](#x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj) | netstandard2.1 | ✅ None | 0 | 0 |  | ClassLibrary, Sdk Style = True |
+| [X:\workspaces\dtcrssmd\IDS\Server\IdsServer.Database\IdsServer.Database.csproj](#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj) | net8.0 | ✅ None | 0 | 0 |  | ClassLibrary, Sdk Style = True |
 
 ### Package Compatibility
 
 | Status | Count | Percentage |
 | :--- | :---: | :---: |
-| ✅ Compatible | 9 | 75,0% |
-| ⚠️ Incompatible | 1 | 8,3% |
-| 🔄 Upgrade Recommended | 2 | 16,7% |
-| ***Total NuGet Packages*** | ***12*** | ***100%*** |
+| ✅ Compatible | 16 | 88,9% |
+| ⚠️ Incompatible | 0 | 0,0% |
+| 🔄 Upgrade Recommended | 2 | 11,1% |
+| ***Total NuGet Packages*** | ***18*** | ***100%*** |
 
 ### API Compatibility
 
 | Category | Count | Impact |
 | :--- | :---: | :--- |
-| 🔴 Binary Incompatible | 710 | High - Require code changes |
+| 🔴 Binary Incompatible | 1 | High - Require code changes |
 | 🟡 Source Incompatible | 0 | Medium - Needs re-compilation and potential conflicting API error fixing |
-| 🔵 Behavioral change | 60 | Low - Behavioral changes that may require testing at runtime |
-| ✅ Compatible | 2901 |  |
-| ***Total APIs Analyzed*** | ***3671*** |  |
+| 🔵 Behavioral change | 4 | Low - Behavioral changes that may require testing at runtime |
+| ✅ Compatible | 2245 |  |
+| ***Total APIs Analyzed*** | ***2250*** |  |
 
 ## Aggregate NuGet packages details
 
 | Package | Current Version | Suggested Version | Projects | Description |
 | :--- | :---: | :---: | :--- | :--- |
 | Ardalis.SmartEnum | 8.2.0 |  | [IdsLibrary.csproj](#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj) | ✅Compatible |
-| AutoMapper | 13.0.1 | 16.1.1 | [IdsSampleClient.csproj](#idssampleclientcsproj) | NuGet package contains security vulnerability |
-| DevExpress.Win.Design | 24.2.5 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ⚠️NuGet package is incompatible |
-| FluentValidation | 11.11.0 |  | [IdsLibrary.csproj](#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj) | ✅Compatible |
-| Microsoft.Extensions.Hosting | 9.0.0 | 10.0.8 | [IdsSampleClient.csproj](#idssampleclientcsproj) | NuGet package upgrade is recommended |
-| Microsoft.Web.WebView2 | 1.0.2903.40 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
-| Serilog | 4.2.0 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
-| Serilog.Extensions.Hosting | 9.0.0 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
-| Serilog.Settings.Configuration | 9.0.0 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
-| Serilog.Sinks.Console | 6.0.0 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
-| Serilog.Sinks.Debug | 3.0.0 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
-| Serilog.Sinks.File | 6.0.0 |  | [IdsSampleClient.csproj](#idssampleclientcsproj) | ✅Compatible |
+| AutoMapper | 16.1.1 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| DevExtreme.AspNet.Core | 24.1.3 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| DevExtreme.AspNet.Data | 5.0.0 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| FluentValidation | 11.11.0 |  | [IdsLibrary.csproj](#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj)<br/>[IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| FluentValidation.DependencyInjectionExtensions | 11.11.0 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| Hellang.Middleware.ProblemDetails | 6.5.1 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| JetBrains.Annotations | 2024.3.0 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| MediatR | 12.4.1 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| Microsoft.EntityFrameworkCore | 9.0.1 |  | [IdsServer.Database.csproj](#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj) | ✅Compatible |
+| Microsoft.EntityFrameworkCore.Design | 9.0.1 | 10.0.8 | [IdsServer.csproj](#idsservercsproj)<br/>[IdsServer.Database.csproj](#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj) | NuGet package upgrade is recommended |
+| Microsoft.EntityFrameworkCore.Relational | 9.0.1 |  | [IdsServer.Database.csproj](#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj) | ✅Compatible |
+| Microsoft.EntityFrameworkCore.Sqlite | 9.0.1 | 10.0.8 | [IdsServer.csproj](#idsservercsproj) | NuGet package upgrade is recommended |
+| Microsoft.EntityFrameworkCore.Tools | 9.0.1 |  | [IdsServer.Database.csproj](#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj) | ✅Compatible |
+| Microsoft.FeatureManagement | 4.0.0 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| MiniProfiler.AspNetCore.Mvc | 4.5.4 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| Serilog.AspNetCore | 9.0.0 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
+| Throw | 1.4.0 |  | [IdsServer.csproj](#idsservercsproj) | ✅Compatible |
 
 ## Top API Migration Challenges
 
@@ -83,63 +93,15 @@ This document provides a comprehensive overview of the projects and their depend
 
 | Technology | Issues | Percentage | Migration Path |
 | :--- | :---: | :---: | :--- |
-| Windows Forms | 709 | 92,1% | Windows Forms APIs for building Windows desktop applications with traditional Forms-based UI that are available in .NET on Windows. Enable Windows Desktop support: Option 1 (Recommended): Target net9.0-windows; Option 2: Add <UseWindowsDesktop>true</UseWindowsDesktop>; Option 3 (Legacy): Use Microsoft.NET.Sdk.WindowsDesktop SDK. |
-| Windows Forms Legacy Controls | 1 | 0,1% | Legacy Windows Forms controls that have been removed from .NET Core/5+ including StatusBar, DataGrid, ContextMenu, MainMenu, MenuItem, and ToolBar. These controls were replaced by more modern alternatives. Use ToolStrip, MenuStrip, ContextMenuStrip, and DataGridView instead. |
 
 ### Most Frequent API Issues
 
 | API | Count | Percentage | Category |
 | :--- | :---: | :---: | :--- |
-| T:System.Windows.Forms.GroupBox | 79 | 10,3% | Binary Incompatible |
-| T:System.Windows.Forms.TextBox | 53 | 6,9% | Binary Incompatible |
-| T:System.Uri | 51 | 6,6% | Behavioral Change |
-| T:System.Windows.Forms.Button | 49 | 6,4% | Binary Incompatible |
-| T:System.Windows.Forms.Label | 48 | 6,2% | Binary Incompatible |
-| P:System.Windows.Forms.Control.Name | 36 | 4,7% | Binary Incompatible |
-| T:System.Windows.Forms.Control.ControlCollection | 34 | 4,4% | Binary Incompatible |
-| P:System.Windows.Forms.Control.Controls | 34 | 4,4% | Binary Incompatible |
-| M:System.Windows.Forms.Control.ControlCollection.Add(System.Windows.Forms.Control) | 34 | 4,4% | Binary Incompatible |
-| T:System.Windows.Forms.TabPage | 30 | 3,9% | Binary Incompatible |
-| T:System.Windows.Forms.ComboBox | 17 | 2,2% | Binary Incompatible |
-| T:System.Windows.Forms.OpenFileDialog | 15 | 1,9% | Binary Incompatible |
-| P:System.Windows.Forms.TextBox.Text | 14 | 1,8% | Binary Incompatible |
-| M:System.Windows.Forms.Control.ResumeLayout(System.Boolean) | 12 | 1,6% | Binary Incompatible |
-| M:System.Windows.Forms.Control.SuspendLayout | 12 | 1,6% | Binary Incompatible |
-| T:System.Windows.Forms.TabControl | 12 | 1,6% | Binary Incompatible |
-| T:System.Windows.Forms.TreeNodeCollection | 11 | 1,4% | Binary Incompatible |
-| P:System.Windows.Forms.TreeNode.Text | 10 | 1,3% | Binary Incompatible |
-| T:System.Windows.Forms.ToolTip | 10 | 1,3% | Binary Incompatible |
-| T:System.Windows.Forms.SaveFileDialog | 9 | 1,2% | Binary Incompatible |
-| T:System.Windows.Forms.TreeNode | 8 | 1,0% | Binary Incompatible |
-| P:System.Windows.Forms.TreeNode.Nodes | 7 | 0,9% | Binary Incompatible |
-| P:System.Windows.Forms.FileDialog.FileName | 7 | 0,9% | Binary Incompatible |
-| M:System.Windows.Forms.ToolTip.SetToolTip(System.Windows.Forms.Control,System.String) | 7 | 0,9% | Binary Incompatible |
-| M:System.Windows.Forms.Label.#ctor | 7 | 0,9% | Binary Incompatible |
-| T:System.Windows.Forms.AutoScaleMode | 6 | 0,8% | Binary Incompatible |
-| P:System.Windows.Forms.GroupBox.TabStop | 6 | 0,8% | Binary Incompatible |
-| E:System.Windows.Forms.Control.Click | 6 | 0,8% | Binary Incompatible |
-| P:System.Windows.Forms.ButtonBase.UseVisualStyleBackColor | 6 | 0,8% | Binary Incompatible |
-| M:System.Windows.Forms.GroupBox.#ctor | 6 | 0,8% | Binary Incompatible |
-| M:System.Windows.Forms.TextBox.#ctor | 6 | 0,8% | Binary Incompatible |
-| M:System.Windows.Forms.Button.#ctor | 6 | 0,8% | Binary Incompatible |
-| T:System.Windows.Forms.DialogResult | 6 | 0,8% | Binary Incompatible |
-| T:System.Windows.Forms.ComboBox.ObjectCollection | 5 | 0,6% | Binary Incompatible |
-| P:System.Windows.Forms.ComboBox.Items | 5 | 0,6% | Binary Incompatible |
-| M:System.Uri.#ctor(System.String) | 5 | 0,6% | Behavioral Change |
-| T:System.Xml.Serialization.XmlSerializer | 4 | 0,5% | Behavioral Change |
-| P:System.Windows.Forms.TreeNodeCollection.Item(System.Int32) | 4 | 0,5% | Binary Incompatible |
-| M:System.Windows.Forms.Form.#ctor | 4 | 0,5% | Binary Incompatible |
-| M:System.Windows.Forms.Control.PerformLayout | 4 | 0,5% | Binary Incompatible |
-| P:System.Windows.Forms.ComboBox.ObjectCollection.Count | 4 | 0,5% | Binary Incompatible |
-| P:System.Windows.Forms.TreeView.Nodes | 3 | 0,4% | Binary Incompatible |
-| T:System.Windows.Forms.DockStyle | 3 | 0,4% | Binary Incompatible |
-| P:System.Windows.Forms.TabPage.UseVisualStyleBackColor | 3 | 0,4% | Binary Incompatible |
-| M:System.Windows.Forms.TabPage.#ctor | 3 | 0,4% | Binary Incompatible |
-| M:System.Windows.Forms.Control.Show | 3 | 0,4% | Binary Incompatible |
-| P:System.Windows.Forms.TreeNodeCollection.Count | 2 | 0,3% | Binary Incompatible |
-| T:System.Windows.Forms.TreeView | 2 | 0,3% | Binary Incompatible |
-| T:System.Windows.Forms.ContextMenuStrip | 2 | 0,3% | Binary Incompatible |
-| P:System.Windows.Forms.TreeView.SelectedNode | 2 | 0,3% | Binary Incompatible |
+| T:System.Xml.Serialization.XmlSerializer | 2 | 40,0% | Behavioral Change |
+| T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions | 1 | 20,0% | Binary Incompatible |
+| M:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient(Microsoft.Extensions.DependencyInjection.IServiceCollection) | 1 | 20,0% | Behavioral Change |
+| M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String) | 1 | 20,0% | Behavioral Change |
 
 ## Projects Relationship Graph
 
@@ -149,31 +111,39 @@ Legend:
 
 ```mermaid
 flowchart LR
-    P1["<b>📦&nbsp;IdsSampleClient.csproj</b><br/><small>net9.0-windows</small>"]
-    P2["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>netstandard2.1</small>"]
+    P1["<b>📦&nbsp;IdsServer.csproj</b><br/><small>net8.0</small>"]
+    P2["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>net10.0</small>"]
+    P3["<b>📦&nbsp;IdsServer.Library.csproj</b><br/><small>netstandard2.1</small>"]
+    P4["<b>📦&nbsp;IdsServer.Database.csproj</b><br/><small>net8.0</small>"]
     P1 --> P2
-    click P1 "#idssampleclientcsproj"
+    P1 --> P3
+    P1 --> P4
+    P3 --> P2
+    P4 --> P2
+    click P1 "#idsservercsproj"
     click P2 "#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"
+    click P3 "#x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj"
+    click P4 "#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj"
 
 ```
 
 ## Project Details
 
-<a id="idssampleclientcsproj"></a>
-### IdsSampleClient.csproj
+<a id="idsservercsproj"></a>
+### IdsServer.csproj
 
 #### Project Info
 
-- **Current Target Framework:** net9.0-windows
-- **Proposed Target Framework:** net10.0-windows
+- **Current Target Framework:** net8.0
+- **Proposed Target Framework:** net10.0
 - **SDK-style**: True
-- **Project Kind:** Wpf
-- **Dependencies**: 1
+- **Project Kind:** AspNetCore
+- **Dependencies**: 3
 - **Dependants**: 0
-- **Number of Files**: 19
-- **Number of Files with Incidents**: 7
-- **Lines of Code**: 1230
-- **Estimated LOC to modify**: 729+ (at least 59,3% of the project)
+- **Number of Files**: 183
+- **Number of Files with Incidents**: 5
+- **Lines of Code**: 1552
+- **Estimated LOC to modify**: 5+ (at least 0,3% of the project)
 
 #### Dependency Graph
 
@@ -183,15 +153,21 @@ Legend:
 
 ```mermaid
 flowchart TB
-    subgraph current["IdsSampleClient.csproj"]
-        MAIN["<b>📦&nbsp;IdsSampleClient.csproj</b><br/><small>net9.0-windows</small>"]
-        click MAIN "#idssampleclientcsproj"
+    subgraph current["IdsServer.csproj"]
+        MAIN["<b>📦&nbsp;IdsServer.csproj</b><br/><small>net8.0</small>"]
+        click MAIN "#idsservercsproj"
     end
-    subgraph downstream["Dependencies (1"]
-        P2["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>netstandard2.1</small>"]
+    subgraph downstream["Dependencies (3"]
+        P2["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>net10.0</small>"]
+        P3["<b>📦&nbsp;IdsServer.Library.csproj</b><br/><small>netstandard2.1</small>"]
+        P4["<b>📦&nbsp;IdsServer.Database.csproj</b><br/><small>net8.0</small>"]
         click P2 "#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"
+        click P3 "#x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj"
+        click P4 "#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj"
     end
     MAIN --> P2
+    MAIN --> P3
+    MAIN --> P4
 
 ```
 
@@ -199,33 +175,82 @@ flowchart TB
 
 | Category | Count | Impact |
 | :--- | :---: | :--- |
-| 🔴 Binary Incompatible | 710 | High - Require code changes |
+| 🔴 Binary Incompatible | 1 | High - Require code changes |
 | 🟡 Source Incompatible | 0 | Medium - Needs re-compilation and potential conflicting API error fixing |
-| 🔵 Behavioral change | 19 | Low - Behavioral changes that may require testing at runtime |
-| ✅ Compatible | 1197 |  |
-| ***Total APIs Analyzed*** | ***1926*** |  |
-
-#### Project Technologies and Features
-
-| Technology | Issues | Percentage | Migration Path |
-| :--- | :---: | :---: | :--- |
-| Windows Forms Legacy Controls | 1 | 0,1% | Legacy Windows Forms controls that have been removed from .NET Core/5+ including StatusBar, DataGrid, ContextMenu, MainMenu, MenuItem, and ToolBar. These controls were replaced by more modern alternatives. Use ToolStrip, MenuStrip, ContextMenuStrip, and DataGridView instead. |
-| Windows Forms | 709 | 97,3% | Windows Forms APIs for building Windows desktop applications with traditional Forms-based UI that are available in .NET on Windows. Enable Windows Desktop support: Option 1 (Recommended): Target net9.0-windows; Option 2: Add <UseWindowsDesktop>true</UseWindowsDesktop>; Option 3 (Legacy): Use Microsoft.NET.Sdk.WindowsDesktop SDK. |
+| 🔵 Behavioral change | 4 | Low - Behavioral changes that may require testing at runtime |
+| ✅ Compatible | 2245 |  |
+| ***Total APIs Analyzed*** | ***2250*** |  |
 
 <a id="x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"></a>
 ### X:\workspaces\dtcrssmd\IDS\Library\IdsLibrary\IdsLibrary.csproj
 
 #### Project Info
 
-- **Current Target Framework:** netstandard2.1✅
+- **Current Target Framework:** net10.0✅
 - **SDK-style**: True
 - **Project Kind:** ClassLibrary
 - **Dependencies**: 0
-- **Dependants**: 1
+- **Dependants**: 3
 - **Number of Files**: 23
-- **Number of Files with Incidents**: 13
 - **Lines of Code**: 3971
-- **Estimated LOC to modify**: 41+ (at least 1,0% of the project)
+- **Estimated LOC to modify**: 0+ (at least 0,0% of the project)
+
+#### Dependency Graph
+
+Legend:
+📦 SDK-style project
+⚙️ Classic project
+
+```mermaid
+flowchart TB
+    subgraph upstream["Dependants (3)"]
+        P1["<b>📦&nbsp;IdsServer.csproj</b><br/><small>net8.0</small>"]
+        P3["<b>📦&nbsp;IdsServer.Library.csproj</b><br/><small>netstandard2.1</small>"]
+        P4["<b>📦&nbsp;IdsServer.Database.csproj</b><br/><small>net8.0</small>"]
+        click P1 "#idsservercsproj"
+        click P3 "#x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj"
+        click P4 "#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj"
+    end
+    subgraph current["IdsLibrary.csproj"]
+        MAIN["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>net10.0</small>"]
+        click MAIN "#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"
+    end
+    P1 --> MAIN
+    P3 --> MAIN
+    P4 --> MAIN
+
+```
+
+### API Compatibility
+
+| Category | Count | Impact |
+| :--- | :---: | :--- |
+| 🔴 Binary Incompatible | 0 | High - Require code changes |
+| 🟡 Source Incompatible | 0 | Medium - Needs re-compilation and potential conflicting API error fixing |
+| 🔵 Behavioral change | 0 | Low - Behavioral changes that may require testing at runtime |
+| ✅ Compatible | 0 |  |
+| ***Total APIs Analyzed*** | ***0*** |  |
+
+#### Project Package References
+
+| Package | Type | Current Version | Suggested Version | Description |
+| :--- | :---: | :---: | :---: | :--- |
+| Ardalis.SmartEnum | Explicit | 8.2.0 |  | ✅Compatible |
+| FluentValidation | Explicit | 11.11.0 |  | ✅Compatible |
+
+<a id="x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj"></a>
+### X:\workspaces\dtcrssmd\IDS\Library\IdsServer.Library\IdsServer.Library.csproj
+
+#### Project Info
+
+- **Current Target Framework:** netstandard2.1✅
+- **SDK-style**: True
+- **Project Kind:** ClassLibrary
+- **Dependencies**: 1
+- **Dependants**: 1
+- **Number of Files**: 0
+- **Lines of Code**: 0
+- **Estimated LOC to modify**: 0+ (at least 0,0% of the project)
 
 #### Dependency Graph
 
@@ -236,14 +261,19 @@ Legend:
 ```mermaid
 flowchart TB
     subgraph upstream["Dependants (1)"]
-        P1["<b>📦&nbsp;IdsSampleClient.csproj</b><br/><small>net9.0-windows</small>"]
-        click P1 "#idssampleclientcsproj"
+        P1["<b>📦&nbsp;IdsServer.csproj</b><br/><small>net8.0</small>"]
+        click P1 "#idsservercsproj"
     end
-    subgraph current["IdsLibrary.csproj"]
-        MAIN["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>netstandard2.1</small>"]
-        click MAIN "#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"
+    subgraph current["IdsServer.Library.csproj"]
+        MAIN["<b>📦&nbsp;IdsServer.Library.csproj</b><br/><small>netstandard2.1</small>"]
+        click MAIN "#x:workspacesdtcrssmdidslibraryidsserverlibraryidsserverlibrarycsproj"
+    end
+    subgraph downstream["Dependencies (1"]
+        P2["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>net10.0</small>"]
+        click P2 "#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"
     end
     P1 --> MAIN
+    MAIN --> P2
 
 ```
 
@@ -253,14 +283,70 @@ flowchart TB
 | :--- | :---: | :--- |
 | 🔴 Binary Incompatible | 0 | High - Require code changes |
 | 🟡 Source Incompatible | 0 | Medium - Needs re-compilation and potential conflicting API error fixing |
-| 🔵 Behavioral change | 41 | Low - Behavioral changes that may require testing at runtime |
-| ✅ Compatible | 1704 |  |
-| ***Total APIs Analyzed*** | ***1745*** |  |
+| 🔵 Behavioral change | 0 | Low - Behavioral changes that may require testing at runtime |
+| ✅ Compatible | 0 |  |
+| ***Total APIs Analyzed*** | ***0*** |  |
 
 #### Project Package References
 
 | Package | Type | Current Version | Suggested Version | Description |
 | :--- | :---: | :---: | :---: | :--- |
-| Ardalis.SmartEnum | Explicit | 8.2.0 |  | ✅Compatible |
-| FluentValidation | Explicit | 11.11.0 |  | ✅Compatible |
+
+<a id="x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj"></a>
+### X:\workspaces\dtcrssmd\IDS\Server\IdsServer.Database\IdsServer.Database.csproj
+
+#### Project Info
+
+- **Current Target Framework:** net8.0✅
+- **SDK-style**: True
+- **Project Kind:** ClassLibrary
+- **Dependencies**: 1
+- **Dependants**: 1
+- **Number of Files**: 9
+- **Lines of Code**: 505
+- **Estimated LOC to modify**: 0+ (at least 0,0% of the project)
+
+#### Dependency Graph
+
+Legend:
+📦 SDK-style project
+⚙️ Classic project
+
+```mermaid
+flowchart TB
+    subgraph upstream["Dependants (1)"]
+        P1["<b>📦&nbsp;IdsServer.csproj</b><br/><small>net8.0</small>"]
+        click P1 "#idsservercsproj"
+    end
+    subgraph current["IdsServer.Database.csproj"]
+        MAIN["<b>📦&nbsp;IdsServer.Database.csproj</b><br/><small>net8.0</small>"]
+        click MAIN "#x:workspacesdtcrssmdidsserveridsserverdatabaseidsserverdatabasecsproj"
+    end
+    subgraph downstream["Dependencies (1"]
+        P2["<b>📦&nbsp;IdsLibrary.csproj</b><br/><small>net10.0</small>"]
+        click P2 "#x:workspacesdtcrssmdidslibraryidslibraryidslibrarycsproj"
+    end
+    P1 --> MAIN
+    MAIN --> P2
+
+```
+
+### API Compatibility
+
+| Category | Count | Impact |
+| :--- | :---: | :--- |
+| 🔴 Binary Incompatible | 0 | High - Require code changes |
+| 🟡 Source Incompatible | 0 | Medium - Needs re-compilation and potential conflicting API error fixing |
+| 🔵 Behavioral change | 0 | Low - Behavioral changes that may require testing at runtime |
+| ✅ Compatible | 0 |  |
+| ***Total APIs Analyzed*** | ***0*** |  |
+
+#### Project Package References
+
+| Package | Type | Current Version | Suggested Version | Description |
+| :--- | :---: | :---: | :---: | :--- |
+| Microsoft.EntityFrameworkCore | Explicit | 9.0.1 |  | ✅Compatible |
+| Microsoft.EntityFrameworkCore.Design | Explicit | 9.0.1 |  | ✅Compatible |
+| Microsoft.EntityFrameworkCore.Relational | Explicit | 9.0.1 |  | ✅Compatible |
+| Microsoft.EntityFrameworkCore.Tools | Explicit | 9.0.1 |  | ✅Compatible |
 
